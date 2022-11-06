@@ -12,7 +12,7 @@ public struct Order
     public string CostumerEmail { get; set; }
     public string CostumerAdress { get; set; }
     public DateTime OrderDate { get; set; }
-    public DateTime shipDate { get; set; }
+    public DateTime ShipDate { get; set; }
     public DateTime DeliveryrDate { get; set; }
     public override string ToString() => $@"
 order ID : {ID} 
