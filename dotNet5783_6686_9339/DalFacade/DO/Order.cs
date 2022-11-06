@@ -17,7 +17,7 @@ public struct Order
     public override string ToString() => $@"
 order ID : {ID} 
 costumer name : {CostumerNmae} , costumer email : {CostumerEmail} , costumer adress {CostumerAdress}
-order date : {OrderDate} , ship date : {shipDate} , {DeliveryrDate}
+order date : {OrderDate} , ship date : {ShipDate} , {DeliveryrDate}
 ";
 
 }
