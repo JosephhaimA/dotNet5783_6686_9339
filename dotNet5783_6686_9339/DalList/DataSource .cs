@@ -16,27 +16,48 @@ internal static class DataSource
     static internal Product[] ProductArray = new Product[50];
     private static void AddProduct()
     {
-        Product ProductArray = new Product();
-        ProductArray.ID = //ID;
-        ProductArray.Name = //Name;
-        ProductArray.Price = //Price;
-        ProductArray.Category = //Category;
-        ProductArray.InStock = //InStock;
-    }
-
-    private static void AddOrderItem()
-    {
-        OrderItem OrderIteamArray = new OrderItem();
-        OrderIteamArray.ProductID = //ProductID;
-        OrderIteamArray.OrderID = //OrderID;
-        OrderIteamArray.Price = //Price;
-        OrderIteamArray.Amount = //Amount;
-    }
-    private static void s_Initialize()
-    {
-        AddProduct();
-        AddOrderItem();
-        AddOrder();
+        for (int i = 0; i < 2; i++)
+        {
+            Product ProductProductArray = new()
+            {   ID = i,
+                Name = "shoes",
+                Price = 500,
+                Category = jorden,
+                InStock = 20
+            };
+            Product ProductProductArray = new()
+            {
+                ID = i+1,
+                Name = "shirt",
+                Price = 500,
+                Category = jorden,
+                InStock = 20
+            };
+            Product ProductProductArray = new()
+            {
+                ID = i+2,
+                Name = "hat",
+                Price = 500,
+                Category = ,
+                InStock = 20
+            };
+            Product ProductProductArray = new()
+            {
+                ID = i+3,
+                Name = "",
+                Price = 500,
+                Category = ,
+                InStock = 20
+            };
+            Product ProductProductArray = new()
+            {
+                ID = i+4,
+                Name = "",
+                Price = 500,
+                Category = ,
+                InStock = 20
+            };
+        }
     }
 
     static readonly Random rand = new Random();
@@ -47,19 +68,48 @@ internal static class DataSource
         return start.AddDays(rand.Next(range));
     }
     private static void AddOrder()
-    { 
-        Order OrderArray = new Order();
-        OrderArray.ID = //ID;
-        OrderArray.CostumerNmae = //CostumerNmae;
-        OrderArray.CostumerEmail = //CostumerEmail;
-        OrderArray.CostumerAdress = //CostumerAdress;
-        OrderArray.OrderDate = DateTime.MinValue;// OrderDate;
-        DateTime date = RandomDay(OrderArray.OrderDate,2, 7) ;
-        OrderArray.ShipDate = date ;         //ShipDate;
-        DateTime date2 = RandomDay(OrderArray.ShipDate,1,2);   //הוראות על פי המרצה
-        OrderArray.DeliveryrDate = date2;          //DeliveryrDate;
-
+    {
+        string[] names = new string[] { "Amir", "Avi", "Yoni", "Dan", "Yali","Joseph", "David", "Maor", " Shira", "Emma", "Agam",
+                                         "Haim", "Josephine","Jeremy","Daniel", "Yossi", "Nathan", "Eliyhou", "Hila","Hodaya"};
+        string[] adresss = new string[] { "jlm", "Maale adumim", "bni brak", "tlv", "eilat", "rishon lezion", "petah tikva", "ramat gan",
+                                           "modiin", "afula", "Herzeliya", "Rosh pinha", "dimona", "dead sea", "ovnat", "Ness ziona", "kiryat ono"
+                                          , "ashdod", "ashkelon", "beer sheva"};
+        for (int i = 0; i < 20; i++)
+        {
+           DateTime randDate = DateTime.MinValue;
+           DateTime date1 = RandomDay(randDate, 2, 7);
+           DateTime date2 = RandomDay(date1, 1, 2);
+           Order OrderArray = new Order()
+            {
+                ID = Config.RunningIndexOrderItems,
+                CostumerNmae = names[i],
+                CostumerEmail = names[i] + "@gameil.com",
+                CostumerAdress = adresss[i],
+                OrderDate = randDate,
+                ShipDate = date1,
+                DeliveryrDate = date2,
+            };
+        }
     }
+    private static void AddOrderItem()
+    {
+        OrderItem OrderIteamArray = new()
+        {
+            ProductID = Config.RunningIndexOrderItems,
+            OrderID = Config.IndexOrder,
+            Price = 550,
+            Amount = 3,
+        };
+        
+    }
+    private static void s_Initialize()
+    {
+        AddProduct();
+        AddOrderItem();
+        AddOrder();
+    }
+
+  
     internal static class Config
     {
         internal static int IndexOrder = 0;
