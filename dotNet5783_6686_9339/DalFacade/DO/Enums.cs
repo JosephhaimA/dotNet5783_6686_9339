@@ -1,6 +1,6 @@
 ﻿
 namespace DO;
 
-public struct Enums
-{
-}
+ public enum Category {Jordan, Yeezy, Dunk, DunkSB, Sacai }
+
+
