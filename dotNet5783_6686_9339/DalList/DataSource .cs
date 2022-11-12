@@ -20,17 +20,17 @@ internal static class DataSource
         {
             Product ProductProductArray = new()
             {   ID = i,
-                Name = "shoes",
+                Name = "sneakers",
                 Price = 500,
-                Category = jorden,
+                Category = Jorden,
                 InStock = 20
             };
             Product ProductProductArray = new()
             {
-                ID = i+1,
+                ID = i + 1,
                 Name = "shirt",
                 Price = 500,
-                Category = jorden,
+                Category = Jorden,
                 InStock = 20
             };
             Product ProductProductArray = new()
@@ -38,29 +38,34 @@ internal static class DataSource
                 ID = i+2,
                 Name = "hat",
                 Price = 500,
-                Category = ,
+                Category = Jorden,
                 InStock = 20
             };
             Product ProductProductArray = new()
             {
                 ID = i+3,
-                Name = "",
+                Name = "snkrs",
                 Price = 500,
-                Category = ,
+                Category = Yeezy,
                 InStock = 20
             };
             Product ProductProductArray = new()
             {
                 ID = i+4,
-                Name = "",
+                Name = "snkrs",
                 Price = 500,
-                Category = ,
+                Category =DunkSB,
                 InStock = 20
             };
         }
     }
 
     static readonly Random rand = new Random();
+
+    public static CategoryAttribute Jorden { get; private set; }
+    public static CategoryAttribute Yeezy { get; private set; }
+    public static CategoryAttribute DunkSB { get; private set; }
+
     private static DateTime RandomDay(DateTime date, int startdays, int endays)
     {
         DateTime start = DateTime.Today.AddDays(startdays);
