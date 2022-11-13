@@ -81,6 +81,7 @@ public class DalOrder
         else
             throw new Exception("Order does not exist");
     }
+    // find function that help us with the main function like add, delete..... to check the exist
     public int OrderFind(int id)
     {
         for (int i = 0; i < DataSource.OrderArray.Length; i++)
