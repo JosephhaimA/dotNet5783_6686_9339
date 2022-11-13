@@ -1,7 +1,8 @@
 ﻿
 using DO;
-using System;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace Dal;
 
@@ -18,49 +19,66 @@ internal static class DataSource
     {
         for (int i = 0; i < 2; i++)
         {
-            Product ProductProductArray = new()
-            {   ID = i,
-                Name = "shoes",
-                Price = 500,
-                Category = jorden,
-                InStock = 20
-            };
-            Product ProductProductArray = new()
+            ProductArray[i] = new Product
             {
-                ID = i+1,
+                ID = i,
+                Price = 500,
                 Name = "shirt",
-                Price = 500,
-                Category = jorden,
+                Cat = ProductCategory.Jordan,
                 InStock = 20
             };
-            Product ProductProductArray = new()
+            Config.IndexProduct++;
+
+            ProductArray[i] = new Product
             {
-                ID = i+2,
+                ID = i,
+                Price = 500,
+                Name = "sneakers",
+                Cat = ProductCategory.Jordan,
+                InStock = 20
+
+            };
+            Config.IndexProduct++;
+
+            ProductArray[i] = new Product
+            {
+                ID = i,
+                Price = 500,
+                Name = "sneakers",
+                Cat = ProductCategory.Sacai,
+                InStock = 20
+
+            };
+            Config.IndexProduct++;
+
+            ProductArray[i] = new Product
+            {
+                ID = i,
+                Price = 500,
+                Name = "sneakers",
+                Cat = ProductCategory.DunkSB,
+                InStock = 20
+
+            }; Config.IndexProduct++;
+
+            ProductArray[i] = new Product
+            {
+                ID = i,
+                Price = 500,
                 Name = "hat",
-                Price = 500,
-                Category = ,
+                Cat = ProductCategory.Yeezy,
                 InStock = 20
-            };
-            Product ProductProductArray = new()
-            {
-                ID = i+3,
-                Name = "",
-                Price = 500,
-                Category = ,
-                InStock = 20
-            };
-            Product ProductProductArray = new()
-            {
-                ID = i+4,
-                Name = "",
-                Price = 500,
-                Category = ,
-                InStock = 20
-            };
+
+            }; Config.IndexProduct++;
         }
     }
 
     static readonly Random rand = new Random();
+
+    public static CategoryAttribute Jorden { get; private set; }
+    public static CategoryAttribute Yeezy { get; private set; }
+    public static CategoryAttribute DunkSB { get; private set; }
+
     private static DateTime RandomDay(DateTime date, int startdays, int endays)
     {
         DateTime start = DateTime.Today.AddDays(startdays);
@@ -118,8 +136,8 @@ internal static class DataSource
 
         public static int RunningIndexOrder = 0;
         public static int RunningIndexOrderItems = 0;
-        private static int LestOrder { get => RunningIndexOrder++ ; }
-        private static int LestOrderItems { get => RunningIndexOrderItems++ ; }
+        private static int LestOrder { get => RunningIndexOrder++; }
+        private static int LestOrderItems { get => RunningIndexOrderItems++; }
     }
 }
 /*

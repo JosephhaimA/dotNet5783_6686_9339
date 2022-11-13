@@ -7,6 +7,17 @@ namespace DO;
 
 public struct Order
 {
+    public Order(int iD, string costumerNmae, string costumerEmail, string costumerAdress, DateTime orderDate, DateTime shipDate, DateTime deliveryrDate)
+    {
+        ID = iD;
+        CostumerNmae = costumerNmae;
+        CostumerEmail = costumerEmail;
+        CostumerAdress = costumerAdress;
+        OrderDate = orderDate;
+        ShipDate = shipDate;
+        DeliveryrDate = deliveryrDate;
+    }
+
     public int ID { get; set; }
     public string CostumerNmae { get; set; }
     public string CostumerEmail { get; set; }
