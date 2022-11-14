@@ -26,7 +26,7 @@ class Program
 
         do
         {
-            System.Console.WriteLine("Enter the option <1,2,3>: ");
+            System.Console.WriteLine("Enter the option: 1- producttest, 2- ordertest, 3- orderitemtest");
             status = int.TryParse(System.Console.ReadLine(), out op);
 
         } while (!status); // check if the input is correct
@@ -51,7 +51,7 @@ class Program
     private static void ProductTest()
     {
         int op;
-        System.Console.WriteLine("Product: Enter the option<1,2,3,4,5>");
+        System.Console.WriteLine("*Product* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delet");
         op = int.Parse(System.Console.ReadLine());
         switch (op)
         {
@@ -187,7 +187,7 @@ class Program
     private static void OrderTest()
     {
         int op;
-        System.Console.WriteLine("Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete");
+        System.Console.WriteLine("*Order* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete");
         op = int.Parse(System.Console.ReadLine());
         switch (op)
         {
@@ -331,7 +331,7 @@ class Program
     private static void OrderIteamTest()
     {
         int op;
-        System.Console.WriteLine("Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete");
+        System.Console.WriteLine("*OrderItem* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete");
         op = int.Parse(System.Console.ReadLine());
         switch (op)
         {
