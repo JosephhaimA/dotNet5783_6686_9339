@@ -217,6 +217,7 @@ class Program
     {
         System.Console.WriteLine("Enter the data of the product to add");
         System.Console.WriteLine("write: ID, CostumerName, CostumerE, Adress, Date, ShipDate, EstimateDelivery");
+
          int id, price, inSt, cate;
         string costumerNmae, ostumerEmail, costumerAdress;
         DateTime orderDate, shipDate, deliveryrDate;
@@ -254,6 +255,7 @@ class Program
     {
         System.Console.WriteLine("Enter what to update");
         System.Console.WriteLine("write: ID, CostumerE, costumerAdress, DateOfOrder, ShipDate, EstimatedDeliveryDate");
+
         int id, price, inSt, cate;
         string costumerNmae, ostumerEmail, costumerAdress;
         DateTime orderDate, shipDate, deliveryrDate;
@@ -378,6 +380,7 @@ class Program
     {
         System.Console.WriteLine("Enter what to update");
         System.Console.WriteLine("write: ID, OrderID, amount, price");
+
         int productID, orderID, amount;
         double price;
         productID = int.Parse(System.Console.ReadLine());
