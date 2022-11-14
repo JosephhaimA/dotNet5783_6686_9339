@@ -94,10 +94,10 @@ internal static class DataSource
                                           , "ashdod", "ashkelon", "beer sheva"};
         for (int i = 0; i < 20; i++)
         {
-           DateTime randDate = DateTime.MinValue;
-           DateTime date1 = RandomDay(randDate, 2, 7);
-           DateTime date2 = RandomDay(date1, 1, 2);
-           Order OrderArray = new Order()
+            DateTime randDate = DateTime.MinValue;
+            DateTime date1 = RandomDay(randDate, 2, 7);
+            DateTime date2 = RandomDay(date1, 1, 2);
+            Order OrderArray = new Order()
             {
                 ID = Config.RunningIndexOrderItems,
                 CostumerNmae = names[i],
@@ -118,7 +118,7 @@ internal static class DataSource
             Price = 550,
             Amount = 3,
         };
-        
+
     }
     private static void s_Initialize()
     {
@@ -127,7 +127,7 @@ internal static class DataSource
         AddOrder();
     }
 
-  
+
     internal static class Config
     {
         internal static int IndexOrder = 0;

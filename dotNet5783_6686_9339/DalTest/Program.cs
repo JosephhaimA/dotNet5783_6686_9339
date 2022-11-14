@@ -1,4 +1,4 @@
-using DO;
+﻿using DO;
 using System.Xml.Linq;
 
 namespace Dal;
@@ -180,10 +180,10 @@ class Program
         op = int.Parse(System.Console.ReadLine());
         switch (op)
         {
-                case 1:
+            case 1:
                 OrderTestADD();
-                    break;
-                case 2:
+                break;
+            case 2:
                 OrderTestSHOW();
                 break;
             case 3:
@@ -326,7 +326,7 @@ class Program
         {
             case 1:
                 OrderIteamTestADD();
-                    break;
+                break;
             case 2:
                 OrderIteamTestSHOW();
                 break;

@@ -24,7 +24,7 @@ public class DalProduct
             }
             else
                 throw new Exception("No such place to add a Product you have to remove one");
-}
+        }
         else
             throw new Exception("Product doesn't exist");
     }

@@ -21,5 +21,5 @@ Product name : {Name}
 Product Price:{Price},
 Category : {Cat} 
 Product stock : {InStock} ";
-                            
+
 }
