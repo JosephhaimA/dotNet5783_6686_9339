@@ -1,4 +1,14 @@
-﻿using DO;
+﻿ /*
+The shop of Amir Hai and Joseph Haim 
+we annouced to open a special store of limited edition products from clothes branch.
+ the stroe will include sneakers, shirts, hats and more surprised things.
+ -------------
+ in our program we made an app for the store that will storage the data of the shop 
+ declered what do we have in the shop, amount, orders, dates and more.
+ [in Arrays]
+ */
+
+using DO;
 using System.Xml.Linq;
 
 namespace Dal;
@@ -11,7 +21,7 @@ class Program
     public static void Main(string[] args)
     {
   
-        int op;
+        int op; // option
         bool status;
 
         do
@@ -19,7 +29,7 @@ class Program
             System.Console.WriteLine("Enter the option <1,2,3>: ");
             status = int.TryParse(System.Console.ReadLine(), out op);
 
-        } while (!status); 
+        } while (!status); // check if the input is correct
         
         while (op != 0)
         {
@@ -37,6 +47,7 @@ class Program
             }
         }
     }
+    // ------------------ If the user chose option 1 in main menu -------------- \\
     private static void ProductTest()
     {
         int op;
@@ -44,22 +55,22 @@ class Program
         op = int.Parse(System.Console.ReadLine());
         switch (op)
         {
-            case 1:
+            case 1: // add product
                 ProductTestADD();
                 break;
-            case 2:
+            case 2: // show the product
                 ProductTestSHOW();
                 break;
-            case 3:
+            case 3: // the list of 
                 ProductTestListShow();
                 break;
-            case 4:
+            case 4: // updating the data of the
                 ProductTestDataUpdate();
                 break;
-            case 5:
+            case 5: // delete the product from the list 
                 ProductTestDelete();
                 break;
-            default:
+            default: // in case that the input incorrect
                 Console.WriteLine("wrong choose, must be between 1-5");
                 break;
         }
@@ -67,7 +78,7 @@ class Program
 
     private static void ProductTestDataUpdate()
     {
-        System.Console.WriteLine("Enter Product");
+        System.Console.WriteLine("Enter Product you want to update");
         int id, price, inSt, cate;
         string name;
         ProductCategory category;
@@ -94,13 +105,13 @@ class Program
         }
         catch (ArgumentException)
         {
-            Console.WriteLine("ERROR");
+            Console.WriteLine("ERROR cant update");
         }
     }
 
     private static void ProductTestDelete()
     {
-        System.Console.WriteLine("Enter Product id");
+        System.Console.WriteLine("Enter the product ID you intersting to delete");
         int id;
         id = int.Parse(System.Console.ReadLine());
         try
@@ -109,14 +120,14 @@ class Program
         }
         catch(ArgumentException)
         {
-            Console.WriteLine("ERROR");
+            Console.WriteLine("ERROR cant delete");
 
         }
     }
 
     private static void ProductTestADD()
     {
-        System.Console.WriteLine("Enter Product");
+        System.Console.WriteLine("Enter Product you want to add ");
         int id, price, inSt, cate;
         string name;
         ProductCategory category;
@@ -140,7 +151,7 @@ class Program
         }
         catch (ArgumentException)
         {
-            Console.WriteLine("ERROR");
+            Console.WriteLine("ERROR cant add");
         }
     }
 
@@ -152,14 +163,14 @@ class Program
         }
         catch (ArgumentException)
         {
-            Console.WriteLine("ERROR");
+            Console.WriteLine("ERROR cant show");
 
         }
     }
 
     private static void ProductTestSHOW()
     {
-        System.Console.WriteLine("Enter Product id");
+        System.Console.WriteLine("Enter Product id you want to introduce");
         int id;
         id = int.Parse(System.Console.ReadLine());
         try
@@ -168,15 +179,15 @@ class Program
         }
         catch (ArgumentException)
         {
-            Console.WriteLine("ERROR");
+            Console.WriteLine("ERROR cant intorduce");
 
         }
     }
-
+    // ------------------ If the user chose option 2 -------------- \\
     private static void OrderTest()
     {
         int op;
-        System.Console.WriteLine("Enter the option");
+        System.Console.WriteLine("Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete");
         op = int.Parse(System.Console.ReadLine());
         switch (op)
         {
@@ -203,7 +214,7 @@ class Program
 
     private static void OrderTestADD()
     {
-        System.Console.WriteLine("Enter order");
+        System.Console.WriteLine("Enter the data of the product to add");
         int id, price, inSt, cate;
         string costumerNmae, ostumerEmail, costumerAdress;
         DateTime orderDate, shipDate, deliveryrDate;
@@ -233,13 +244,13 @@ class Program
         }
         catch (ArgumentException)
         {
-            Console.WriteLine("ERROR");
+            Console.WriteLine("ERROR, cant add");
         }
     }
 
     private static void OrderTestDataUpdate()
     {
-        System.Console.WriteLine("Enter order");
+        System.Console.WriteLine("Enter what to update");
         int id, price, inSt, cate;
         string costumerNmae, ostumerEmail, costumerAdress;
         DateTime orderDate, shipDate, deliveryrDate;
@@ -269,7 +280,7 @@ class Program
         }
         catch (ArgumentException)
         {
-            Console.WriteLine("ERROR");
+            Console.WriteLine("ERROR cant update");
         }
     }
 
@@ -284,7 +295,7 @@ class Program
         }
         catch (ArgumentException)
         {
-            Console.WriteLine("ERROR");
+            Console.WriteLine("ERROR cant delete");
         }
     }
 
@@ -296,7 +307,7 @@ class Program
         }
         catch (ArgumentException)
         {
-            Console.WriteLine("ERROR");
+            Console.WriteLine("ERROR cant show");
 
         }
     }
@@ -312,15 +323,15 @@ class Program
         }
         catch (ArgumentException)
         {
-            Console.WriteLine("ERROR");
+            Console.WriteLine("ERROR cant show");
 
         }
     }
-
+    // ------------------ If the user chose option 3 -------------- \\
     private static void OrderIteamTest()
     {
         int op;
-        System.Console.WriteLine("Enter the option");
+        System.Console.WriteLine("Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete");
         op = int.Parse(System.Console.ReadLine());
         switch (op)
         {

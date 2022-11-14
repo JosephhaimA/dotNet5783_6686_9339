@@ -47,7 +47,7 @@ public class DalProduct
             Console.WriteLine(element);
         }
     }
-    public void ProductsUpdate(Product p)
+    public void ProductsUpdate(Product p) // updating the product if exist, the price, the stock of the prudcut,....
     {
         int index = ProductFind(p.ID);
         if (index != -999)
@@ -78,6 +78,8 @@ public class DalProduct
         else
             throw new Exception("Product does not exist");
     }
+
+    // find function that help us with the main function like add, delete..... to check the exist
     public int ProductFind(int id)
     {
         for (int i = 0; i < DataSource.ProductArray.Length; i++)

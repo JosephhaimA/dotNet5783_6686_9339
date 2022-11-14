@@ -4,6 +4,8 @@ namespace DO;
 
 public struct OrderItem
 {
+
+    // get and set metodot
     public int ProductID { get; set; }
     public int OrderID { get; set; }
     public double Price { get; set; }

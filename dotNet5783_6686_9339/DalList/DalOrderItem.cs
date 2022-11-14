@@ -77,6 +77,8 @@ public class DalOrderItem
         else
             throw new Exception("OrderItem does not exist");
     }
+
+    // find function that help us with the main function like add, delete..... to check the exist
     public int OrderItemFind(int id)
     {
         for (int i = 0; i < DataSource.OrderIteamArray.Length; i++)
