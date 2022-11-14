@@ -407,6 +407,8 @@ class Program
     {
         int productID, orderID, amount;
         double price;
+        System.Console.WriteLine("Enter what to update");
+        System.Console.WriteLine("write: ID, OrderID, amount, price");
 
         productID = int.Parse(System.Console.ReadLine());
         orderID = int.Parse(System.Console.ReadLine());
