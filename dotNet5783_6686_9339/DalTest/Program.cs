@@ -128,7 +128,7 @@ class Program
     private static void ProductTestADD()
     {
         System.Console.WriteLine("Enter Product you want to add ");
-        System.Console.WriteLine("write: ID, Category, Price, Instock, name")
+        System.Console.WriteLine("write: ID, Category, Price, Instock, name");
         int id, price, inSt, cate;
         string name;
         ProductCategory category;
@@ -216,8 +216,8 @@ class Program
     private static void OrderTestADD()
     {
         System.Console.WriteLine("Enter the data of the product to add");
-        System.Console.WriteLine("write: ID, Category, Price, Instock, name")
-        int id, price, inSt, cate;
+        System.Console.WriteLine("write: ID, Category, Price, Instock, name");
+         int id, price, inSt, cate;
         string costumerNmae, ostumerEmail, costumerAdress;
         DateTime orderDate, shipDate, deliveryrDate;
 
@@ -253,7 +253,7 @@ class Program
     private static void OrderTestDataUpdate()
     {
         System.Console.WriteLine("Enter what to update");
-        System.Console.WriteLine("write: ID, Category, Price, Instock, name")
+        System.Console.WriteLine("write: ID, Category, Price, Instock, name");
         int id, price, inSt, cate;
         string costumerNmae, ostumerEmail, costumerAdress;
         DateTime orderDate, shipDate, deliveryrDate;
