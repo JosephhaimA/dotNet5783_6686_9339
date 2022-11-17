@@ -18,6 +18,8 @@ class Program
     static DalOrder  dalOrder = new DalOrder();
     static DalOrderItem   dalOrderItem = new DalOrderItem();
 
+    public static object Config { get; private set; }
+
     public static void Main(string[] args)
     {
   
@@ -215,14 +217,13 @@ class Program
 
     private static void OrderTestADD()
     {
-        System.Console.WriteLine("Enter the data of the product to add");
-        System.Console.WriteLine("write: ID, CostumerName, CostumerE, Adress, Date, ShipDate, EstimateDelivery");
+        System.Console.WriteLine("Enter the data of the order to add");
+        System.Console.WriteLine("write: CostumerName, CostumerE, Adress, Date, ShipDate, EstimateDelivery");
 
-         int id, price, inSt, cate;
+         int price, inSt, cate;
         string costumerNmae, ostumerEmail, costumerAdress;
         DateTime orderDate, shipDate, deliveryrDate;
 
-        id = int.Parse(System.Console.ReadLine());
         costumerNmae = Console.ReadLine();
         ostumerEmail = Console.ReadLine();
         costumerAdress = Console.ReadLine();
@@ -232,7 +233,6 @@ class Program
 
         Order or = new Order
         {
-            ID = id,
             CostumerNmae = costumerNmae,
             CostumerEmail = ostumerEmail,
             CostumerAdress = costumerAdress,
@@ -243,7 +243,7 @@ class Program
 
         try
         {
-           id = dalOrder.OrderAdd(or);
+            dalOrder.OrderAdd(or);
         }
         catch (ArgumentException)
         {

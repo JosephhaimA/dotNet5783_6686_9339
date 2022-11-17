@@ -7,27 +7,28 @@ public class DalOrder
 {
     public int OrderAdd(Order p) // function add a product
     {
-        int index = OrderFind(p.ID);
-        if (index == -999)
+       // int index = OrderFind(p.ID);
+       //// if (index == -999)
         {
             int i = DataSource.Config.IndexOrderItems;
             if (i < 200)
             {
-                DataSource.OrderArray[i] = new Order();
-                DataSource.OrderArray[i].ID = DataSource.Config.RunningIndexOrder;
-                DataSource.OrderArray[i].CostumerNmae = p.CostumerNmae;
-                DataSource.OrderArray[i].CostumerEmail = p.CostumerEmail;
-                DataSource.OrderArray[i].CostumerAdress = p.CostumerAdress;
-                DataSource.OrderArray[i].OrderDate = p.OrderDate;
-                DataSource.OrderArray[i].ShipDate = p.ShipDate;
-                DataSource.OrderArray[i].DeliveryrDate = p.DeliveryrDate;
+                DataSource.OrderArray[i] = p;
+                //DataSource.OrderArray[i].ID = DataSource.Config.LestOrder;
+                //DataSource.OrderArray[i].CostumerNmae = p.CostumerNmae;
+                //DataSource.OrderArray[i].CostumerEmail = p.CostumerEmail;
+                //DataSource.OrderArray[i].CostumerAdress = p.CostumerAdress;
+                //DataSource.OrderArray[i].OrderDate = p.OrderDate;
+                //DataSource.OrderArray[i].ShipDate = p.ShipDate;
+                //DataSource.OrderArray[i].DeliveryrDate = p.DeliveryrDate;
+                DataSource.Config.IndexOrder++;
                 return DataSource.OrderArray[i].ID;
             }
             else
                 throw new Exception("No such place to add a Order you have to remove one");
         }
-        else
-            throw new Exception("Order doesn't exist");
+       // else
+         //   throw new Exception("Order doesn't exist");
     }
 
     public Order ShowOrder(int id) // function to return one product
@@ -42,9 +43,8 @@ public class DalOrder
     {
         foreach (Order element in DataSource.OrderArray)
         {
-            if (element.ID == 0)
-                break;
-            Console.WriteLine(element);
+            if (element.ID != 0)
+                Console.WriteLine(element);
         }
     }
     public void OrderItemUpdate(Order p)

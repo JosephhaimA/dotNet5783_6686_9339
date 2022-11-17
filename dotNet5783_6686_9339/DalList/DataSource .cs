@@ -29,9 +29,9 @@ internal static class DataSource
             };
             Config.IndexProduct++;
 
-            ProductArray[i] = new Product
+            ProductArray[i+1] = new Product
             {
-                ID = i,
+                ID = i+1,
                 Price = 500,
                 Name = "sneakers",
                 Cat = ProductCategory.Jordan,
@@ -40,9 +40,9 @@ internal static class DataSource
             };
             Config.IndexProduct++;
 
-            ProductArray[i] = new Product
+            ProductArray[i+2] = new Product
             {
-                ID = i,
+                ID = i+2,
                 Price = 500,
                 Name = "sneakers",
                 Cat = ProductCategory.Sacai,
@@ -51,9 +51,9 @@ internal static class DataSource
             };
             Config.IndexProduct++;
 
-            ProductArray[i] = new Product
+            ProductArray[i+3] = new Product
             {
-                ID = i,
+                ID = i+3,
                 Price = 500,
                 Name = "sneakers",
                 Cat = ProductCategory.DunkSB,
@@ -61,9 +61,9 @@ internal static class DataSource
 
             }; Config.IndexProduct++;
 
-            ProductArray[i] = new Product
+            ProductArray[i+4] = new Product
             {
-                ID = i,
+                ID = i+4,
                 Price = 500,
                 Name = "hat",
                 Cat = ProductCategory.Yeezy,
@@ -101,7 +101,7 @@ internal static class DataSource
             DateTime date2 = RandomDay(date1, 1, 2);
             Order OrderArray = new Order()
             {
-                ID = Config.RunningIndexOrderItems,
+                ID = Config.LestOrder,
                 CostumerNmae = names[i],
                 CostumerEmail = names[i] + "@gameil.com",
                 CostumerAdress = adresss[i],
@@ -109,17 +109,19 @@ internal static class DataSource
                 ShipDate = date1,
                 DeliveryrDate = date2,
             };
+                Config.IndexOrder++;
         }
     }
     private static void AddOrderItem()
     {
         OrderItem OrderIteamArray = new()
         {
-            ProductID = Config.RunningIndexOrderItems,
-            OrderID = Config.IndexOrder,
+            ProductID = Config.LestOrderItems,
+            OrderID = Config.LestOrder,
             Price = 550,
             Amount = 3,
         };
+           Config.IndexOrderItems++;
 
     }
     private static void s_Initialize()
@@ -129,16 +131,15 @@ internal static class DataSource
         AddOrder();
     }
 
-
     internal static class Config
     {
         internal static int IndexOrder = 0;
         internal static int IndexOrderItems = 0;
         internal static int IndexProduct = 0;
 
-        public static int RunningIndexOrder = 0;
-        public static int RunningIndexOrderItems = 0;
-        private static int LestOrder { get => RunningIndexOrder++; }
-        private static int LestOrderItems { get => RunningIndexOrderItems++; }
+        private static int RunningOrderId = 0;
+        private static int RunningOrderItemId = 0;
+        public static int LestOrder { get => RunningOrderId++; }
+        public static int LestOrderItems { get => RunningOrderItemId++; }
     }
 }

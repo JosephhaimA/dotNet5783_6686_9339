@@ -9,24 +9,26 @@ public class DalOrderItem
 
     public int OrderItemAdd(OrderItem p) // function add a product
     {
-        int index = OrderItemFind(p.ProductID);
-        if (index == -999)
+       // int index = OrderItemFind(p.ProductID);
+       // if (index == -999)
         {
             int i = DataSource.Config.IndexOrderItems;
             if (i < 200)
             {
-                DataSource.OrderIteamArray[i] = new OrderItem();
-                DataSource.OrderIteamArray[i].ProductID = DataSource.Config.RunningIndexOrderItems;
-                DataSource.OrderIteamArray[i].OrderID = p.OrderID;
-                DataSource.OrderIteamArray[i].Price = p.Price;
-                DataSource.OrderIteamArray[i].Amount = p.Amount;
+                DataSource.OrderIteamArray[i] = p;
+                //DataSource.OrderIteamArray[i].ProductID = DataSource.Config.LestOrderItems;
+                //DataSource.OrderIteamArray[i].OrderID = DataSource.Config.LestOrder;
+                //DataSource.OrderIteamArray[i].Price = p.Price;
+                //DataSource.OrderIteamArray[i].Amount = p.Amount;
+                DataSource.Config.IndexOrderItems++;
+
                 return DataSource.OrderIteamArray[i].OrderID;
             }
             else
                 throw new Exception("No such place to add a OrderItem you have to remove one");
         }
-        else
-            throw new Exception("OrderItem doesn't exist");
+      //  else
+        //    throw new Exception("OrderItem doesn't exist");
     }
 
     public OrderItem ShowOrderItem(int id) // function to return one product
@@ -41,9 +43,9 @@ public class DalOrderItem
     {
         foreach (OrderItem element in DataSource.OrderIteamArray)
         {
-            if (element.ProductID == 0)
-                break;
-            Console.WriteLine(element);
+            if (element.ProductID != 0) 
+                Console.WriteLine(element);
+
         }
     }
     public void OrderItemUpdate(OrderItem p)

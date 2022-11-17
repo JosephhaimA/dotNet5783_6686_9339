@@ -8,25 +8,26 @@ public class DalProduct
 {
     public int ProductAdd(Product p) // function add a product
     {
-        int index = ProductFind(p.ID);
-        if (index == -999)
-        {
+        //int index = ProductFind(p.ID);
+        //if (index == -999)
+        //{
             int i = DataSource.Config.IndexProduct;
             if (i < 50)
             {
-                DataSource.ProductArray[i] = new Product();
-                DataSource.ProductArray[i].ID = p.ID;
-                DataSource.ProductArray[i].Name = p.Name; 
-                DataSource.ProductArray[i].Price = p.Price;
-                DataSource.ProductArray[i].Cat = p.Cat;
-                DataSource.ProductArray[i].InStock = p.InStock;
-                return DataSource.ProductArray[i].ID;
+                DataSource.ProductArray[i] = p;
+                //DataSource.ProductArray[i].ID = p.ID;
+                //DataSource.ProductArray[i].Name = p.Name; 
+                //DataSource.ProductArray[i].Price = p.Price;
+                //DataSource.ProductArray[i].Cat = p.Cat;
+                //DataSource.ProductArray[i].InStock = p.InStock;
+                DataSource.Config.IndexProduct++;
+            return DataSource.ProductArray[i].ID;
             }
             else
                 throw new Exception("No such place to add a Product you have to remove one");
-        }
-        else
-            throw new Exception("Product doesn't exist");
+        //}
+       // else
+          //  throw new Exception("Product doesn't exist");
     }
 
     public Product ShowProduct(int id) // function to return one product
@@ -42,9 +43,8 @@ public class DalProduct
         int i = 0;
         foreach (Product element in DataSource.ProductArray)
         {
-            if (element.ID == 0)
-                break;
-            Console.WriteLine(element);
+            if (element.ID != 0)
+                Console.WriteLine(element);
         }
     }
     public void ProductsUpdate(Product p) // updating the product if exist, the price, the stock of the prudcut,....
