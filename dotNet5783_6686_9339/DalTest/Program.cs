@@ -9,11 +9,13 @@ we annouced to open a special store of limited edition products from clothes bra
  */
 
 using DO;
+using System.Reflection.Metadata.Ecma335;
 using System.Xml.Linq;
 
 namespace Dal;
 class Program
 {
+    //return 0;
     static DalProduct dalProduct = new DalProduct();
     static DalOrder  dalOrder = new DalOrder();
     static DalOrderItem   dalOrderItem = new DalOrderItem();
@@ -22,7 +24,6 @@ class Program
 
     public static void Main(string[] args)
     {
-  
         int op; // option
         bool status;
 
@@ -53,7 +54,7 @@ class Program
     private static void ProductTest()
     {
         int op;
-        System.Console.WriteLine("*Product* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delet");
+        System.Console.WriteLine("*Product* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delet , 0 to finish");
         op = int.Parse(System.Console.ReadLine());
         switch (op)
         {
@@ -72,6 +73,9 @@ class Program
             case 5: // delete the product from the list 
                 ProductTestDelete();
                 break;
+            case 0:
+                return;
+                
             default: // in case that the input incorrect
                 Console.WriteLine("wrong choose, must be between 1-5");
                 break;
@@ -179,9 +183,12 @@ class Program
         System.Console.WriteLine("Enter Product id you want to introduce");
         int id;
         id = int.Parse(System.Console.ReadLine());
+        Product p;
         try
         {
-            dalProduct.ShowProduct(id);
+           p =  dalProduct.ShowProduct(id);
+            Console.WriteLine(p);
+
         }
         catch (ArgumentException)
         {
@@ -193,10 +200,13 @@ class Program
     private static void OrderTest()
     {
         int op;
-        System.Console.WriteLine("*Order* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete");
+        System.Console.WriteLine("*Order* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete , 0 to finish");
         op = int.Parse(System.Console.ReadLine());
         switch (op)
         {
+            case 0:
+                Console.WriteLine("אמיר");
+                break;
             case 1:
                 OrderTestADD();
                 break;
@@ -339,7 +349,7 @@ class Program
     private static void OrderIteamTest()
     {
         int op;
-        System.Console.WriteLine("*OrderItem* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete");
+        System.Console.WriteLine("*OrderItem* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete, 0 to finish");
         op = int.Parse(System.Console.ReadLine());
         switch (op)
         {
@@ -358,6 +368,8 @@ class Program
             case 5:
                 OrderIteamTestDelete();
                 break;
+            case 0:
+                return;
             default:
                 Console.WriteLine("wrong choose, must be between 1-5");
                 break;
