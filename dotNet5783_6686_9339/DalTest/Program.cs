@@ -48,13 +48,19 @@ class Program
                     OrderIteamTest();
                     break;
             }
+            do
+            {
+                System.Console.WriteLine("Enter the option: 1- producttest, 2- ordertest, 3- orderitemtest");
+                status = int.TryParse(System.Console.ReadLine(), out op);
+
+            } while (!status); // check if the input is correct
         }
     }
     // ------------------ If the user chose option 1 in main menu -------------- \\
     private static void ProductTest()
     {
         int op;
-        System.Console.WriteLine("*Product* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delet , 0 to finish");
+        System.Console.WriteLine("*Product* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delet");
         op = int.Parse(System.Console.ReadLine());
         switch (op)
         {
@@ -73,9 +79,6 @@ class Program
             case 5: // delete the product from the list 
                 ProductTestDelete();
                 break;
-            case 0:
-                return;
-                
             default: // in case that the input incorrect
                 Console.WriteLine("wrong choose, must be between 1-5");
                 break;
@@ -198,12 +201,10 @@ class Program
     private static void OrderTest()
     {
         int op;
-        System.Console.WriteLine("*Order* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete , 0 to finish");
+        System.Console.WriteLine("*Order* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete ");
         op = int.Parse(System.Console.ReadLine());
         switch (op)
         {
-            case 0:
-                return;
             case 1:
                 OrderTestADD();
                 break;
@@ -349,7 +350,7 @@ class Program
     private static void OrderIteamTest()
     {
         int op;
-        System.Console.WriteLine("*OrderItem* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete, 0 to finish");
+        System.Console.WriteLine("*OrderItem* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete");
         op = int.Parse(System.Console.ReadLine());
         switch (op)
         {
@@ -368,8 +369,6 @@ class Program
             case 5:
                 OrderIteamTestDelete();
                 break;
-            case 0:
-                return;
             default:
                 Console.WriteLine("wrong choose, must be between 1-5");
                 break;
