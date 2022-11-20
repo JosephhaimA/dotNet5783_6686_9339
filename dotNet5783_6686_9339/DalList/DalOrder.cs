@@ -14,7 +14,7 @@ public class DalOrder
             if (i < 200)
             {
                 DataSource.OrderArray[i] = p;
-                //DataSource.OrderArray[i].ID = DataSource.Config.LestOrder;
+                DataSource.OrderArray[i].ID = DataSource.Config.LestOrder;
                 //DataSource.OrderArray[i].CostumerNmae = p.CostumerNmae;
                 //DataSource.OrderArray[i].CostumerEmail = p.CostumerEmail;
                 //DataSource.OrderArray[i].CostumerAdress = p.CostumerAdress;
