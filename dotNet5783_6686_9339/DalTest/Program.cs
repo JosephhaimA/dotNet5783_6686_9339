@@ -9,11 +9,13 @@ we annouced to open a special store of limited edition products from clothes bra
  */
 
 using DO;
+using System.Reflection.Metadata.Ecma335;
 using System.Xml.Linq;
 
 namespace Dal;
 class Program
 {
+    //return 0;
     static DalProduct dalProduct = new DalProduct();
     static DalOrder  dalOrder = new DalOrder();
     static DalOrderItem   dalOrderItem = new DalOrderItem();
@@ -22,7 +24,6 @@ class Program
 
     public static void Main(string[] args)
     {
-  
         int op; // option
         bool status;
 
@@ -53,7 +54,7 @@ class Program
     private static void ProductTest()
     {
         int op;
-        System.Console.WriteLine("*Product* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delet");
+        System.Console.WriteLine("*Product* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delet , 0 to finish");
         op = int.Parse(System.Console.ReadLine());
         switch (op)
         {
@@ -72,6 +73,9 @@ class Program
             case 5: // delete the product from the list 
                 ProductTestDelete();
                 break;
+            case 0:
+                return;
+                
             default: // in case that the input incorrect
                 Console.WriteLine("wrong choose, must be between 1-5");
                 break;
@@ -99,7 +103,6 @@ class Program
             Name = name,
             Cat = category,
             InStock = inSt
-
         };
         try
         {
@@ -123,7 +126,6 @@ class Program
         catch(ArgumentException)
         {
             Console.WriteLine("ERROR cant delete");
-
         }
     }
 
@@ -179,9 +181,12 @@ class Program
         System.Console.WriteLine("Enter Product id you want to introduce");
         int id;
         id = int.Parse(System.Console.ReadLine());
+        Product p;
         try
         {
-            dalProduct.ShowProduct(id);
+           p =  dalProduct.ShowProduct(id);
+            Console.WriteLine(p);
+
         }
         catch (ArgumentException)
         {
@@ -193,10 +198,12 @@ class Program
     private static void OrderTest()
     {
         int op;
-        System.Console.WriteLine("*Order* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete");
+        System.Console.WriteLine("*Order* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete , 0 to finish");
         op = int.Parse(System.Console.ReadLine());
         switch (op)
         {
+            case 0:
+                return;
             case 1:
                 OrderTestADD();
                 break;
@@ -236,6 +243,7 @@ class Program
 
         Order or = new Order
         {
+          //  ID = DataSource.Config.LastOrder,
             CostumerNmae = costumerNmae,
             CostumerEmail = ostumerEmail,
             CostumerAdress = costumerAdress,
@@ -325,9 +333,11 @@ class Program
         System.Console.WriteLine("Enter Product id");
         int id;
         id = int.Parse(System.Console.ReadLine());
+        Order O;
         try
         {
-            dalOrder.ShowOrder(id);
+            O = dalOrder.ShowOrder(id);
+            Console.WriteLine(O);
         }
         catch (ArgumentException)
         {
@@ -339,7 +349,7 @@ class Program
     private static void OrderIteamTest()
     {
         int op;
-        System.Console.WriteLine("*OrderItem* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete");
+        System.Console.WriteLine("*OrderItem* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete, 0 to finish");
         op = int.Parse(System.Console.ReadLine());
         switch (op)
         {
@@ -358,6 +368,8 @@ class Program
             case 5:
                 OrderIteamTestDelete();
                 break;
+            case 0:
+                return;
             default:
                 Console.WriteLine("wrong choose, must be between 1-5");
                 break;
@@ -382,10 +394,11 @@ class Program
     private static void OrderIteamTestDataUpdate()
     {
         System.Console.WriteLine("Enter what to update");
-        System.Console.WriteLine("write: ID, OrderID, amount, price");
+        System.Console.WriteLine("write: ID,productID OrderID, amount, price");
 
-        int productID, orderID, amount;
+        int productID, orderID, amount, id;
         double price;
+        id = int.Parse(System.Console.ReadLine());
         productID = int.Parse(System.Console.ReadLine());
         orderID = int.Parse(System.Console.ReadLine());
         amount = int.Parse(System.Console.ReadLine());
@@ -393,6 +406,7 @@ class Program
 
         OrderItem orI = new OrderItem
         {
+            ID = id,
             Price = price,  
             ProductID = productID,
             OrderID = orderID,
@@ -411,11 +425,12 @@ class Program
 
     private static void OrderIteamTestADD()
     {
-        int productID, orderID, amount;
+        int productID, orderID, amount ,id;
         double price;
         System.Console.WriteLine("Enter what to update");
-        System.Console.WriteLine("write: ID, OrderID, amount, price");
+        System.Console.WriteLine("write: ID, productID , OrderID, amount, price");
 
+        id = int.Parse(System.Console.ReadLine());
         productID = int.Parse(System.Console.ReadLine());
         orderID = int.Parse(System.Console.ReadLine());
         amount = int.Parse(System.Console.ReadLine());
@@ -423,6 +438,7 @@ class Program
 
         OrderItem orI = new OrderItem
         {
+            ID= id,
             Price = price,
             ProductID = productID,
             OrderID = orderID,
@@ -456,9 +472,11 @@ class Program
         System.Console.WriteLine("Enter Product id");
         int id;
         id = int.Parse(System.Console.ReadLine());
+        OrderItem OI;
         try
         {
-            dalOrderItem.ShowOrderItem(id);
+           OI = dalOrderItem.ShowOrderItem(id);
+            Console.WriteLine(OI);
         }
         catch (ArgumentException aex)
         {

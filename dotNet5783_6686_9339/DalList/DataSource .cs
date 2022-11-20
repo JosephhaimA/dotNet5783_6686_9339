@@ -17,7 +17,7 @@ internal static class DataSource
     static internal Product[] ProductArray = new Product[50];
     private static void AddProduct()
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 1; i < 3; i++)
         {
             ProductArray[i] = new Product
             {
@@ -29,9 +29,9 @@ internal static class DataSource
             };
             Config.IndexProduct++;
 
-            ProductArray[i+1] = new Product
+            ProductArray[i+2] = new Product
             {
-                ID = i+1,
+                ID = i+2,
                 Price = 500,
                 Name = "sneakers",
                 Cat = ProductCategory.Jordan,
@@ -40,9 +40,9 @@ internal static class DataSource
             };
             Config.IndexProduct++;
 
-            ProductArray[i+2] = new Product
+            ProductArray[i+4] = new Product
             {
-                ID = i+2,
+                ID = i+4,
                 Price = 500,
                 Name = "sneakers",
                 Cat = ProductCategory.Sacai,
@@ -51,9 +51,9 @@ internal static class DataSource
             };
             Config.IndexProduct++;
 
-            ProductArray[i+3] = new Product
+            ProductArray[i+6] = new Product
             {
-                ID = i+3,
+                ID = i+6,
                 Price = 500,
                 Name = "sneakers",
                 Cat = ProductCategory.DunkSB,
@@ -61,9 +61,9 @@ internal static class DataSource
 
             }; Config.IndexProduct++;
 
-            ProductArray[i+4] = new Product
+            ProductArray[i+8] = new Product
             {
-                ID = i+4,
+                ID = i+8,
                 Price = 500,
                 Name = "hat",
                 Cat = ProductCategory.Yeezy,
@@ -75,9 +75,9 @@ internal static class DataSource
 
     static readonly Random rand = new Random();
 
-    public static CategoryAttribute Jorden { get; private set; }
-    public static CategoryAttribute Yeezy { get; private set; }
-    public static CategoryAttribute DunkSB { get; private set; }
+   // public static CategoryAttribute Jorden { get; private set; }
+    //public static CategoryAttribute Yeezy { get; private set; }
+    //public static CategoryAttribute DunkSB { get; private set; }
 
     private static DateTime RandomDay(DateTime date, int startdays, int endays)
     {
@@ -99,7 +99,8 @@ internal static class DataSource
             DateTime randDate = DateTime.MinValue;
             DateTime date1 = RandomDay(randDate, 2, 7);
             DateTime date2 = RandomDay(date1, 1, 2);
-            Order OrderArray = new Order()
+            // Order OrderArray = new Order()
+            OrderArray[Config.IndexOrder] = new Order
             {
                 ID = Config.LestOrder,
                 CostumerNmae = names[i],
@@ -114,9 +115,10 @@ internal static class DataSource
     }
     private static void AddOrderItem()
     {
-        OrderItem OrderIteamArray = new()
+        OrderIteamArray[Config.IndexOrderItems] = new OrderItem
         {
-            ProductID = Config.LestOrderItems,
+            ID = Config.LestOrderItems,
+            ProductID = 1,
             OrderID = Config.LestOrder,
             Price = 550,
             Amount = 3,

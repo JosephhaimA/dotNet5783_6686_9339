@@ -16,12 +16,11 @@ public class DalOrderItem
             if (i < 200)
             {
                 DataSource.OrderIteamArray[i] = p;
-                //DataSource.OrderIteamArray[i].ProductID = DataSource.Config.LestOrderItems;
+                DataSource.OrderIteamArray[i].ID = DataSource.Config.LestOrderItems;
                 //DataSource.OrderIteamArray[i].OrderID = DataSource.Config.LestOrder;
                 //DataSource.OrderIteamArray[i].Price = p.Price;
                 //DataSource.OrderIteamArray[i].Amount = p.Amount;
                 DataSource.Config.IndexOrderItems++;
-
                 return DataSource.OrderIteamArray[i].OrderID;
             }
             else
@@ -53,6 +52,7 @@ public class DalOrderItem
         int i = OrderItemFind(p.ProductID);
         if (i != -999)
         {
+            DataSource.OrderIteamArray[i].ID = p.ID;
             DataSource.OrderIteamArray[i].ProductID = p.ProductID;
             DataSource.OrderIteamArray[i].OrderID = p.OrderID;
             DataSource.OrderIteamArray[i].Price = p.Price;
@@ -85,7 +85,7 @@ public class DalOrderItem
     {
         for (int i = 0; i < DataSource.OrderIteamArray.Length; i++)
         {
-            if (id == DataSource.OrderIteamArray[i].OrderID)
+            if (id == DataSource.OrderIteamArray[i].ID)
                 return i;
         }
         return -999;
