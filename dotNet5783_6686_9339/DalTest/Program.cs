@@ -136,6 +136,7 @@ class Program
         ProductCategory category;
         id = int.Parse(System.Console.ReadLine());
         cate = int.Parse(System.Console.ReadLine());
+        //cate = Console.ReadLine();
         price = int.Parse(System.Console.ReadLine());
         inSt = int.Parse(System.Console.ReadLine());
         name = Console.ReadLine();
@@ -146,7 +147,9 @@ class Program
             Price = price,
             Name = name,
             Cat = category,
-            InStock = 20
+            //Cat = category,
+            //InStock = 20
+            InStock = inSt,
         };
         try
         {
