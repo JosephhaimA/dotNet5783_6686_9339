@@ -1,9 +1,10 @@
 ﻿
+using DalApi;
 using DO;
 
 namespace Dal;
 
-public class DalOrder
+internal class DalOrder : Order
 {
     public int OrderAdd(Order p) // function add a product
     {
@@ -13,16 +14,16 @@ public class DalOrder
             int i = DataSource.Config.IndexOrderItems;
             if (i < 200)
             {
-                DataSource.OrderArray[i] = p;
-                DataSource.OrderArray[i].ID = DataSource.Config.LestOrder;
-                //DataSource.OrderArray[i].CostumerNmae = p.CostumerNmae;
-                //DataSource.OrderArray[i].CostumerEmail = p.CostumerEmail;
-                //DataSource.OrderArray[i].CostumerAdress = p.CostumerAdress;
-                //DataSource.OrderArray[i].OrderDate = p.OrderDate;
-                //DataSource.OrderArray[i].ShipDate = p.ShipDate;
-                //DataSource.OrderArray[i].DeliveryrDate = p.DeliveryrDate;
+                DataSource.OrderList[i] = p;
+                DataSource.OrderList[i].ID = DataSource.Config.LestOrder;
+                //DataSource.OrderList[i].CostumerNmae = p.CostumerNmae;
+                //DataSource.OrderList[i].CostumerEmail = p.CostumerEmail;
+                //DataSource.OrderList[i].CostumerAdress = p.CostumerAdress;
+                //DataSource.OrderList[i].OrderDate = p.OrderDate;
+                //DataSource.OrderList[i].ShipDate = p.ShipDate;
+                //DataSource.OrderList[i].DeliveryrDate = p.DeliveryrDate;
                 DataSource.Config.IndexOrder++;
-                return DataSource.OrderArray[i].ID;
+                return DataSource.OrderList[i].ID;
             }
             else
                 throw new Exception("No such place to add a Order you have to remove one");
@@ -35,13 +36,13 @@ public class DalOrder
     {
         int index = OrderFind(id);
         if (index != -999)
-            return DataSource.OrderArray[index]; // return the product 
+            return DataSource.OrderList[index]; // return the product 
         else
             throw new Exception("Order doesn't exist");
     }
     public void ShowAllOrder() // print all the products
     {
-        foreach (Order element in DataSource.OrderArray)
+        foreach (Order element in DataSource.OrderList)
         {
             if (element.ID != 0)
                 Console.WriteLine(element);
@@ -52,13 +53,13 @@ public class DalOrder
         int i = OrderFind(p.ID);
         if (i != -999)
         {
-            DataSource.OrderArray[i].ID = p.ID;
-            DataSource.OrderArray[i].CostumerNmae = p.CostumerNmae;
-            DataSource.OrderArray[i].CostumerEmail = p.CostumerEmail;
-            DataSource.OrderArray[i].CostumerAdress = p.CostumerAdress;
-            DataSource.OrderArray[i].OrderDate = p.OrderDate;
-            DataSource.OrderArray[i].ShipDate = p.ShipDate;
-            DataSource.OrderArray[i].DeliveryrDate = p.DeliveryrDate;
+            DataSource.OrderList[i].ID = p.ID;
+            DataSource.OrderList[i].CostumerNmae = p.CostumerNmae;
+            DataSource.OrderList[i].CostumerEmail = p.CostumerEmail;
+            DataSource.OrderList[i].CostumerAdress = p.CostumerAdress;
+            DataSource.OrderList[i].OrderDate = p.OrderDate;
+            DataSource.OrderList[i].ShipDate = p.ShipDate;
+            DataSource.OrderList[i].DeliveryrDate = p.DeliveryrDate;
         }
         else
             throw new Exception("Order does not exist");
@@ -70,13 +71,13 @@ public class DalOrder
         int index = OrderFind(id);
         if (index != -999) // if the id don't exist we cannot delete any product
         {
-            for (int i = index; i < DataSource.OrderArray.Length - 1; i++)
+            for (int i = index; i < DataSource.OrderList.Length - 1; i++)
             {
-                DataSource.OrderArray[i] = DataSource.OrderArray[1 + i];// jump the product at the arra[index] and copy the rest
-                if (i + 1 == DataSource.OrderArray.Length)
+                DataSource.OrderList[i] = DataSource.OrderList[1 + i];// jump the product at the arra[index] and copy the rest
+                if (i + 1 == DataSource.OrderList.Length)
                     break;
             }
-            DataSource.OrderArray.SkipLast(1).ToArray();// delete the last product beacause we copied at the last place
+            DataSource.OrderList.SkipLast(1).ToArray();// delete the last product beacause we copied at the last place
         }
         else
             throw new Exception("Order does not exist");
@@ -84,9 +85,9 @@ public class DalOrder
     // find function that help us with the main function like add, delete..... to check the exist
     public int OrderFind(int id)
     {
-        for (int i = 0; i < DataSource.OrderArray.Length; i++)
+        for (int i = 0; i < DataSource.OrderList.Length; i++)
         {
-            if (id == DataSource.OrderArray[i].ID)
+            if (id == DataSource.OrderList[i].ID)
                 return i;
         }
         return -999;

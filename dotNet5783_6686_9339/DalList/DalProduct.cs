@@ -14,14 +14,14 @@ public class DalProduct
             int i = DataSource.Config.IndexProduct;
             if (i < 50)
             {
-                DataSource.ProductArray[i] = p;
-                //DataSource.ProductArray[i].ID = p.ID;
-                //DataSource.ProductArray[i].Name = p.Name; 
-                //DataSource.ProductArray[i].Price = p.Price;
-                //DataSource.ProductArray[i].Cat = p.Cat;
-                //DataSource.ProductArray[i].InStock = p.InStock;
+                DataSource.ProductList[i] = p;
+                //DataSource.ProductList[i].ID = p.ID;
+                //DataSource.ProductList[i].Name = p.Name; 
+                //DataSource.ProductList[i].Price = p.Price;
+                //DataSource.ProductList[i].Cat = p.Cat;
+                //DataSource.ProductList[i].InStock = p.InStock;
                 DataSource.Config.IndexProduct++;
-            return DataSource.ProductArray[i].ID;
+            return DataSource.ProductList[i].ID;
             }
             else
                 throw new Exception("No such place to add a Product you have to remove one");
@@ -34,14 +34,14 @@ public class DalProduct
     {
         int index = ProductFind(id);
         if (index != -999)
-            return DataSource.ProductArray[index]; // return the product 
+            return DataSource.ProductList[index]; // return the product 
         else
             throw new Exception("Product doesn't exist");
     }
     public void ShowAllProduct() // print all the products
     {
         int i = 0;
-        foreach (Product element in DataSource.ProductArray)
+        foreach (Product element in DataSource.ProductList)
         {
             if (element.ID != 0)
                 Console.WriteLine(element);
@@ -52,11 +52,11 @@ public class DalProduct
         int index = ProductFind(p.ID);
         if (index != -999)
         {
-            DataSource.ProductArray[index].ID = p.ID;
-            DataSource.ProductArray[index].Name = p.Name;
-            DataSource.ProductArray[index].Price = p.Price;
-            DataSource.ProductArray[index].Cat = p.Cat;
-            DataSource.ProductArray[index].InStock = p.InStock;
+            DataSource.ProductList[index].ID = p.ID;
+            DataSource.ProductList[index].Name = p.Name;
+            DataSource.ProductList[index].Price = p.Price;
+            DataSource.ProductList[index].Cat = p.Cat;
+            DataSource.ProductList[index].InStock = p.InStock;
         }
         else
             throw new Exception("Product does not exist");
@@ -67,13 +67,13 @@ public class DalProduct
         int index = ProductFind(id);
         if (index != -999) // if the id don't exist we cannot delete any product
         {
-            for (int i = index; i < DataSource.ProductArray.Length - 1; i++)
+            for (int i = index; i < DataSource.ProductList.Length - 1; i++)
             {
-                DataSource.ProductArray[i] = DataSource.ProductArray[1 + i];// jump the product at the arra[index] and copy the rest
-                if (i + 1 == DataSource.ProductArray.Length)
+                DataSource.ProductList[i] = DataSource.ProductList[1 + i];// jump the product at the arra[index] and copy the rest
+                if (i + 1 == DataSource.ProductList.Length)
                     break;
             }
-            DataSource.ProductArray.SkipLast(1).ToArray();// delete the last product beacause we copied at the last place
+            DataSource.ProductList.SkipLast(1).ToArray();// delete the last product beacause we copied at the last place
         }
         else
             throw new Exception("Product does not exist");
@@ -82,9 +82,9 @@ public class DalProduct
     // find function that help us with the main function like add, delete..... to check the exist
     public int ProductFind(int id)
     {
-        for (int i = 0; i < DataSource.ProductArray.Length; i++)
+        for (int i = 0; i < DataSource.ProductList.Length; i++)
         {
-            if (id == DataSource.ProductArray[i].ID)
+            if (id == DataSource.ProductList[i].ID)
                 return i;
         }
         return -999;

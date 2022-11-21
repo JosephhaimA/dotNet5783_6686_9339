@@ -1,5 +1,6 @@
 ﻿
 using DO;
+using Microsoft.VisualBasic.FileIO;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Xml.Linq;
@@ -12,14 +13,16 @@ internal static class DataSource
     {
         s_Initialize();
     }
-    static internal Order[] OrderArray = new Order[100];
-    static internal OrderItem[] OrderIteamArray = new OrderItem[200];
-    static internal Product[] ProductArray = new Product[50];
+    internal static List<Order> OrderList = new List<Order>();
+    internal static List<OrderItem> OrderIteamList = new List<OrderItem>();
+    internal static List<Product> ProductList = new List<Product>();
+
+
     private static void AddProduct()
     {
         for (int i = 1; i < 3; i++)
         {
-            ProductArray[i] = new Product
+            Product p = new Product()
             {
                 ID = i,
                 Price = 500,
@@ -27,49 +30,52 @@ internal static class DataSource
                 Cat = ProductCategory.Jordan,
                 InStock = 20
             };
+            ProductList.Add(p);
             Config.IndexProduct++;
 
-            ProductArray[i+2] = new Product
+            Product pr = new Product()
             {
                 ID = i+2,
                 Price = 500,
                 Name = "sneakers",
                 Cat = ProductCategory.Jordan,
                 InStock = 20
-
             };
+            ProductList.Add(pr);
             Config.IndexProduct++;
 
-            ProductArray[i+4] = new Product
+            Product pro = new Product()
             {
                 ID = i+4,
                 Price = 500,
                 Name = "sneakers",
                 Cat = ProductCategory.Sacai,
                 InStock = 20
-
             };
+            ProductList.Add(pro);
             Config.IndexProduct++;
 
-            ProductArray[i+6] = new Product
+            Product prod = new Product()
             {
                 ID = i+6,
                 Price = 500,
                 Name = "sneakers",
                 Cat = ProductCategory.DunkSB,
                 InStock = 20
+            };
+            ProductList.Add(prod);
+            Config.IndexProduct++;
 
-            }; Config.IndexProduct++;
-
-            ProductArray[i+8] = new Product
+            Product prode = new Product()
             {
                 ID = i+8,
                 Price = 500,
                 Name = "hat",
                 Cat = ProductCategory.Yeezy,
                 InStock = 20
-
-            }; Config.IndexProduct++;
+            };
+            ProductList.Add(prode);
+            Config.IndexProduct++;
         }
     }
 
@@ -99,8 +105,8 @@ internal static class DataSource
             DateTime randDate = DateTime.MinValue;
             DateTime date1 = RandomDay(randDate, 2, 7);
             DateTime date2 = RandomDay(date1, 1, 2);
-            // Order OrderArray = new Order()
-            OrderArray[Config.IndexOrder] = new Order
+  
+            Order order = new Order()
             {
                 ID = Config.LestOrder,
                 CostumerNmae = names[i],
@@ -110,12 +116,13 @@ internal static class DataSource
                 ShipDate = date1,
                 DeliveryrDate = date2,
             };
-                Config.IndexOrder++;
+            OrderList.Add(order);
+            Config.IndexOrder++;
         }
     }
     private static void AddOrderItem()
     {
-        OrderIteamArray[Config.IndexOrderItems] = new OrderItem
+        OrderItem orderIteamLisl = new OrderItem()
         {
             ID = Config.LestOrderItems,
             ProductID = 1,
@@ -123,7 +130,8 @@ internal static class DataSource
             Price = 550,
             Amount = 3,
         };
-           Config.IndexOrderItems++;
+        OrderIteamList.Add(orderIteamLisl);
+        Config.IndexOrderItems++;
 
     }
     private static void s_Initialize()
