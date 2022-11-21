@@ -15,7 +15,6 @@ using System.Xml.Linq;
 namespace Dal;
 class Program
 {
-    //return 0;
     static DalProduct dalProduct = new DalProduct();
     static DalOrder  dalOrder = new DalOrder();
     static DalOrderItem   dalOrderItem = new DalOrderItem();
