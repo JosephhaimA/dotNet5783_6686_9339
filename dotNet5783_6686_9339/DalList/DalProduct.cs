@@ -34,10 +34,8 @@ public class DalProduct
     {
         int index = ProductFind(id);
         if (index != -999)
-        {
-            Console.WriteLine("ssd");
-            return DataSource.ProductArray[index];
-        }// return the product 
+        
+            return DataSource.ProductArray[index];// return the product 
         else
             throw new Exception("Product doesn't exist");
     }
