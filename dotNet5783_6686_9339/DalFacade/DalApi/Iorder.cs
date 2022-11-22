@@ -7,7 +7,8 @@ using DO;
 
 namespace DalApi;
 
-internal class Iorder
+public class IOrder
 {
+
 }
 

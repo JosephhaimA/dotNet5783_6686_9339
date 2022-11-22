@@ -4,7 +4,7 @@ using System;
 
 namespace Dal;
 
-public class DalOrderItem : order
+public class DalOrderItem : IOrderIteam
 {
 
     public int OrderItemAdd(OrderItem p) // function add a product
@@ -15,8 +15,8 @@ public class DalOrderItem : order
             int i = DataSource.Config.IndexOrderItems;
             if (i < 200)
             {
-                DataSource.OrderIteamList[i] = p;
-                DataSource.OrderIteamList[i].ID = DataSource.Config.LestOrderItems;
+                DataSource.OrderIteamList.Add(p);
+               //DataSource.OrderIteamList[i].ID = DataSource.Config.LestOrderItems;
                 //DataSource.OrderIteamList[i].OrderID = DataSource.Config.LestOrder;
                 //DataSource.OrderIteamList[i].Price = p.Price;
                 //DataSource.OrderIteamList[i].Amount = p.Amount;
@@ -52,11 +52,8 @@ public class DalOrderItem : order
         int i = OrderItemFind(p.ProductID);
         if (i != -999)
         {
-            DataSource.OrderIteamList[i].ID = p.ID;
-            DataSource.OrderIteamList[i].ProductID = p.ProductID;
-            DataSource.OrderIteamList[i].OrderID = p.OrderID;
-            DataSource.OrderIteamList[i].Price = p.Price;
-            DataSource.OrderIteamList[i].Amount = p.Amount;
+            OrderItemDelete(i);
+            DataSource.OrderIteamList.Add(p);
         }
         else
             throw new Exception("OrderItem does not exist");
@@ -68,10 +65,10 @@ public class DalOrderItem : order
         int index = OrderItemFind(id);
         if (index != -999) // if the id don't exist we cannot delete any product
         {
-            for (int i = index; i < DataSource.OrderIteamList.Length - 1; i++)
+            for (int i = index; i < DataSource.OrderIteamList.Count - 1; i++)
             {
                 DataSource.OrderIteamList[i] = DataSource.OrderIteamList[1 + i];// jump the product at the arra[index] and copy the rest
-                if (i + 1 == DataSource.OrderIteamList.Length)
+                if (i + 1 == DataSource.OrderIteamList.Count)
                     break;
             }
             DataSource.OrderIteamList.SkipLast(1).ToArray();// delete the last product beacause we copied at the last place
@@ -83,7 +80,7 @@ public class DalOrderItem : order
     // find function that help us with the main function like add, delete..... to check the exist
     public int OrderItemFind(int id)
     {
-        for (int i = 0; i < DataSource.OrderIteamList.Length; i++)
+        for (int i = 0; i < DataSource.OrderIteamList.Count; i++)
         {
             if (id == DataSource.OrderIteamList[i].ID)
                 return i;

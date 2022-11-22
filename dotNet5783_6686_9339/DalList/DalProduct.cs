@@ -1,37 +1,32 @@
 ﻿
+using DalApi;
 using DO;
 using System.ComponentModel.Design;
+using System.Xml.Linq;
 
 namespace Dal;
 
-public class DalProduct
+public class DalProduct : IProduct
 {
     public int ProductAdd(Product p) // function add a product
     {
-        //int index = ProductFind(p.ID);
-        //if (index == -999)
-        //{
-            int i = DataSource.Config.IndexProduct;
-            if (i < 50)
-            {
-                DataSource.ProductList[i] = p;
-                //DataSource.ProductList[i].ID = p.ID;
-                //DataSource.ProductList[i].Name = p.Name; 
-                //DataSource.ProductList[i].Price = p.Price;
-                //DataSource.ProductList[i].Cat = p.Cat;
-                //DataSource.ProductList[i].InStock = p.InStock;
-                DataSource.Config.IndexProduct++;
+        
+        int i = DataSource.Config.IndexProduct;
+        if (i < 50)
+        {
+            DataSource.ProductList.Add(p);
+            DataSource.Config.IndexProduct++;
             return DataSource.ProductList[i].ID;
-            }
-            else
-                throw new Exception("No such place to add a Product you have to remove one");
-        //}
-       // else
-          //  throw new Exception("Product doesn't exist");
+        }
+        else
+            throw new Exception("No such place to add a Product you have to remove one");
     }
 
     public Product ShowProduct(int id) // function to return one product
     {
+        Console.WriteLine(DataSource.ProductList[id].ID);
+        Console.WriteLine("aaaaaaaaaaaaaaaaa");
+
         int index = ProductFind(id);
         if (index != -999)
             return DataSource.ProductList[index]; // return the product 
@@ -40,7 +35,6 @@ public class DalProduct
     }
     public void ShowAllProduct() // print all the products
     {
-        int i = 0;
         foreach (Product element in DataSource.ProductList)
         {
             if (element.ID != 0)
@@ -52,11 +46,8 @@ public class DalProduct
         int index = ProductFind(p.ID);
         if (index != -999)
         {
-            DataSource.ProductList[index].ID = p.ID;
-            DataSource.ProductList[index].Name = p.Name;
-            DataSource.ProductList[index].Price = p.Price;
-            DataSource.ProductList[index].Cat = p.Cat;
-            DataSource.ProductList[index].InStock = p.InStock;
+            ProductsDelete(index);
+            DataSource.ProductList.Add(p);
         }
         else
             throw new Exception("Product does not exist");
@@ -67,10 +58,21 @@ public class DalProduct
         int index = ProductFind(id);
         if (index != -999) // if the id don't exist we cannot delete any product
         {
-            for (int i = index; i < DataSource.ProductList.Length - 1; i++)
+            
+            for (int i = index; i < DataSource.ProductList.Count - 1; i++)
             {
+                Product pro;
+                for (int j = 0; j < DataSource.ProductList.Count; j++)
+                {
+                    if (id == DataSource.ProductList[j].ID)
+                    {
+                        DataSource.ProductList.Remove(DataSource.ProductList[j]);
+                    }
+                        //pro = DataSource.ProductList[j];
+                }
                 DataSource.ProductList[i] = DataSource.ProductList[1 + i];// jump the product at the arra[index] and copy the rest
-                if (i + 1 == DataSource.ProductList.Length)
+              //  DataSource.ProductList.Remove(pro);
+                if (i + 1 == DataSource.ProductList.Count)
                     break;
             }
             DataSource.ProductList.SkipLast(1).ToArray();// delete the last product beacause we copied at the last place
@@ -82,7 +84,7 @@ public class DalProduct
     // find function that help us with the main function like add, delete..... to check the exist
     public int ProductFind(int id)
     {
-        for (int i = 0; i < DataSource.ProductList.Length; i++)
+        for (int i = 0; i < DataSource.ProductList.Count; i++)
         {
             if (id == DataSource.ProductList[i].ID)
                 return i;

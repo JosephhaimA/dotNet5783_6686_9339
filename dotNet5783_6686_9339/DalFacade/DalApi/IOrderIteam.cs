@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DO;
 
 namespace DalApi;
-public class IProduct
-{
-}
+    public class IOrderIteam
+    {
+    }
 
