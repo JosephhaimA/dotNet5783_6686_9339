@@ -67,9 +67,13 @@ public class DalOrderItem : IOrderIteam
         {
             for (int i = index; i < DataSource.OrderIteamList.Count - 1; i++)
             {
-                DataSource.OrderIteamList[i] = DataSource.OrderIteamList[1 + i];// jump the product at the arra[index] and copy the rest
-                if (i + 1 == DataSource.OrderIteamList.Count)
-                    break;
+                //DataSource.OrderIteamList[i] = DataSource.OrderIteamList[1 + i];// jump the product at the arra[index] and copy the rest
+                //if (i + 1 == DataSource.OrderIteamList.Count)
+                //  break;
+                if (id == DataSource.OrderIteamList[i].ID)
+                {
+                    DataSource.OrderIteamList.Remove(DataSource.OrderIteamList[i]);
+                }
             }
             DataSource.OrderIteamList.SkipLast(1).ToArray();// delete the last product beacause we copied at the last place
         }

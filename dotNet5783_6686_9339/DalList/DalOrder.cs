@@ -14,7 +14,8 @@ public class DalOrder : IOrder
             int i = DataSource.Config.IndexOrderItems;
             if (i < 200)
             {
-                 DataSource.OrderList.Add(p);
+                //DataSource.OrderList[i].Set(i);
+                DataSource.OrderList.Add(p);
                 //DataSource.OrderList[i].ID = DataSource.Config.LestOrder;
                 //DataSource.OrderList[i].CostumerNmae = p.CostumerNmae;
                 //DataSource.OrderList[i].CostumerEmail = p.CostumerEmail;
@@ -68,9 +69,13 @@ public class DalOrder : IOrder
         {
             for (int i = index; i < DataSource.OrderList.Count - 1; i++)
             {
-                DataSource.OrderList[i] = DataSource.OrderList[1 + i];// jump the product at the arra[index] and copy the rest
-                if (i + 1 == DataSource.OrderList.Count)
-                    break;
+                // DataSource.OrderList[i] = DataSource.OrderList[1 + i];// jump the product at the arra[index] and copy the rest
+                //if (i + 1 == DataSource.OrderList.Count)
+                //  break;
+                if (id == DataSource.OrderList[i].ID)
+                {
+                    DataSource.OrderList.Remove(DataSource.OrderList[i]);
+                }
             }
             DataSource.OrderList.SkipLast(1).ToArray();// delete the last product beacause we copied at the last place
         }

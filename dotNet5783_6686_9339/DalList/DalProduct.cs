@@ -24,10 +24,13 @@ public class DalProduct : IProduct
 
     public Product ShowProduct(int id) // function to return one product
     {
-        Console.WriteLine(DataSource.ProductList[id].ID);
-        Console.WriteLine("aaaaaaaaaaaaaaaaa");
+        //Console.WriteLine(DataSource.ProductList[id].ID);
+        //Console.WriteLine("aaaaaaaaaaaaaaaaa");
 
         int index = ProductFind(id);
+        //Console.WriteLine(index);
+        //Console.WriteLine(DataSource.ProductList[index].ID);
+
         if (index != -999)
             return DataSource.ProductList[index]; // return the product 
         else
@@ -59,8 +62,8 @@ public class DalProduct : IProduct
         if (index != -999) // if the id don't exist we cannot delete any product
         {
             
-            for (int i = index; i < DataSource.ProductList.Count - 1; i++)
-            {
+           // for (int i = index; i < DataSource.ProductList.Count - 1; i++)
+            //{
                 Product pro;
                 for (int j = 0; j < DataSource.ProductList.Count; j++)
                 {
@@ -70,11 +73,11 @@ public class DalProduct : IProduct
                     }
                         //pro = DataSource.ProductList[j];
                 }
-                DataSource.ProductList[i] = DataSource.ProductList[1 + i];// jump the product at the arra[index] and copy the rest
+                //DataSource.ProductList[i] = DataSource.ProductList[1 + i];// jump the product at the arra[index] and copy the rest
               //  DataSource.ProductList.Remove(pro);
-                if (i + 1 == DataSource.ProductList.Count)
-                    break;
-            }
+                //if (i + 1 == DataSource.ProductList.Count)
+                   // break;
+           // }
             DataSource.ProductList.SkipLast(1).ToArray();// delete the last product beacause we copied at the last place
         }
         else

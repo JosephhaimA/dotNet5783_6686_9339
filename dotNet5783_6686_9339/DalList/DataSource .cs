@@ -20,7 +20,7 @@ internal static class DataSource
 
     private static void AddProduct()
     {
-        for (int i = 1; i < 3; i++)
+        for (int i = 1; i < 7; i += 5)
         {
             Product p = new Product()
             {
@@ -35,7 +35,7 @@ internal static class DataSource
 
             Product pr = new Product()
             {
-                ID = i+2,
+                ID = i+1,
                 Price = 500,
                 Name = "sneakers",
                 Cat = ProductCategory.Jordan,
@@ -46,7 +46,7 @@ internal static class DataSource
 
             Product pro = new Product()
             {
-                ID = i+4,
+                ID = i+2,
                 Price = 500,
                 Name = "sneakers",
                 Cat = ProductCategory.Sacai,
@@ -57,7 +57,7 @@ internal static class DataSource
 
             Product prod = new Product()
             {
-                ID = i+6,
+                ID = i+3,
                 Price = 500,
                 Name = "sneakers",
                 Cat = ProductCategory.DunkSB,
@@ -68,7 +68,7 @@ internal static class DataSource
 
             Product prode = new Product()
             {
-                ID = i+8,
+                ID = i+4,
                 Price = 500,
                 Name = "hat",
                 Cat = ProductCategory.Yeezy,
