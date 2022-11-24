@@ -52,8 +52,8 @@ public class DalOrderItem : IOrderIteam
         int i = OrderItemFind(p.ProductID);
         if (i != -999)
         {
-            OrderItemDelete(i);
-            DataSource.OrderIteamList.Add(p);
+            OrderItemDelete(p.ID);
+            DataSource.OrderIteamList.Insert(p.ID - 1, p);
         }
         else
             throw new Exception("OrderItem does not exist");

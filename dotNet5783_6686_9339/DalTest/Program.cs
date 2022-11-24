@@ -19,7 +19,7 @@ class Program
     static DalOrder  dalOrder = new DalOrder();
     static DalOrderItem   dalOrderItem = new DalOrderItem();
 
-    public static object Config { get; private set; }
+    //public static object Config { get; private set; }
 
     public static void Main(string[] args)
     {
