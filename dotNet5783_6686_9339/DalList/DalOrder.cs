@@ -1,13 +1,14 @@
 ﻿
 using DalApi;
 using DO;
+using System.Data.Common;
 using System.Xml.Linq;
 
 namespace Dal;
 
 public class DalOrder : IOrder
 {
-    public int OrderAdd(Order p) // function add a product
+    public int Add(Order p) // function add a product
     {
         // int index = OrderFind(p.ID);
         //// if (index == -999)
@@ -33,7 +34,7 @@ public class DalOrder : IOrder
          //   throw new Exception("Order doesn't exist");
     }
 
-    public Order ShowOrder(int id) // function to return one product
+    public Order GetObj(int id) // function to return one product
     {
         int index = OrderFind(id);
         if (index != -999)
@@ -41,23 +42,16 @@ public class DalOrder : IOrder
         else
             throw new Exception("Order doesn't exist");
     }
-    public void ShowAllOrder() // print all the products
+    public IEnumerable<Order> GetAll() // print all the products
     {
-        //Console.WriteLine(DataSource.Config.IndexOrder);
-
-        foreach (Order element in DataSource.OrderList)
-        {
-            if (element.ID != 0)
-                Console.WriteLine(element);
-        }
-
+        return DataSource.OrderList;
     }
-    public void OrderItemUpdate(Order p)
+    public void Update(Order p)
     {
         int i = OrderFind(p.ID);
         if (i != -999)
         {
-            OrderDelete(p.ID);
+            Delete(p.ID);
             DataSource.OrderList.Insert(p.ID - 1, p);
         }
         else
@@ -65,7 +59,7 @@ public class DalOrder : IOrder
 
     }
 
-    public void OrderDelete(int id)
+    public void Delete(int id)
     {
         int index = OrderFind(id);
         if (index != -999) // if the id don't exist we cannot delete any product

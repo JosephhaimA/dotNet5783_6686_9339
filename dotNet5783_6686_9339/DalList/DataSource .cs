@@ -121,17 +121,19 @@ internal static class DataSource
     }
     private static void AddOrderItem()
     {
-        OrderItem orderIteamLisl = new OrderItem()
+        for (int i = 1; i < 6; i++)
         {
-            ID = Config.LestOrderItems,
-            ProductID = 1,
-            OrderID = Config.LestOrder,
-            Price = 550,
-            Amount = 3,
-        };
-        OrderIteamList.Add(orderIteamLisl);
-        Config.IndexOrderItems++;
-
+            OrderItem orderIteamLisl = new OrderItem()
+            {
+                ID = Config.LestOrderItems,
+                ProductID = i,
+                OrderID = i,
+                Price = 450+10*i,
+                Amount = 10+i*2,
+            };
+            OrderIteamList.Add(orderIteamLisl);
+            Config.IndexOrderItems++;
+        }
     }
     private static void s_Initialize()
     {
@@ -148,9 +150,8 @@ internal static class DataSource
 
         private static int RunningOrderId = 0;
         private static int RunningOrderItemId = 0;
+        
         public static int LestOrder { get => RunningOrderId++; }
         public static int LestOrderItems { get => RunningOrderItemId++; }
     }
-
-
 }

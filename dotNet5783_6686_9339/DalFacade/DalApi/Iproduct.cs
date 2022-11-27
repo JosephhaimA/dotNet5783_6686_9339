@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DO;
 
 namespace DalApi;
-public class IProduct
+public interface IProduct
 {
 }
 
