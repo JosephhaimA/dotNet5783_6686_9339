@@ -7,17 +7,24 @@ using System.Xml.Linq;
 
 namespace Dal;
 
-internal static class DataSource
+internal sealed class DataSource
 {
+    private static  readonly DataSource _instance;
+    public static DataSource Instance { get { return _instance; } }
+
     static DataSource()
+    {
+       _instance = new DataSource();
+    }
+    private DataSource()
     {
         s_Initialize();
     }
-    internal static List<Order> OrderList = new List<Order>();
-    internal static List<OrderItem> OrderIteamList = new List<OrderItem>();
-    internal static List<Product> ProductList = new List<Product>();
+    internal  List<Order> OrderList = new List<Order>();
+    internal  List<OrderItem> OrderIteamList = new List<OrderItem>();
+    internal  List<Product> ProductList = new List<Product>();
 
-    private static void AddProduct()
+    private  void InitProducts()
     {
         for (int i = 1; i < 7; i += 5)
         {
@@ -92,7 +99,7 @@ internal static class DataSource
     }
 
     // list of names of costumers of orders + cities of costumers 20 each
-    private static void AddOrder()
+    private  void InitOrders()
     {
         string[] names = new string[] { "Amir", "Avi", "Yoni", "Dan", "Yali","Joseph", "David", "Maor", " Shira", "Mira", "Agam",
                                          "Haim", "Josephine","Jeremy","Daniel", "Yossi", "Nathan", "Eliyhou", "Hila","Hodaya"};
@@ -119,7 +126,7 @@ internal static class DataSource
             Config.IndexOrder++;
         }
     }
-    private static void AddOrderItem()
+    private  void InitOrderItem()
     {
         for (int i = 1; i < 6; i++)
         {
@@ -135,11 +142,11 @@ internal static class DataSource
             Config.IndexOrderItems++;
         }
     }
-    private static void s_Initialize()
+    private  void s_Initialize()
     {
-        AddProduct();
-        AddOrderItem();
-        AddOrder();
+        InitProducts();
+        InitOrderItem();
+        InitOrders();
     }
 
     internal static class Config

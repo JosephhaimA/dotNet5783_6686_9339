@@ -20,7 +20,7 @@ class Program
     //static DalOrder  dalOrder = new DalOrder();
     //static DalOrderItem   dalOrderItem = new DalOrderItem();
 
-    static IDal TestM = new DalList();
+    private static IDal TestM = new DalList();
 
 
     //public static object Config { get; private set; }
@@ -67,10 +67,10 @@ class Program
         op = int.Parse(System.Console.ReadLine());
         switch (op)
         {
-            case 1: // add product
+            case 1: // add Product
                 ProductTestADD();
                 break;
-            case 2: // show the product
+            case 2: // show the Product
                 ProductTestSHOW();
                 break;
             case 3: // the list of 
@@ -79,7 +79,7 @@ class Program
             case 4: // updating the data of the
                 ProductTestDataUpdate();
                 break;
-            case 5: // delete the product from the list 
+            case 5: // delete the Product from the list 
                 ProductTestDelete();
                 break;
             default: // in case that the input incorrect
@@ -112,8 +112,7 @@ class Program
         };
         try
         {
-            TestM.Product.Uptade(p);
-                //Update(p);
+            TestM.Product.Update(p);
         }
         catch (ArgumentException)
         {
@@ -123,12 +122,12 @@ class Program
 
     private static void ProductTestDelete()
     {
-        System.Console.WriteLine("Enter the product ID you intersting to delete");
+        System.Console.WriteLine("Enter the Product ID you intersting to delete");
         int id;
         id = int.Parse(System.Console.ReadLine());
         try
         {
-            dalProduct.ProductsDelete(id);
+            TestM.Product.Delete(id);
         }
         catch(ArgumentException)
         {
@@ -162,7 +161,7 @@ class Program
         };
         try
         {
-            id = dalProduct.ProductAdd(p);
+            id = TestM.Product.Add(p);
         }
         catch (ArgumentException)
         {
@@ -174,7 +173,11 @@ class Program
     {
         try
         {
-            dalProduct.ShowAllProduct();
+            foreach (Product element in TestM.Product.GetAll())
+            {
+                if (element.ID != 0)
+                    Console.WriteLine(element);
+            }
         }
         catch (ArgumentException)
         {
@@ -191,7 +194,7 @@ class Program
         Product p;
         try
         {
-           p =  dalProduct.ShowProduct(id);
+           p =  TestM.Product.GetObj(id);
             Console.WriteLine(p);
 
         }
@@ -259,7 +262,7 @@ class Program
 
         try
         {
-            dalOrder.OrderAdd(or);
+            TestM.Order.Add(or);
         }
         catch (ArgumentException)
         {
@@ -297,7 +300,7 @@ class Program
         
         try
         {
-            dalOrder.OrderItemUpdate(or);
+            TestM.Order.Update(or);
         }
         catch (ArgumentException)
         {
@@ -312,7 +315,7 @@ class Program
         id = int.Parse(System.Console.ReadLine());
         try
         {
-            dalOrder.OrderDelete(id);
+            TestM.Order.Delete(id);
         }
         catch (ArgumentException)
         {
@@ -324,7 +327,11 @@ class Program
     {
         try
         {
-            dalOrder.ShowAllOrder();
+            foreach (Order element in TestM.Order.GetAll())
+            {
+                if (element.ID != 0)
+                    Console.WriteLine(element);
+            }
         }
         catch (ArgumentException)
         {
@@ -341,7 +348,7 @@ class Program
         Order O;
         try
         {
-            O = dalOrder.ShowOrder(id);
+            O = TestM.Order.GetObj(id);
             Console.WriteLine(O);
         }
         catch (ArgumentException)
@@ -386,7 +393,7 @@ class Program
         id = int.Parse(System.Console.ReadLine());
         try
         {
-            dalOrderItem.OrderItemDelete(id);
+            TestM.OrderItem.Delete(id);
         }
         catch (ArgumentException aex)
         {
@@ -418,7 +425,7 @@ class Program
 
         try
         {
-            dalOrderItem.OrderItemUpdate(orI);
+            TestM.OrderItem.Update(orI);
         }
         catch (ArgumentException aex)
         {
@@ -450,7 +457,7 @@ class Program
 
         try
         {
-            dalOrderItem.OrderItemAdd(orI);
+            TestM.OrderItem.Add(orI);
         }
         catch (ArgumentException aex)
         {
@@ -462,7 +469,11 @@ class Program
     {
         try
         {
-            dalOrderItem.ShowAllOrderItem();
+            foreach (OrderItem element in TestM.OrderItem.GetAll())
+            {
+                if (element.ID != 0)
+                    Console.WriteLine(element);
+            }
         }
         catch (ArgumentException aex)
         {
@@ -478,7 +489,7 @@ class Program
         OrderItem OI;
         try
         {
-           OI = dalOrderItem.ShowOrderItem(id);
+           OI = TestM.OrderItem.GetObj(id);
             Console.WriteLine(OI);
         }
         catch (ArgumentException aex)

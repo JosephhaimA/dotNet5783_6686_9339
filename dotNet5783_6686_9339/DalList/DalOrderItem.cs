@@ -4,10 +4,10 @@ using System;
 
 namespace Dal;
 
-public class DalOrderItem : IOrderIteam
+public class DalOrderItem : IOrderItem
 {
-
-    public int Add(OrderItem p) // function add a product
+    DataSource ds = DataSource.Instance;
+    public int Add(OrderItem p) // function add a Product
     {
        // int index = OrderItemFind(p.ProductID);
        // if (index == -999)
@@ -15,13 +15,13 @@ public class DalOrderItem : IOrderIteam
             int i = DataSource.Config.IndexOrderItems;
             if (i < 200)
             {
-                DataSource.OrderIteamList.Add(p);
+                ds.OrderIteamList.Add(p);
                //DataSource.OrderIteamList[i].ID = DataSource.Config.LestOrderItems;
                 //DataSource.OrderIteamList[i].OrderID = DataSource.Config.LestOrder;
                 //DataSource.OrderIteamList[i].Price = p.Price;
                 //DataSource.OrderIteamList[i].Amount = p.Amount;
                 DataSource.Config.IndexOrderItems++;
-                return DataSource.OrderIteamList[i].OrderID;
+                return ds.OrderIteamList[i].OrderID;
             }
             else
                 throw new Exception("No such place to add a OrderItem you have to remove one");
@@ -30,17 +30,17 @@ public class DalOrderItem : IOrderIteam
         //    throw new Exception("OrderItem doesn't exist");
     }
 
-    public OrderItem GetObj(int id) // function to return one product
+    public OrderItem GetObj(int id) // function to return one Product
     {
         int index = OrderItemFind(id);
         if (index != -999)
-            return DataSource.OrderIteamList[index]; // return the product 
+            return ds.OrderIteamList[index]; // return the Product 
         else
             throw new Exception("OrderItem doesn't exist");
     }
     public IEnumerable<OrderItem> GetAll() // print all the products
     {
-        return DataSource.OrderIteamList;
+        return ds.OrderIteamList;
     }
     public void Update(OrderItem p)
     {
@@ -48,7 +48,7 @@ public class DalOrderItem : IOrderIteam
         if (i != -999)
         {
             Delete(p.ID);
-            DataSource.OrderIteamList.Insert(p.ID - 1, p);
+            ds.OrderIteamList.Insert(p.ID - 1, p);
         }
         else
             throw new Exception("OrderItem does not exist");
@@ -58,19 +58,19 @@ public class DalOrderItem : IOrderIteam
     public void Delete(int id)
     {
         int index = OrderItemFind(id);
-        if (index != -999) // if the id don't exist we cannot delete any product
+        if (index != -999) // if the id don't exist we cannot delete any Product
         {
-            for (int i = index; i < DataSource.OrderIteamList.Count - 1; i++)
+            for (int i = index; i < ds.OrderIteamList.Count - 1; i++)
             {
-                //DataSource.OrderIteamList[i] = DataSource.OrderIteamList[1 + i];// jump the product at the arra[index] and copy the rest
+                //DataSource.OrderIteamList[i] = DataSource.OrderIteamList[1 + i];// jump the Product at the arra[index] and copy the rest
                 //if (i + 1 == DataSource.OrderIteamList.Count)
                 //  break;
-                if (id == DataSource.OrderIteamList[i].ID)
+                if (id == ds.OrderIteamList[i].ID)
                 {
-                    DataSource.OrderIteamList.Remove(DataSource.OrderIteamList[i]);
+                    ds.OrderIteamList.Remove(ds.OrderIteamList[i]);
                 }
             }
-            DataSource.OrderIteamList.SkipLast(1).ToArray();// delete the last product beacause we copied at the last place
+            ds.OrderIteamList.SkipLast(1).ToArray();// delete the last Product beacause we copied at the last place
         }
         else
             throw new Exception("OrderItem does not exist");
@@ -81,9 +81,9 @@ public class DalOrderItem : IOrderIteam
     {
         //Console.WriteLine(DataSource.OrderIteamList.Count);
 
-        for (int i = 0; i < DataSource.OrderIteamList.Count; i++)
+        for (int i = 0; i < ds.OrderIteamList.Count; i++)
         {
-            if (id == DataSource.OrderIteamList[i].ID)
+            if (id == ds.OrderIteamList[i].ID)
                 return i;
         }
         return -999;

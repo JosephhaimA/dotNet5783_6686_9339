@@ -6,5 +6,5 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DalApi;
-    public  interface IOrderIteam : ICrud<OrderItem> {}
+    public  interface IOrderItem : ICrud<OrderItem> {}
 

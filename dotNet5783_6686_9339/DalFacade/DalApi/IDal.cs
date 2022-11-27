@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace DalApi;
 public class IDal
 {
-    Product Product { get; }
-    Order Order { get; }
-    OrderItem OrderItem { get; }
+   public IProduct Product { get; }
+   public IOrder Order { get; }
+   public IOrderItem OrderItem { get; }
 }
 
