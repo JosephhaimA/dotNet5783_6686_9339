@@ -1,13 +1,14 @@
-﻿ /*
+﻿/*
 The shop of Amir Hai and Joseph Haim 
 we annouced to open a special store of limited edition products from clothes branch.
- the stroe will include sneakers, shirts, hats and more surprised things.
- -------------
- in our program we made an app for the store that will storage the data of the shop 
- declered what do we have in the shop, amount, orders, dates and more.
- [in Arrays]
- */
-
+the stroe will include sneakers, shirts, hats and more surprised things.
+-------------
+in our program we made an app for the store that will storage the data of the shop 
+declered what do we have in the shop, amount, orders, dates and more.
+[in Arrays]
+*/
+using Dal;
+using DalApi;
 using DO;
 using System.Reflection.Metadata.Ecma335;
 using System.Xml.Linq;
@@ -15,9 +16,12 @@ using System.Xml.Linq;
 namespace Dal;
 class Program
 {
-    static DalProduct dalProduct = new DalProduct();
-    static DalOrder  dalOrder = new DalOrder();
-    static DalOrderItem   dalOrderItem = new DalOrderItem();
+    //static DalProduct dalProduct = new DalProduct();
+    //static DalOrder  dalOrder = new DalOrder();
+    //static DalOrderItem   dalOrderItem = new DalOrderItem();
+
+    static IDal TestM = new DalList();
+
 
     //public static object Config { get; private set; }
 
@@ -108,7 +112,8 @@ class Program
         };
         try
         {
-            dalProduct.ProductsUpdate(p);
+            TestM.Product.Uptade(p);
+                //Update(p);
         }
         catch (ArgumentException)
         {

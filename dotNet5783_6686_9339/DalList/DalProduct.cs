@@ -8,7 +8,7 @@ namespace Dal;
 
 public class DalProduct : IProduct
 {
-    public int ProductAdd(Product p) // function add a product
+    public int Add(Product p) // function add a product
     {
         
         int i = DataSource.Config.IndexProduct;
@@ -22,7 +22,7 @@ public class DalProduct : IProduct
             throw new Exception("No such place to add a Product you have to remove one");
     }
 
-    public Product ShowProduct(int id) // function to return one product
+    public Product GetObj(int id) // function to return one product
     {
         //Console.WriteLine(DataSource.ProductList[id].ID);
         //Console.WriteLine("aaaaaaaaaaaaaaaaa");
@@ -38,27 +38,28 @@ public class DalProduct : IProduct
             throw new Exception("Product doesn't exist");
         
     }
-    public void ShowAllProduct() // print all the products
+    public IEnumerable<Product>? GetAll() // print all the products
     {
-        foreach (Product element in DataSource.ProductList)
-        {
-            if (element.ID != 0)
-                Console.WriteLine(element);
-        }
+        //foreach (Product element in DataSource.ProductList)
+        //{
+        //    if (element.ID != 0)
+        //        Console.WriteLine(element);
+        //}
+        return DataSource.ProductList;
     }
-    public void ProductsUpdate(Product p) // updating the product if exist, the price, the stock of the prudcut,....
+    public void Update(Product p) // updating the product if exist, the price, the stock of the prudcut,....
     {
         int index = ProductFind(p.ID);
         if (index != -999)
         {
-            ProductsDelete(p.ID);
+            Delete(p.ID);
             DataSource.ProductList.Insert(p.ID - 1, p);
         }
         else
             throw new Exception("Product does not exist");
     }
 
-    public void ProductsDelete(int id)
+    public void Delete(int id)
     {
         int index = ProductFind(id);
         if (index != -999) // if the id don't exist we cannot delete any product

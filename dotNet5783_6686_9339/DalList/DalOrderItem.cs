@@ -7,7 +7,7 @@ namespace Dal;
 public class DalOrderItem : IOrderIteam
 {
 
-    public int OrderItemAdd(OrderItem p) // function add a product
+    public int Add(OrderItem p) // function add a product
     {
        // int index = OrderItemFind(p.ProductID);
        // if (index == -999)
@@ -30,7 +30,7 @@ public class DalOrderItem : IOrderIteam
         //    throw new Exception("OrderItem doesn't exist");
     }
 
-    public OrderItem ShowOrderItem(int id) // function to return one product
+    public OrderItem GetObj(int id) // function to return one product
     {
         int index = OrderItemFind(id);
         if (index != -999)
@@ -38,21 +38,16 @@ public class DalOrderItem : IOrderIteam
         else
             throw new Exception("OrderItem doesn't exist");
     }
-    public void ShowAllOrderItem() // print all the products
+    public IEnumerable<OrderItem> GetAll() // print all the products
     {
-        foreach (OrderItem element in DataSource.OrderIteamList)
-        {
-            if (element.ProductID != 0) 
-                Console.WriteLine(element);
-
-        }
+        return DataSource.OrderIteamList;
     }
-    public void OrderItemUpdate(OrderItem p)
+    public void Update(OrderItem p)
     {
-        int i = OrderItemFind(p.ProductID);
+        int i = OrderItemFind(p.ID);
         if (i != -999)
         {
-            OrderItemDelete(p.ID);
+            Delete(p.ID);
             DataSource.OrderIteamList.Insert(p.ID - 1, p);
         }
         else
@@ -60,7 +55,7 @@ public class DalOrderItem : IOrderIteam
 
     }
 
-    public void OrderItemDelete(int id)
+    public void Delete(int id)
     {
         int index = OrderItemFind(id);
         if (index != -999) // if the id don't exist we cannot delete any product
@@ -84,6 +79,8 @@ public class DalOrderItem : IOrderIteam
     // find function that help us with the main function like add, delete..... to check the exist
     public int OrderItemFind(int id)
     {
+        //Console.WriteLine(DataSource.OrderIteamList.Count);
+
         for (int i = 0; i < DataSource.OrderIteamList.Count; i++)
         {
             if (id == DataSource.OrderIteamList[i].ID)

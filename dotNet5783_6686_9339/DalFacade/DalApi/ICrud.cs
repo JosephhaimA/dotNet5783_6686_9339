@@ -13,5 +13,5 @@ public interface ICrud<T> where T : struct
     T GetObj(int id);
     void Delete(int id);
     void Update(T obj);
-    IEnumerable<T?> GetAll(Func<T?, bool>? filter = null);
+    IEnumerable<T>? GetAll();
 }
