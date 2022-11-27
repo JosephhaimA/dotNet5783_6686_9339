@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 using DalApi;
 using DO;
-namespace Dal;
 
+namespace Dal;
 
 sealed public class DalList : IDal
 {
     public IOrder Order => new DalOrder();
-    public IOrderIteam OrderIteam => new DalOrderItem();
-    public IProduct product => new DalProduct();
+    public IOrderItem OrderIteam => new DalOrderItem();
+    public IProduct Product => new DalProduct();
 }
