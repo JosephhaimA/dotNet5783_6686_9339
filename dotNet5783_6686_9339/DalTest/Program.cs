@@ -20,10 +20,11 @@ class Program
     //static DalOrder  dalOrder = new DalOrder();
     //static DalOrderItem   dalOrderItem = new DalOrderItem();
 
-    private static IDal TestM = new DalList();
+    private static IDal TestM= DalList.Instance;
 
 
     //public static object Config { get; private set; }
+   
 
     public static void Main(string[] args)
     {
@@ -36,7 +37,7 @@ class Program
             status = int.TryParse(System.Console.ReadLine(), out op);
 
         } while (!status); // check if the input is correct
-        
+
         while (op != 0)
         {
             switch (op)
@@ -129,7 +130,7 @@ class Program
         {
             TestM.Product.Delete(id);
         }
-        catch(ArgumentException)
+        catch (ArgumentException)
         {
             Console.WriteLine("ERROR cant delete");
         }
@@ -194,7 +195,7 @@ class Program
         Product p;
         try
         {
-           p =  TestM.Product.GetObj(id);
+            p = TestM.Product.GetObj(id);
             Console.WriteLine(p);
 
         }
@@ -238,7 +239,7 @@ class Program
         System.Console.WriteLine("Enter the data of the order to add");
         System.Console.WriteLine("write: CostumerName, CostumerE, Adress, Date, ShipDate, EstimateDelivery");
 
-         int price, inSt, cate;
+        int price, inSt, cate;
         string costumerNmae, ostumerEmail, costumerAdress;
         DateTime orderDate, shipDate, deliveryrDate;
 
@@ -251,7 +252,7 @@ class Program
 
         Order or = new Order
         {
-          //  ID = DataSource.Config.LastOrder,
+            //  ID = DataSource.Config.LastOrder,
             CostumerNmae = costumerNmae,
             CostumerEmail = ostumerEmail,
             CostumerAdress = costumerAdress,
@@ -297,7 +298,7 @@ class Program
             ShipDate = shipDate,
             DeliveryrDate = deliveryrDate
         };
-        
+
         try
         {
             TestM.Order.Update(or);
@@ -397,7 +398,7 @@ class Program
         }
         catch (ArgumentException aex)
         {
-            Console.WriteLine("ERROR " +aex.Message);
+            Console.WriteLine("ERROR " + aex.Message);
         }
     }
 
@@ -417,7 +418,7 @@ class Program
         OrderItem orI = new OrderItem
         {
             ID = id,
-            Price = price,  
+            Price = price,
             ProductID = productID,
             OrderID = orderID,
             Amount = amount
@@ -435,7 +436,7 @@ class Program
 
     private static void OrderIteamTestADD()
     {
-        int productID, orderID, amount ,id;
+        int productID, orderID, amount, id;
         double price;
         System.Console.WriteLine("Enter what to update");
         System.Console.WriteLine("write: ID, productID , OrderID, amount, price");
@@ -448,7 +449,7 @@ class Program
 
         OrderItem orI = new OrderItem
         {
-            ID= id,
+            ID = id,
             Price = price,
             ProductID = productID,
             OrderID = orderID,
@@ -489,7 +490,7 @@ class Program
         OrderItem OI;
         try
         {
-           OI = TestM.OrderItem.GetObj(id);
+            OI = TestM.OrderItem.GetObj(id);
             Console.WriteLine(OI);
         }
         catch (ArgumentException aex)

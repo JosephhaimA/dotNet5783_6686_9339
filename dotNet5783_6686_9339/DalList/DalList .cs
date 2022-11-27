@@ -6,13 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 using DalApi;
-using DO;
 
 namespace Dal;
 
 sealed public class DalList : IDal
 {
+    public static IDal Instance { get; } = new DalList();
+    private DalList() { }
     public IOrder Order => new DalOrder();
-    public IOrderItem OrderIteam => new DalOrderItem();
+    public IOrderItem OrderItem => new DalOrderItem();
     public IProduct Product => new DalProduct();
 }
