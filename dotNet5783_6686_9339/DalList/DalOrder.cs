@@ -1,6 +1,7 @@
 ﻿
 using DalApi;
 using DO;
+using System.Xml.Linq;
 
 namespace Dal;
 
@@ -8,15 +9,14 @@ public class DalOrder : IOrder
 {
     public int OrderAdd(Order p) // function add a product
     {
-       // int index = OrderFind(p.ID);
-       //// if (index == -999)
+        // int index = OrderFind(p.ID);
+        //// if (index == -999)
         {
-            int i = DataSource.Config.IndexOrderItems;
+            int i = DataSource.Config.IndexOrder;
             if (i < 200)
             {
-                //DataSource.OrderList[i].Set(i);
+                p.ID = i;
                 DataSource.OrderList.Add(p);
-                //DataSource.OrderList[i].ID = DataSource.Config.LestOrder;
                 //DataSource.OrderList[i].CostumerNmae = p.CostumerNmae;
                 //DataSource.OrderList[i].CostumerEmail = p.CostumerEmail;
                 //DataSource.OrderList[i].CostumerAdress = p.CostumerAdress;
@@ -43,19 +43,22 @@ public class DalOrder : IOrder
     }
     public void ShowAllOrder() // print all the products
     {
+        //Console.WriteLine(DataSource.Config.IndexOrder);
+
         foreach (Order element in DataSource.OrderList)
         {
             if (element.ID != 0)
                 Console.WriteLine(element);
         }
+
     }
     public void OrderItemUpdate(Order p)
     {
         int i = OrderFind(p.ID);
         if (i != -999)
         {
-            OrderDelete(i);
-            DataSource.OrderList.Add(p);
+            OrderDelete(p.ID);
+            DataSource.OrderList.Insert(p.ID - 1, p);
         }
         else
             throw new Exception("Order does not exist");

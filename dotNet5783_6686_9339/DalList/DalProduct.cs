@@ -30,11 +30,13 @@ public class DalProduct : IProduct
         int index = ProductFind(id);
         //Console.WriteLine(index);
         //Console.WriteLine(DataSource.ProductList[index].ID);
+        //Console.WriteLine(DataSource.Config.IndexProduct);
 
         if (index != -999)
             return DataSource.ProductList[index]; // return the product 
         else
             throw new Exception("Product doesn't exist");
+        
     }
     public void ShowAllProduct() // print all the products
     {
@@ -50,7 +52,6 @@ public class DalProduct : IProduct
         if (index != -999)
         {
             ProductsDelete(index);
-
             DataSource.ProductList.Add(p);
         }
         else
@@ -65,7 +66,7 @@ public class DalProduct : IProduct
             
            // for (int i = index; i < DataSource.ProductList.Count - 1; i++)
             //{
-                Product pro;
+               // Product pro;
                 for (int j = 0; j < DataSource.ProductList.Count; j++)
                 {
                     if (id == DataSource.ProductList[j].ID)
