@@ -50,6 +50,7 @@ public class DalProduct : IProduct
         if (index != -999)
         {
             ProductsDelete(index);
+
             DataSource.ProductList.Add(p);
         }
         else
