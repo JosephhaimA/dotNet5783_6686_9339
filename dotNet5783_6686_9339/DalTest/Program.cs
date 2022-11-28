@@ -108,7 +108,7 @@ class Program
             ID = id,
             Price = price,
             Name = name,
-            Cat = category,
+            Category = category,
             InStock = inSt
         };
         try
@@ -155,7 +155,7 @@ class Program
             ID = id,
             Price = price,
             Name = name,
-            Cat = category,
+            Category = category,
             //Cat = category,
             //InStock = 20
             InStock = inSt,

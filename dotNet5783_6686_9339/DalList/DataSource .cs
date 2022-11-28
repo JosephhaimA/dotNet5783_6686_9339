@@ -33,7 +33,7 @@ internal sealed class DataSource
                 ID = i,
                 Price = 500,
                 Name = "shirt",
-                Cat = ProductCategory.Jordan,
+                Category = ProductCategory.Jordan,
                 InStock = 20
             };
             ProductList.Add(p);
@@ -44,7 +44,7 @@ internal sealed class DataSource
                 ID = i+1,
                 Price = 500,
                 Name = "sneakers",
-                Cat = ProductCategory.Jordan,
+                Category = ProductCategory.Jordan,
                 InStock = 20
             };
             ProductList.Add(pr);
@@ -55,7 +55,7 @@ internal sealed class DataSource
                 ID = i+2,
                 Price = 500,
                 Name = "sneakers",
-                Cat = ProductCategory.Sacai,
+                Category = ProductCategory.Sacai,
                 InStock = 20
             };
             ProductList.Add(pro);
@@ -66,7 +66,7 @@ internal sealed class DataSource
                 ID = i+3,
                 Price = 500,
                 Name = "sneakers",
-                Cat = ProductCategory.DunkSB,
+                Category = ProductCategory.DunkSB,
                 InStock = 20
             };
             ProductList.Add(prod);
@@ -77,7 +77,7 @@ internal sealed class DataSource
                 ID = i+4,
                 Price = 500,
                 Name = "hat",
-                Cat = ProductCategory.Yeezy,
+                Category = ProductCategory.Yeezy,
                 InStock = 20
             };
             ProductList.Add(prode);
