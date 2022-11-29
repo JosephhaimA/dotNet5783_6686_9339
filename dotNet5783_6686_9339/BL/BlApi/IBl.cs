@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BlApi;
-public interface LBl
+public interface IBl
 {
     public IProduct Product { get; } 
     public IOrder Order { get; }

@@ -5,11 +5,13 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
+
+using DO;
 using DalApi;
 
 namespace Dal;
 
-sealed public class DalList : IDal
+public class DalList : IDal
 {
     public static IDal Instance { get; } = new DalList();
     private DalList() { }
