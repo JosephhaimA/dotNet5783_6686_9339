@@ -11,7 +11,7 @@ namespace BO;
 public class OrderForList
 {
     public int OrderId { get; set; }
-    public string BuyerName { get; set; }
+    public string? BuyerName { get; set; }
     public bool StatusOrder { get; set; }
     public int AmountOfItems { get; set; }
     public float TotalPrice { get; set; }
