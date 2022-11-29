@@ -27,5 +27,8 @@ costumer adress {CostumerAdress}
 order date : {OrderDate} 
 ship date : {ShipDate} 
 dalivery date : {DeliveryDate}
+order status : {StatusOrder}
+order details: { Details}
+total price : {TotalPrice}
 ";
 }
