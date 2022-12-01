@@ -253,7 +253,7 @@ class Program
         Order or = new Order
         {
             //  ID = DataSource.Config.LastOrder,
-            CostumerNmae = costumerNmae,
+            CostumerName = costumerNmae,
             CostumerEmail = ostumerEmail,
             CostumerAdress = costumerAdress,
             OrderDate = orderDate,
@@ -291,7 +291,7 @@ class Program
         Order or = new Order
         {
             ID = id,
-            CostumerNmae = costumerNmae,
+            CostumerName = costumerNmae,
             CostumerEmail = ostumerEmail,
             CostumerAdress = costumerAdress,
             OrderDate = orderDate,

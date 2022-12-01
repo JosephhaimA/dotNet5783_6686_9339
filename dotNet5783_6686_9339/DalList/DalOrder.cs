@@ -19,7 +19,7 @@ public class DalOrder : IOrder
             {
                 p.ID = i;
                 ds.OrderList.Add(p);
-                //DataSource.OrderList[i].CostumerNmae = p.CostumerNmae;
+                //DataSource.OrderList[i].CostumerName = p.CostumerName;
                 //DataSource.OrderList[i].CostumerEmail = p.CostumerEmail;
                 //DataSource.OrderList[i].CostumerAdress = p.CostumerAdress;
                 //DataSource.OrderList[i].OrderDate = p.OrderDate;

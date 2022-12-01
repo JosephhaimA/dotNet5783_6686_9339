@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 using BlApi;
 using DalApi;
-using Dal;
+//using DalApi;
+//using Dal;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace BlImplementation;
 internal class Cart : ICart
 {
-    private IDal dal = new Dal.DalList(); 
+    private DalApi.IDal dal = new Dal.DalList(); 
 
     public BO.Cart AddItemToCART(BO.Cart item, int id)
     {
@@ -88,9 +89,6 @@ internal class Cart : ICart
     }
     public void ConfirmationOfOrder(BO.Cart CostumerInfo)
     {
-        // DO.Product product = dal.Product.GetAll().ToList().Find(itemm => itemm.ID == id);//מחזיר לי את המוצר אם אותו איי די
-        // int index = item.orderItemsList.FindIndex(itemm => itemm.ProductId == id);
-
         for (int i = 0; i < CostumerInfo.orderItemsList.Count; i++)
         {
             int intProduct = CostumerInfo.orderItemsList[i].ProductId;
@@ -113,7 +111,38 @@ internal class Cart : ICart
 
         }
 
-        return; 
+        DO.Order NewOrder = new DO.Order()
+        {
+            CostumerName = CostumerInfo.CostumerName,
+            CostumerEmail = CostumerInfo.CostumerEmail,
+            CostumerAdress = CostumerInfo.CostumerAdress,
+            OrderDate = DateTime.Now,
+        };
+
+        int NumOreder = dal.Order.Add(NewOrder);
+
+        for (int i = 0; i < CostumerInfo.orderItemsList.Count; i++)
+        {
+            int intProduct = CostumerInfo.orderItemsList[i].ProductId;
+            DO.Product product = dal.Product.GetAll().ToList().Find(itemm => itemm.ID == intProduct);//מחזיר לי את המוצר אם אותו איי די
+            DO.OrderItem NewOrderItem = new DO.OrderItem()
+            {
+                ProductID = product.ID,
+                OrderID = NumOreder,
+                Price = product.Price,
+                Amount = CostumerInfo.orderItemsList[i].InOrder,
+            };
+
+            dal.OrderItem.Add(NewOrderItem);
+        }
+
+        for (int i = 0; i < CostumerInfo.orderItemsList.Count; i++)
+        {
+            int intProduct = CostumerInfo.orderItemsList[i].ProductId;
+            DO.Product product = dal.Product.GetAll().ToList().Find(itemm => itemm.ID == intProduct);//מחזיר לי את המוצר אם אותו איי די
+            dal.Product.Update(product);
+        }
+            return; 
     }
 
 }

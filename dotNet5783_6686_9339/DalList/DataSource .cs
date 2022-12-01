@@ -115,7 +115,7 @@ internal sealed class DataSource
             Order order = new Order()
             {
                 ID = Config.LestOrder,
-                CostumerNmae = names[i],
+                CostumerName = names[i],
                 CostumerEmail = names[i] + "@gameil.com",
                 CostumerAdress = adresss[i],
                 OrderDate = randDate,

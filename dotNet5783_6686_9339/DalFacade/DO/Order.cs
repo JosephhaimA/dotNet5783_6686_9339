@@ -4,7 +4,7 @@ namespace DO;
 public struct Order
 {
     public int ID { get; set; }
-    public string CostumerNmae { get; set; }
+    public string CostumerName { get; set; }
     public string CostumerEmail { get; set; }
     public string CostumerAdress { get; set; }
     public DateTime OrderDate { get; set; }
@@ -12,7 +12,7 @@ public struct Order
     public DateTime DeliveryrDate { get; set; }
     public override string ToString() => $@"
 order ID : {ID} 
-costumer name : {CostumerNmae} 
+costumer name : {CostumerName} 
 costumer email : {CostumerEmail} 
 costumer adress {CostumerAdress}
 order date : {OrderDate} 
