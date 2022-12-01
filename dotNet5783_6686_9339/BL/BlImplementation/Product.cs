@@ -5,14 +5,13 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
-using DalApi;
-using Dal;
 using BlApi;
 
 namespace BlImplementation;
 internal class Product : IProduct
 {
     private DalApi.IDal Dal = new Dal.DalList();
+
     public BO.Product GetProductAdmin(int id)
     {
         throw new NotImplementedException();
