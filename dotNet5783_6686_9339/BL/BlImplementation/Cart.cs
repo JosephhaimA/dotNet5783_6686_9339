@@ -11,7 +11,7 @@ using Dal;
 namespace BlImplementation;
 internal class Cart : ICart
 {
-    private IDal dal = new DalList();
+    private IDal dal = new Dal.DalList();  //DalList();
 
     public BO.Cart AddItemToCART(BO.Cart item, int id) { return item; }
     public BO.Cart UpdateAmountOfProduct(BO.Cart item, int id, int newAmount) { return item; }
