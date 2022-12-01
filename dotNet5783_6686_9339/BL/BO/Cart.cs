@@ -12,7 +12,7 @@ public class Cart
     public string CostumerEmail { get; set; }
     public string CostumerAdress { get; set; }
     public List<OrderItem> orderItemsList { get; set; }
-    public int TotalPrice { get; set; }
+    public double TotalPrice { get; set; }
 
     public override string ToString() =>
 $@"

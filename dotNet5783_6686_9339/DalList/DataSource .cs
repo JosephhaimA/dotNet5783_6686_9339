@@ -9,7 +9,7 @@ namespace Dal;
 
 internal sealed class DataSource
 {
-    private static  readonly DataSource _instance;
+    private static DataSource _instance;
     public static DataSource Instance { get { return _instance; } }
 
     static DataSource()

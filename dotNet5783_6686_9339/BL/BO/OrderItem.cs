@@ -10,9 +10,9 @@ public class OrderItem
     public int Id { get; set; }
     public int ProductId { get; set; }
     public string ProductName { get; set; }
-    public int ProductPrice { get; set; }
+    public double ProductPrice { get; set; }
     public int InOrder { get; set; }
-    public int SumPrice { get; set; }
+    public double SumPrice { get; set; }
 
     public override string ToString() => 
 $@"
