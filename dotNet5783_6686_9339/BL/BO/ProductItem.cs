@@ -9,7 +9,7 @@ public class ProductItem
 {
     public int ProductId { get; set; }
     public string ProductName { get; set; }
-    public int ProductPrice { get; set; }
+    public double ProductPrice { get; set; }
     public ProductCategory Category { get; set; }
     public bool InStock { get; set; }
     public int Amount { get; set; }
