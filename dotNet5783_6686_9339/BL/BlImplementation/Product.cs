@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 using BlApi;
 using BO;
+using DO;
 
 namespace BlImplementation;
 internal class Product : IProduct
@@ -80,19 +82,100 @@ internal class Product : IProduct
         }
     }
 
-    public void ProductAdd(int id, string name, double price, BO.ProductCategory category, int intStock)
+    public void ProductAdd(int id, string name, double price, DO.ProductCategory category, int intStock)
     {
-        throw new NotImplementedException();
+        if (id <= 0)
+        {
+            throw new Exception("ERROR: ID WAS -");
+        }
+
+        if (name == null)
+        {
+            throw new Exception("the name empty");
+        }
+
+        if (price <= 0)
+        {
+            throw new Exception("ERROR: price WAS -");
+        }
+
+        if (intStock <= 0)
+        {
+            throw new Exception("ERROR in stock WAS -");
+        }
+
+        DO.Product product = new DO.Product()
+        {
+            ID = id,
+            Name = name,    
+            Price = price,
+            Category = category,
+            InStock = intStock
+        };
+        try
+        {
+            dal.Product.Add(product);
+
+        }
+        catch (Exception mas)
+        {
+            throw mas;
+        }
     }
 
     public void ProductDelete(int id)
     {
-        throw new NotImplementedException();
+        List<DO.OrderItem> ListItem = new List<DO.OrderItem>();
+        ListItem = dal.OrderItem.GetAll().ToList();
+        for (int i = 0; i < ListItem.Count; i++)
+        {
+            if (ListItem[i].ProductID==id)
+            {
+                throw new Exception("error cant delete because the product is usd ");
+            }
+        }
+        try
+        {
+            dal.Product.Delete(id);
+        }
+        catch (Exception masg)
+        {
+
+            throw masg;
+        }
     }
 
-    public void ProductUpdate(BO.Product product)
+    public void ProductUpdate(DO.Product product)
     {
-        throw new NotImplementedException();
+        if (product.ID <= 0)
+        {
+            throw new Exception("ERROR: ID WAS -");
+        }
+
+        if (product.Name == null)
+        {
+            throw new Exception("the name empty");
+        }
+
+        if (product.Price <= 0)
+        {
+            throw new Exception("ERROR: price WAS -");
+        }
+
+        if (product.InStock <= 0)
+        {
+            throw new Exception("ERROR in stock WAS -");
+        }
+
+        try
+        {
+            dal.Product.Update(product);
+
+        }
+        catch (Exception mas)
+        {
+            throw mas;
+        }
     }
 
 }

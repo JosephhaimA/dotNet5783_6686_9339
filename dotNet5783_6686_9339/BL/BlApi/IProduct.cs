@@ -10,9 +10,9 @@ public interface IProduct
     public IEnumerable<ProductForList> ListProduct();
     public Product GetProductAdmin (int id);
     public ProductItem GetProductAdminCostumer(int id, Cart cart);
-    public void ProductAdd(int id, string name, double price, ProductCategory category, int intStock);
+    public void ProductAdd(int id, string name, double price, DO.ProductCategory category, int intStock);
     public void ProductDelete (int id);
-    public void ProductUpdate (Product product);
+    public void ProductUpdate (DO.Product product);
 
 }
 
