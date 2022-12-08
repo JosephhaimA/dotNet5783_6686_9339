@@ -94,14 +94,14 @@ class Program
         System.Console.WriteLine("Enter Product you want to update");
         int id, price, inSt, cate;
         string name;
-        ProductCategory category;
+        Enums.ProductCategory category;
         System.Console.WriteLine("write: ID, Category, Price, Instock, name");
         id = int.Parse(System.Console.ReadLine());
         cate = int.Parse(System.Console.ReadLine());
         price = int.Parse(System.Console.ReadLine());
         inSt = int.Parse(System.Console.ReadLine());
         name = Console.ReadLine();
-        category = (ProductCategory)cate;
+        category = (Enums.ProductCategory)cate;
 
         Product p = new Product
         {
@@ -142,14 +142,14 @@ class Program
         System.Console.WriteLine("write: ID, Category, Price, Instock, name");
         int id, price, inSt, cate;
         string name;
-        ProductCategory category;
+        Enums.ProductCategory category;
         id = int.Parse(System.Console.ReadLine());
         cate = int.Parse(System.Console.ReadLine());
         //cate = Console.ReadLine();
         price = int.Parse(System.Console.ReadLine());
         inSt = int.Parse(System.Console.ReadLine());
         name = Console.ReadLine();
-        category = (ProductCategory)cate;
+        category = (Enums.ProductCategory)cate;
         Product p = new Product
         {
             ID = id,
