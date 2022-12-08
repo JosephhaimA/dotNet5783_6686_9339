@@ -22,13 +22,27 @@ internal class Product : IProduct
     {
         List<DO.Product> L_P = dal.Product.GetAll().ToList();
         List<BO.ProductForList> productForLists = new List<BO.ProductForList>();
+        //{
+        //    new BO.ProductForList(),
+        // };
         for (int i = 0; i < L_P.Count; i++)
         {
-            productForLists[i].ProductId = L_P[i].ID;
-            productForLists[i].ProductName = L_P[i].Name;
-            productForLists[i].ProductPrice = L_P[i].Price;
-            int cat = (int)L_P[i].Category;
-            productForLists[i].Category = (BO.Enum.ProductCategory)cat;
+            //Console.WriteLine(i);
+
+            //int cat = (int)L_P[i].Category;
+            BO.ProductForList PFR = new BO.ProductForList()
+            {
+                ProductId = L_P[i].ID,
+                ProductName = L_P[i].Name,
+                ProductPrice = L_P[i].Price,
+                //Category = (BO.Enum.ProductCategory)cat,
+            };
+            productForLists.Add(PFR);
+            //productForLists[i].ProductId = L_P[i].ID;
+            //productForLists[i].ProductName = L_P[i].Name;
+            //productForLists[i].ProductPrice = L_P[i].Price;
+            //int cat = (int)L_P[i].Category;
+            //productForLists[i].Category = (BO.Enum.ProductCategory)cat;
         }
         return productForLists;
     }

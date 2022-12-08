@@ -10,7 +10,7 @@ public class ProductForList
     public int ProductId { get; set; }
     public string ProductName { get; set; }
     public double ProductPrice { get; set; }
-    public ProductCategory Category { get; set; }
+    public Enum.ProductCategory Category { get; set; }
     public override string ToString() =>
 $@"
 product id : {ProductId} 

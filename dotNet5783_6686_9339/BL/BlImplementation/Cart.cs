@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 using BlApi;
 using DalApi;
-//using DalApi;
-//using Dal;
+
 using static System.Net.Mime.MediaTypeNames;
 
 namespace BlImplementation;
@@ -18,6 +18,7 @@ internal class Cart : ICart
     public BO.Cart AddItemToCART(BO.Cart item, int id)
     {
         DO.Product product = dal.Product.GetAll().ToList().Find(itemm => itemm.ID == id);//מחזיר לי את המוצר אם אותו איי די
+
         int i = item.orderItemsList.FindIndex(itemm => itemm.ProductId == id);
 
         bool exists = item.orderItemsList.Exists(itemm => itemm.ProductId == id);
@@ -62,30 +63,40 @@ internal class Cart : ICart
     {
         DO.Product product = dal.Product.GetAll().ToList().Find(itemm => itemm.ID == id);//מחזיר לי את המוצר אם אותו איי די
         int index = item.orderItemsList.FindIndex(itemm => itemm.ProductId == id);
+
+        if (index == -1) // שאז זה אומר שלא היה מוצר כזה מלכתחילה 
+        {
+            for (int i = 0; i < newAmount; i++)
+            {
+                AddItemToCART(item, id);
+            }
+            return item;
+        }
+
         int diffrence = newAmount - item.orderItemsList[index].InOrder;
 
-        if (newAmount==0)
+        if (newAmount == 0)
         {
             item.orderItemsList.RemoveAt(index);
             item.TotalPrice -= product.Price * (-1 * diffrence);
         }
 
-        if (diffrence > 0)
-        {
-            for (int i = 0; i < diffrence ; i++)
-            {
-                AddItemToCART(item, id);
-            }
-        }
-
-        if(diffrence < 0)
+        if (diffrence < 0)
         {
             item.orderItemsList[index].InOrder = newAmount;
             item.orderItemsList[index].SumPrice = product.Price* newAmount;
             item.TotalPrice -= product.Price*(-1*diffrence);
         }
 
-        return item;
+        if (diffrence > 0)
+        {
+            for (int i = 0; i < diffrence; i++)
+            {
+                AddItemToCART(item, id);
+            }
+        }
+
+            return item;
     }
     public void ConfirmationOfOrder(BO.Cart CostumerInfo)
     {

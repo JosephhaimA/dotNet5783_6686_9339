@@ -33,7 +33,7 @@ internal sealed class DataSource
                 ID = i,
                 Price = 500,
                 Name = "shirt",
-                Category = ProductCategory.Jordan,
+                Category = Enums.ProductCategory.Jordan,
                 InStock = 20
             };
             ProductList.Add(p);
@@ -44,7 +44,7 @@ internal sealed class DataSource
                 ID = i+1,
                 Price = 500,
                 Name = "sneakers",
-                Category = ProductCategory.Jordan,
+                Category = Enums.ProductCategory.Jordan,
                 InStock = 20
             };
             ProductList.Add(pr);
@@ -55,7 +55,7 @@ internal sealed class DataSource
                 ID = i+2,
                 Price = 500,
                 Name = "sneakers",
-                Category = ProductCategory.Sacai,
+                Category = Enums.ProductCategory.Sacai,
                 InStock = 20
             };
             ProductList.Add(pro);
@@ -66,7 +66,7 @@ internal sealed class DataSource
                 ID = i+3,
                 Price = 500,
                 Name = "sneakers",
-                Category = ProductCategory.DunkSB,
+                Category = Enums.ProductCategory.DunkSB,
                 InStock = 20
             };
             ProductList.Add(prod);
@@ -77,7 +77,7 @@ internal sealed class DataSource
                 ID = i+4,
                 Price = 500,
                 Name = "hat",
-                Category = ProductCategory.Yeezy,
+                Category = Enums.ProductCategory.Yeezy,
                 InStock = 20
             };
             ProductList.Add(prode);
@@ -86,10 +86,6 @@ internal sealed class DataSource
     }
 
     static readonly Random rand = new Random();
-
-   // public static CategoryAttribute Jorden { get; private set; }
-    //public static CategoryAttribute Yeezy { get; private set; }
-    //public static CategoryAttribute DunkSB { get; private set; }
 
     private static DateTime RandomDay(DateTime date, int startdays, int endays)
     {
@@ -128,15 +124,15 @@ internal sealed class DataSource
     }
     private  void InitOrderItem()
     {
-        for (int i = 1; i < 6; i++)
+        for (int i = 1; i < 41; i++)
         {
             OrderItem orderIteamLisl = new OrderItem()
             {
                 ID = Config.LestOrderItems,
                 ProductID = i,
                 OrderID = i,
-                Price = 450+10*i,
-                Amount = 10+i*2,
+                Price = 250+10*i,
+                Amount = i*2,
             };
             OrderIteamList.Add(orderIteamLisl);
             Config.IndexOrderItems++;
