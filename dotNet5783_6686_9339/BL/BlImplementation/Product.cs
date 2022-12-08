@@ -28,7 +28,7 @@ internal class Product : IProduct
             productForLists[i].ProductName = L_P[i].Name;
             productForLists[i].ProductPrice = L_P[i].Price;
             int cat = (int)L_P[i].Category;
-            productForLists[i].Category = (BO.ProductCategory)cat;
+            productForLists[i].Category = (BO.Enum.ProductCategory)cat;
         }
         return productForLists;
     }
@@ -45,7 +45,7 @@ internal class Product : IProduct
                 Id = id,
                 Name = product.Name,
                 Price = product.Price,
-                Category = (BO.ProductCategory)cat,
+                Category = (BO.Enum.ProductCategory)cat,
                 InStock = product.InStock,
             };
             return NewProduct;
@@ -73,7 +73,7 @@ internal class Product : IProduct
                 ProductId = product.ID,
                 ProductName = product.Name,
                 ProductPrice = product.Price,
-                Category = (BO.ProductCategory)cat,
+                Category = (BO.Enum.ProductCategory)cat,
                 InStock = exsixs,
                 Amount = product.InStock,
             };
@@ -85,7 +85,7 @@ internal class Product : IProduct
         }
     }
 
-    public void ProductAdd(int id, string name, double price, DO.ProductCategory category, int intStock)
+    public void ProductAdd(int id, string name, double price, DO.Enums.ProductCategory category, int intStock)
     {
         if (id <= 0)
         {
