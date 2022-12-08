@@ -505,7 +505,7 @@ internal class Order : IOrder
             return BoOrder;
         }
 
-        throw new BO.DalDoesNotExistException("No ID in list");
+        throw new BO.DalDoesNotExistException("No ID Exist");
 
     }
 
@@ -585,7 +585,7 @@ internal class Order : IOrder
             return BoOrder;
         }
 
-        throw new BO.DalDoesNotExistException("No ID in list");
+        throw new BO.DalDoesNotExistException("No ID exist");
     }
 
 }
