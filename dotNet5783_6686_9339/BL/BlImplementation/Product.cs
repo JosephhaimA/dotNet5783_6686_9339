@@ -6,9 +6,12 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
+
 using BlApi;
-using BO;
-using DO;
+using static BO.Enum;
+using static DO.Enums;
+//using BO;
+//using DO;
 
 namespace BlImplementation;
 internal class Product : IProduct

@@ -9,7 +9,7 @@ public interface IOrder
 {
     public IEnumerable<OrderForList> OrderList();
     public Order GetOrder(int id);
-    public Order ShipOrderUpate(int id);
+    public Order ShipOrderUpate(int Orderid);
     public Order DeliveryrOrderUpate(int id);
     public OrderTracking orderTracking(int id);
 
