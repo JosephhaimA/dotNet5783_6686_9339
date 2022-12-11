@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using BlApi;
+using BO;
 using DalApi;
-
 using static System.Net.Mime.MediaTypeNames;
 
 namespace BlImplementation;
@@ -107,19 +107,24 @@ internal class Cart : ICart
             int sumOrder = CostumerInfo.orderItemsList[i].InOrder;
             if (sumOrder >= product.InStock || sumOrder <= 0)
             {
-                throw new Exception("error");
+                throw new BO.BlNotEnoughInStock("error");
             }
         }
 
-        if (CostumerInfo.CostumerName == null || CostumerInfo.CostumerAdress == null)
+        if (CostumerInfo.CostumerName == null)  
         {
-            throw new Exception("error");
+            throw new BO.BlNameWasNull("error");
         }
 
-        if (CostumerInfo.CostumerEmail != null && !CostumerInfo.CostumerEmail.Contains("@gmail.com")   )
+        if (CostumerInfo.CostumerAdress == null)
         {
-            throw new Exception("error");
+            throw new BO.BlAdressWasNull("error");
 
+        }
+
+        if (CostumerInfo.CostumerEmail != null && !CostumerInfo.CostumerEmail.Contains("@gmail.com"))
+        {
+            throw new BlRongEmail("ERROR: rong email");
         }
 
         DO.Order NewOrder = new DO.Order()

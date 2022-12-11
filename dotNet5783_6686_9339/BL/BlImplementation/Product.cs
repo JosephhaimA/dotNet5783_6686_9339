@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -10,8 +11,7 @@ using System.Threading.Tasks;
 using BlApi;
 using static BO.Enum;
 using static DO.Enums;
-//using BO;
-//using DO;
+
 
 namespace BlImplementation;
 internal class Product : IProduct
@@ -22,27 +22,16 @@ internal class Product : IProduct
     {
         List<DO.Product> L_P = dal.Product.GetAll().ToList();
         List<BO.ProductForList> productForLists = new List<BO.ProductForList>();
-        //{
-        //    new BO.ProductForList(),
-        // };
         for (int i = 0; i < L_P.Count; i++)
         {
-            //Console.WriteLine(i);
-
-            //int cat = (int)L_P[i].Category;
             BO.ProductForList PFR = new BO.ProductForList()
             {
                 ProductId = L_P[i].ID,
                 ProductName = L_P[i].Name,
                 ProductPrice = L_P[i].Price,
-                //Category = (BO.Enum.ProductCategory)cat,
             };
             productForLists.Add(PFR);
-            //productForLists[i].ProductId = L_P[i].ID;
-            //productForLists[i].ProductName = L_P[i].Name;
-            //productForLists[i].ProductPrice = L_P[i].Price;
-            //int cat = (int)L_P[i].Category;
-            //productForLists[i].Category = (BO.Enum.ProductCategory)cat;
+
         }
         return productForLists;
     }
@@ -66,7 +55,7 @@ internal class Product : IProduct
         }
         else
         {
-            throw new Exception("ERROR the id was - ");
+            throw new BO.BlIdNegative("ERROR the id was - ");
         }
     }
 
@@ -95,7 +84,7 @@ internal class Product : IProduct
         }
         else
         {
-            throw new Exception("ERROR the id was - ");
+            throw new BO.BlIdNegative("ERROR the id was - ");
         }
     }
 
@@ -103,22 +92,22 @@ internal class Product : IProduct
     {
         if (product.Id <= 0)
         {
-            throw new Exception("ERROR: ID WAS -");
+            throw new BO.BlIdNegative("ERROR: ID WAS -");
         }
 
         if (product.Name == null)
         {
-            throw new Exception("the name empty");
+            throw new BO.BlNameWasNull("Error: the name empty");
         }
 
         if (product.Price <= 0)
         {
-            throw new Exception("ERROR: price WAS -");
+            throw new BO.BlInPriceNegative("ERROR: price WAS -");
         }
 
         if (product.InStock <= 0)
         {
-            throw new Exception("ERROR in stock WAS -");
+            throw new BO.BlInStockIsNegative("Error: in stock was negativ");
         }
 
         DO.Product product1 = new DO.Product()
@@ -148,7 +137,7 @@ internal class Product : IProduct
         {
             if (ListItem[i].ProductID==id)
             {
-                throw new Exception("error cant delete because the product is usd ");
+                throw new BO.BlCantDeleteB_Used("error cant delete because the product is usd ");
             }
         }
         try
@@ -158,7 +147,7 @@ internal class Product : IProduct
         catch (Exception masg)
         {
 
-            throw masg;
+            throw new BO.BlDoesNotExistException("ERROR: not exist " + masg) ;
         }
     }
 
@@ -166,22 +155,22 @@ internal class Product : IProduct
     {
         if (product.ID <= 0)
         {
-            throw new Exception("ERROR: ID WAS -");
+            throw new BO.BlIdNegative("ERROR: ID WAS -");
         }
 
         if (product.Name == null)
         {
-            throw new Exception("the name empty");
+            throw new BO.BlNameWasNull("the name empty");
         }
 
         if (product.Price <= 0)
         {
-            throw new Exception("ERROR: price WAS -");
+            throw new BO.BlInPriceNegative("ERROR: price WAS -");
         }
 
         if (product.InStock <= 0)
         {
-            throw new Exception("ERROR in stock WAS -");
+            throw new BO.BlInStockIsNegative("ERROR in stock WAS -");
         }
 
         try
@@ -191,7 +180,7 @@ internal class Product : IProduct
         }
         catch (Exception mas)
         {
-            throw mas;
+            throw new BO.BlDoesNotExistException("Error: not exist " + mas);
         }
     }
 
