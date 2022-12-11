@@ -405,14 +405,21 @@ internal class Program
                 price = double.Parse(System.Console.ReadLine());
                 name = string.Concat(System.Console.ReadLine());
                 category = (BO.Enum.ProductCategory)cate;
-
+                BO.Product NewProduct = new BO.Product()
+                {
+                    Id = id,
+                    Name = name,
+                    Category = category,
+                    Price = price,
+                    InStock = inStoce,
+                };
                 //  BO.Enum.ProductCategory.TryParse(Console.ReadLine(), out a);
                 //  //product.Category = a;
 
                 //  isRead = int.TryParse(Console.ReadLine(), out int inSstock);
                 // inStock = inSstock;
                 //access.Product.ProductAdd(1, "aa", 12.3, category, 12);
-                bl.Product.ProductAdd(id,name, price, category, inStoce);
+                bl.Product.ProductAdd(NewProduct);
                 Console.WriteLine();
                 break;
 

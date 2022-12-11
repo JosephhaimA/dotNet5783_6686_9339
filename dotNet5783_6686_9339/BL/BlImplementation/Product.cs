@@ -99,39 +99,39 @@ internal class Product : IProduct
         }
     }
 
-    public void ProductAdd(int id, string name, double price, BO.Enum.ProductCategory category, int intStock)
+    public void ProductAdd(BO.Product product)
     {
-        if (id <= 0)
+        if (product.Id <= 0)
         {
             throw new Exception("ERROR: ID WAS -");
         }
 
-        if (name == null)
+        if (product.Name == null)
         {
             throw new Exception("the name empty");
         }
 
-        if (price <= 0)
+        if (product.Price <= 0)
         {
             throw new Exception("ERROR: price WAS -");
         }
 
-        if (intStock <= 0)
+        if (product.InStock <= 0)
         {
             throw new Exception("ERROR in stock WAS -");
         }
 
-        DO.Product product = new DO.Product()
+        DO.Product product1 = new DO.Product()
         {
-            ID = id,
-            Name = name,    
-            Price = price,
-            Category = (DO.Enums.ProductCategory)category,
-            InStock = intStock
+            ID = product.Id,
+            Name = product.Name,    
+            Price = product.Price,
+            Category = (DO.Enums.ProductCategory)product.Category,
+            InStock = product.InStock
         };
         try
         {
-            dal.Product.Add(product);
+            dal.Product.Add(product1);
 
         }
         catch (Exception mas)
