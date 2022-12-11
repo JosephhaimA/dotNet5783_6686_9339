@@ -99,7 +99,7 @@ internal class Product : IProduct
         }
     }
 
-    public void ProductAdd(int id, string name, double price, DO.Enums.ProductCategory category, int intStock)
+    public void ProductAdd(int id, string name, double price, BO.Enum.ProductCategory category, int intStock)
     {
         if (id <= 0)
         {
@@ -126,7 +126,7 @@ internal class Product : IProduct
             ID = id,
             Name = name,    
             Price = price,
-            Category = category,
+            Category = (DO.Enums.ProductCategory)category,
             InStock = intStock
         };
         try
@@ -136,7 +136,7 @@ internal class Product : IProduct
         }
         catch (Exception mas)
         {
-            throw mas;
+            throw new BO.BlAlreadyExistException("invalid product operation",mas);
         }
     }
 

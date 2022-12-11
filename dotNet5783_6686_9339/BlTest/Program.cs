@@ -1,218 +1,218 @@
-﻿using BlApi;
-using BlImplementation;
-using BO;
-using Dal;
-using DalApi;
-using System.Security.Authentication;
+﻿//using BlApi;
+//using BlImplementation;
+//using BO;
+//using Dal;
+//using DalApi;
+//using System.Security.Authentication;
 
-namespace BlTest;
+//namespace BlTest;
 
-internal class Program
-{
-    static IBl TestM = new  Bl();
+//internal class Program
+//{
+//    static IBl TestM = new  Bl();
 
-    static BO.Product product = new BO.Product();
+//    static BO.Product product = new BO.Product();
 
-    static BO.Order order = new BO.Order() { Details = new List<OrderItem>(), };
+//    static BO.Order order = new BO.Order() { Details = new List<OrderItem>(), };
 
-    static BO.Cart cart = new BO.Cart()  {orderItemsList = new List<OrderItem>(),};
+//    static BO.Cart cart = new BO.Cart()  {orderItemsList = new List<OrderItem>(),};
     
 
-    static void Main(string[] args)
-    {
-        int op; // option
-        bool status;
+//    static void Main(string[] args)
+//    {
+//        int op; // option
+//        bool status;
 
-        do
-        {
-            System.Console.WriteLine("Enter the option: 1- producttest, 2- ordertest, 3- cart ");
-            status = int.TryParse(System.Console.ReadLine(), out op);
+//        do
+//        {
+//            System.Console.WriteLine("Enter the option: 1- producttest, 2- ordertest, 3- cart ");
+//            status = int.TryParse(System.Console.ReadLine(), out op);
 
-        } while (!status); // check if the input is correct
+//        } while (!status); // check if the input is correct
 
-        while (op != 0)
-        {
-            switch (op)
-            {
-                case 1:
-                   // try
-                    {
-                        ProductTest();
-                    }
-                   // catch (Exception masg)
-                    {
-                        //Console.WriteLine("ERROR " + masg.Message);
-                    }
-                    break;
-                case 2:
-                    try
-                    {
-                        OrderTest();
-                    }
-                    catch (Exception masg)
-                    {
-                        Console.WriteLine("ERROR " + masg.Message);
-                    }
-                    break;
-                case 3:
-                    try
-                    {
-                        CartTest();
-                    }
-                    catch (Exception masg)
-                    {
-                        Console.WriteLine("ERROR " + masg.Message);
-                    }
-                    break;
-            }
-            do
-            {
-                System.Console.WriteLine("Enter the option: 1- producttest, 2- ordertest, 3- cart");
-                status = int.TryParse(System.Console.ReadLine(), out op);
+//        while (op != 0)
+//        {
+//            switch (op)
+//            {
+//                case 1:
+//                   // try
+//                    {
+//                        ProductTest();
+//                    }
+//                   // catch (Exception masg)
+//                    {
+//                        //Console.WriteLine("ERROR " + masg.Message);
+//                    }
+//                    break;
+//                case 2:
+//                    try
+//                    {
+//                        OrderTest();
+//                    }
+//                    catch (Exception masg)
+//                    {
+//                        Console.WriteLine("ERROR " + masg.Message);
+//                    }
+//                    break;
+//                case 3:
+//                    try
+//                    {
+//                        CartTest();
+//                    }
+//                    catch (Exception masg)
+//                    {
+//                        Console.WriteLine("ERROR " + masg.Message);
+//                    }
+//                    break;
+//            }
+//            do
+//            {
+//                System.Console.WriteLine("Enter the option: 1- producttest, 2- ordertest, 3- cart");
+//                status = int.TryParse(System.Console.ReadLine(), out op);
 
-            } while (!status); // check if the input is correct
-        }
-    }
+//            } while (!status); // check if the input is correct
+//        }
+//    }
 
-   static void ProductTest()
-    {
-        int op;
-        System.Console.WriteLine("*Product* Enter the option: 1 - return list of the products, 2 - update, 3 - confirm the order");
-        op = int.Parse(System.Console.ReadLine());
-        switch (op)
-        {
-            case 1: // add Product
-                ListProduct();
-                break;
-            case 2: // show the Product
-                GetProductAdmin();
-                break;
-            case 3: // the list of 
-                GetProductAdminCostumer();
-                break;
-            case 4:
-                ProductAdd();
-                break;
-            case 5:
-                ProductDelete();
-                break;
-            case 6:
-                ProductUpdate();
-                break;
-            default: // in case that the input incorrect
-                Console.WriteLine("wrong choose, must be between 1-5");
-                break;
-        }
-    }
+//   static void ProductTest()
+//    {
+//        int op;
+//        System.Console.WriteLine("*Product* Enter the option: 1 - return list of the products, 2 - update, 3 - confirm the order");
+//        op = int.Parse(System.Console.ReadLine());
+//        switch (op)
+//        {
+//            case 1: // add Product
+//                ListProduct();
+//                break;
+//            case 2: // show the Product
+//                GetProductAdmin();
+//                break;
+//            case 3: // the list of 
+//                GetProductAdminCostumer();
+//                break;
+//            case 4:
+//                ProductAdd();
+//                break;
+//            case 5:
+//                ProductDelete();
+//                break;
+//            case 6:
+//                ProductUpdate();
+//                break;
+//            default: // in case that the input incorrect
+//                Console.WriteLine("wrong choose, must be between 1-5");
+//                break;
+//        }
+//    }
 
-    private static void ListProduct()
-    {
-        foreach (ProductForList element in TestM.Product.ListProduct())
-        {
-            //element.ToString();
-            Console.WriteLine(element);
-        }
-    }
+//    private static void ListProduct()
+//    {
+//        foreach (ProductForList element in TestM.Product.ListProduct())
+//        {
+//            //element.ToString();
+//            Console.WriteLine(element);
+//        }
+//    }
 
-    private static void GetProductAdmin()
-    {
-        throw new NotImplementedException();
-    }
+//    private static void GetProductAdmin()
+//    {
+//        throw new NotImplementedException();
+//    }
 
-    private static void GetProductAdminCostumer()
-    {
-        throw new NotImplementedException();
-    }
+//    private static void GetProductAdminCostumer()
+//    {
+//        throw new NotImplementedException();
+//    }
 
-    private static void ProductAdd()
-    {
-        throw new NotImplementedException();
-    }
+//    private static void ProductAdd()
+//    {
+//        throw new NotImplementedException();
+//    }
 
-    private static void ProductDelete()
-    {
-        throw new NotImplementedException();
-    }
+//    private static void ProductDelete()
+//    {
+//        throw new NotImplementedException();
+//    }
 
-    private static void ProductUpdate()
-    {
-        throw new NotImplementedException();
-    }
+//    private static void ProductUpdate()
+//    {
+//        throw new NotImplementedException();
+//    }
 
-    static void OrderTest()
-    {
+//    static void OrderTest()
+//    {
 
-    }
+//    }
 
-    static void CartTest()
-    {
-        int op;
-        System.Console.WriteLine("*Product* Enter the option: 1 - add, 2 - update, 3 - confirm the order");
-        op = int.Parse(System.Console.ReadLine());
-        switch (op)
-        {
-            case 1: // add Product
-                AddItemToCARTTest();
-                break;
-            case 2: // show the Product
-                UpdateAmountOfProductTest();
-                break;
-            case 3: // the list of 
-                ConfirmationOfOrderTest();
-                break;
-            default: // in case that the input incorrect
-                Console.WriteLine("wrong choose, must be between 1-5");
-                break;
-        }
-    }
+//    static void CartTest()
+//    {
+//        int op;
+//        System.Console.WriteLine("*Product* Enter the option: 1 - add, 2 - update, 3 - confirm the order");
+//        op = int.Parse(System.Console.ReadLine());
+//        switch (op)
+//        {
+//            case 1: // add Product
+//                AddItemToCARTTest();
+//                break;
+//            case 2: // show the Product
+//                UpdateAmountOfProductTest();
+//                break;
+//            case 3: // the list of 
+//                ConfirmationOfOrderTest();
+//                break;
+//            default: // in case that the input incorrect
+//                Console.WriteLine("wrong choose, must be between 1-5");
+//                break;
+//        }
+//    }
 
-    static void AddItemToCARTTest()
-    {
+//    static void AddItemToCARTTest()
+//    {
 
-        Console.Write("Please enter your name : ");
-        cart.CostumerName = Console.ReadLine();
-        Console.WriteLine("\nPlease enter your address : ");
-        cart.CostumerAdress = Console.ReadLine();
-        string email;
-        do
-        {
-            Console.WriteLine("\nPlease enter your email corectly : ");
-            email = Console.ReadLine();
-            cart.CostumerEmail = email;
-        } while (!email.Contains("@gmail.com"));
+//        Console.Write("Please enter your name : ");
+//        cart.CostumerName = Console.ReadLine();
+//        Console.WriteLine("\nPlease enter your address : ");
+//        cart.CostumerAdress = Console.ReadLine();
+//        string email;
+//        do
+//        {
+//            Console.WriteLine("\nPlease enter your email corectly : ");
+//            email = Console.ReadLine();
+//            cart.CostumerEmail = email;
+//        } while (!email.Contains("@gmail.com"));
 
-        Console.WriteLine("Enter the ID number of the product you want to add : ");
+//        Console.WriteLine("Enter the ID number of the product you want to add : ");
 
-        int id;
-        int.TryParse(Console.ReadLine(), out id);
+//        int id;
+//        int.TryParse(Console.ReadLine(), out id);
 
-        TestM.Cart.AddItemToCART(cart, id);
-        return;
-    }
+//        TestM.Cart.AddItemToCART(cart, id);
+//        return;
+//    }
 
-    static void UpdateAmountOfProductTest()
-    {
-        int id, quantity;
-        Console.WriteLine("Enter the product ID number and the quantity the you want to change");
-        int.TryParse(Console.ReadLine(), out id);
-        int.TryParse(Console.ReadLine(), out quantity);
-        TestM.Cart.UpdateAmountOfProduct(cart,id, quantity);
-        return;
-    }
+//    static void UpdateAmountOfProductTest()
+//    {
+//        int id, quantity;
+//        Console.WriteLine("Enter the product ID number and the quantity the you want to change");
+//        int.TryParse(Console.ReadLine(), out id);
+//        int.TryParse(Console.ReadLine(), out quantity);
+//        TestM.Cart.UpdateAmountOfProduct(cart,id, quantity);
+//        return;
+//    }
 
-    static void ConfirmationOfOrderTest()
-    {
-        TestM.Cart.ConfirmationOfOrder(cart);
-        return;
-    }
-}
+//    static void ConfirmationOfOrderTest()
+//    {
+//        TestM.Cart.ConfirmationOfOrder(cart);
+//        return;
+//    }
+//}
 
 
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-/*
+
 
 
 
@@ -220,23 +220,27 @@ using BlImplementation;
 
 using Dal;
 using DalApi;
-using DalList;
+//using DalList;
 using System.Runtime.CompilerServices;
 using System.Net.Mail;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using DO;
+using BO;
+using BlApi;
 
 namespace BlTest;
 
 internal class Program
 {
+    static BO.Cart cart = new BO.Cart() { orderItemsList = new List<BO.OrderItem>(), };
+    static IBl bl = Bl.Instance;
 
-    static BO.Cart cart = new BO.Cart();
+    //static BO.Cart cart = new BO.Cart();
 
     //When the user selects the Cart option
     static void optionCart()
     {
-        Bl access = new Bl();
         int id = 0, Quantity = 0;
         char option = '1';
         Console.WriteLine(
@@ -250,7 +254,8 @@ internal class Program
             case 'a':
                 Console.WriteLine("Enter the ID number of the product you want to add\n");
                 int.TryParse(Console.ReadLine(), out id);
-                Console.WriteLine(access.BoCart.Add(cart, id));
+               // Console.WriteLine(access.Cart.AddItemToCART(cart, id));
+                bl.Cart.AddItemToCART(cart, id);
                 break;
 
 
@@ -258,12 +263,12 @@ internal class Program
                 Console.WriteLine("Enter the product ID number and the quantity the you want to change\n");
                 int.TryParse(Console.ReadLine(), out id);
                 int.TryParse(Console.ReadLine(), out Quantity);
-                Console.WriteLine(access.BoCart.UpdateProductQuantity(cart, id, Quantity));
+                Console.WriteLine(bl.Cart.UpdateAmountOfProduct(cart, id, Quantity));
                 break;
 
 
             case 'c':
-                access.BoCart.MakeAnOrder(cart);
+                bl.Cart.ConfirmationOfOrder(cart);
                 break;
 
             case '0':
@@ -281,8 +286,9 @@ internal class Program
     //When the user selects the Order option
     static void optionOrder()
     {
-        Bl access = new Bl();
-        BO.Order order = new BO.Order();
+        //BO.Order order = new BO.Order();
+         BO.Order order = new BO.Order() { Details = new List<BO.OrderItem>(), };
+
         Console.WriteLine("\nOrder\n" +
             "a in order to receive all orders\n" +
             "b in order to receive a certain order, according to Id\n" +
@@ -294,8 +300,7 @@ internal class Program
         switch (option)
         {
             case 'a':
-                List<BO.OrderForList> boOrderForLists = new List<BO.OrderForList>();
-                boOrderForLists = (List<BO.OrderForList>)access.BoOrder.GetOrders();
+                List<BO.OrderForList> boOrderForLists = bl.Order.OrderList().ToList();
                 foreach (var boOrder in boOrderForLists)
                 {
                     Console.WriteLine(boOrder);
@@ -307,26 +312,26 @@ internal class Program
                 int id;
                 Console.WriteLine("Enter the ID number of the order you want to get\n");
                 int.TryParse(Console.ReadLine(), out id);
-                Console.WriteLine(access.BoOrder.GetOrder(id));
+                Console.WriteLine(bl.Order.GetOrder(id));
                 break;
 
 
             case 'c':
                 Console.WriteLine("Enter the ID of the order for which you want to change the shipping time\n");
                 int.TryParse(Console.ReadLine(), out id);
-                Console.WriteLine(access.BoOrder.OrderShippingUpdate(id));
+                Console.WriteLine(bl.Order.ShipOrderUpate(id));
                 break;
 
             case 'd':
                 Console.WriteLine("Enter the ID of the order for which you want to change the delivery time\n");
                 int.TryParse(Console.ReadLine(), out id);
-                Console.WriteLine(access.BoOrder.OrderDeliveryUpdate(id));
+                Console.WriteLine(bl.Order.DeliveryrOrderUpate(id));
                 break;
 
             case 'e':
                 Console.WriteLine("Enter the order number you want to track\n");
                 int.TryParse(Console.ReadLine(), out id);
-                Console.WriteLine(access.BoOrder.Order_tracking(id));
+                Console.WriteLine(bl.Order.orderTracking(id));
 
                 break;
 
@@ -338,8 +343,7 @@ internal class Program
     //When the user selects the Product option
     static void optionProduct()
     {
-        Bl access = new Bl();
-        BO.Product product = new BO.Product();
+        DO.Product product = new DO.Product();
         Console.WriteLine("\nProduct\n" +
     "a in order to view products catalog \n" +
     "b in order to view the details of a poduct by its id \n" +
@@ -354,7 +358,7 @@ internal class Program
         switch (option)
         {
             case 'a':
-                IEnumerable<BO.ProductForList> products = access.BoProduct.GetProducts();
+                IEnumerable<BO.ProductForList> products = bl.Product.ListProduct();
                 foreach (var item in products)
                 {
                     Console.WriteLine(item);
@@ -364,8 +368,8 @@ internal class Program
             case 'b':
                 Console.WriteLine("Enter the ID product you seek to view\n");
                 isRead = int.TryParse(Console.ReadLine(), out int ID);
-                product.Id = ID;
-                Console.WriteLine(access.BoProduct.GetProductById(ID));
+                product.ID = ID;
+                Console.WriteLine(bl.Product.GetProductAdmin(ID));
                 break;
 
 
@@ -373,31 +377,49 @@ internal class Program
                 Console.WriteLine("Enter the ID product\n");
                 isRead = int.TryParse(Console.ReadLine(), out int Id);
 
-                Console.WriteLine(access.BoProduct.GetProductItem(Id, cart));
+                Console.WriteLine(bl.Product.GetProductAdminCostumer(Id, cart));
 
 
                 break;
 
             case 'd':
                 Console.WriteLine("Enter the ID ,Name ,Price ,Category ,InStock  of product you seek to add\n");
-                isRead = int.TryParse(Console.ReadLine(), out ID);
-                product.Id = ID;
-                product.Name = Console.ReadLine();
-                isRead = int.TryParse(Console.ReadLine(), out int price);
-                product.Price = price;
-                BO.Enums.ProdactCategory a;
-                BO.Enums.ProdactCategory.TryParse(Console.ReadLine(), out a);
-                product.Category = a;
-                isRead = int.TryParse(Console.ReadLine(), out int inStock);
-                product.InStock = inStock;
-                access.BoProduct.Add(product);
+
+
+                int  inStoce, id , cate ;
+                double price;
+                string? name;
+              //  isRead = int.TryParse(Console.ReadLine(), out Id);
+              // // ID = Id;
+              //  string name = "aaa";
+              //  int cate, inStock;
+
+              //  Cate = int.Parse(System.Console.ReadLine());
+              ////  name = Console.ReadLine();
+              //  isRead = int.TryParse(Console.ReadLine(), out int price);
+              //  isRead = int.TryParse(Console.ReadLine(), out int cate);
+                BO.Enum.ProductCategory category;
+                id = int.Parse(System.Console.ReadLine());
+                cate = int.Parse(System.Console.ReadLine());
+                inStoce = int.Parse(System.Console.ReadLine());
+                price = double.Parse(System.Console.ReadLine());
+                name = string.Concat(System.Console.ReadLine());
+                category = (BO.Enum.ProductCategory)cate;
+
+                //  BO.Enum.ProductCategory.TryParse(Console.ReadLine(), out a);
+                //  //product.Category = a;
+
+                //  isRead = int.TryParse(Console.ReadLine(), out int inSstock);
+                // inStock = inSstock;
+                //access.Product.ProductAdd(1, "aa", 12.3, category, 12);
+                bl.Product.ProductAdd(id,name, price, category, inStoce);
                 Console.WriteLine();
                 break;
 
             case 'e':
                 Console.WriteLine("Enter the product ID of the product you want to delete\n");
                 isRead = int.TryParse(Console.ReadLine(), out ID);
-                access.BoProduct.Delete(ID);
+                bl.Product.ProductDelete(ID);
 
                 break;
 
@@ -406,16 +428,17 @@ internal class Program
 
                 Console.WriteLine("Enter the ID ,Name ,Price ,Category ,InStock  of product you seek to update\n");
                 isRead = int.TryParse(Console.ReadLine(), out ID);
-                product.Id = ID;
+                product.ID = ID;
                 product.Name = Console.ReadLine();
                 isRead = int.TryParse(Console.ReadLine(), out int _price);
                 product.Price = _price;
-                BO.Enums.ProdactCategory c;
-                BO.Enums.ProdactCategory.TryParse(Console.ReadLine(), out c);
+                DO.Enums.ProductCategory c;
+                DO.Enums.ProductCategory.TryParse(Console.ReadLine(), out c);
                 product.Category = c;
+                int inStock;
                 isRead = int.TryParse(Console.ReadLine(), out inStock);
                 product.InStock = inStock;
-                access.BoProduct.Update(product);
+                bl.Product.ProductUpdate(product);
 
                 break;
             default:
@@ -430,20 +453,20 @@ internal class Program
     {
         //The user is asked for his data to enter it in his shopping cart.
         Console.Write("Please enter your name: ");
-        cart.CostomerName = Console.ReadLine();
+        cart.CostumerName = Console.ReadLine();
         Console.WriteLine("\nPlease enter your address: ");
-        cart.CostomerAdress = Console.ReadLine();
+        cart.CostumerAdress = Console.ReadLine();
 
 
         EnterEmail();
         Console.WriteLine();
 
-        IDal access = new DalList1(); // Access to the data layer
-        Bl accessBo = new Bl();
+        IDal access = new DalList(); // Access to the data layer
+
 
 
         //Catalog of all products
-        IEnumerable<BO.ProductForList> products = (IEnumerable<BO.ProductForList>)accessBo.BoProduct.GetProducts();
+        IEnumerable<BO.ProductForList> products = (IEnumerable<BO.ProductForList>)bl.Product.ListProduct();
         foreach (var item in products)
         {
             Console.WriteLine(item);
@@ -484,48 +507,48 @@ internal class Program
                 }
             }
             // Each exception has its own "cathe".
-            catch (BO.TheIdDoesNotExistInTheDatabase exe)
+            catch (BO.BlDoesNotExistException exe)
             {
                 Console.WriteLine(exe.Message);
             }
-            catch (BO.TheIDAlreadyExistsInTheDatabase exe)
-            {
-                Console.WriteLine(exe.Message);
-            }
-            catch (BO.TheVariableIsLessThanTheNumberZero exe)
-            {
-                Console.WriteLine(exe.Message);
-            }
-            catch (BO.VariableIsNull exe)
-            {
-                Console.WriteLine(exe.Message);
-            }
-            catch (BO.OutOfStock exe)
-            {
-                Console.WriteLine(exe.Message);
-            }
-            catch (BO.InputError exe)
-            {
-                Console.WriteLine(exe.Message);
-            }
-            catch (BO.IsEmpty exe)
-            {
-                Console.WriteLine(exe.Message);
-            }
+            //catch (BO.DalAlreadyExistException exe)
+            //{
+            //    Console.WriteLine(exe.Message);
+            //}
+            //catch (BO.DalDataCorruption exe)
+            //{
+            //    Console.WriteLine(exe.Message);
+            //}
+            //catch (BO.DalAlreadyExistException exe)
+            //{
+            //    Console.WriteLine(exe.Message);
+            //}
+            //catch (BO.OutOfStock exe)
+            //{
+            //    Console.WriteLine(exe.Message);
+            //}
+            //catch (BO.InputError exe)
+            //{
+            //    Console.WriteLine(exe.Message);
+            //}
+            //catch (BO.IsEmpty exe)
+            //{
+            //    Console.WriteLine(exe.Message);
+            //}
 
 
-            catch (DO.TheIdentityCardDoesNotExistInTheDatabase exe)
-            {
-                Console.WriteLine(exe.Message);
-            }
-            catch (DO.TheIDAlreadyExistsInTheDatabase exe)
-            {
-                Console.WriteLine(exe.Message);
-            }
-            catch (Exception messege)
-            {
-                Console.WriteLine(messege.Message);
-            }
+            //catch (DO.DalDoesNotExistException exe)
+            //{
+            //    Console.WriteLine(exe.Message);
+            //}
+            //catch (DO.DalAlreadyExistException exe)
+            //{
+            //    Console.WriteLine(exe.Message);
+            //}
+            //catch (Exception messege)
+            //{
+            //    Console.WriteLine(messege.Message);
+            //}
 
             if (choice != "0") // if the user haven't enter 0 ask for a new choice
             {
@@ -541,8 +564,8 @@ internal class Program
         do
         {
             Console.WriteLine("\nPlease enter your email address: ");
-            cart.CostomerEmail = Console.ReadLine();
-        } while (!IsValid(cart.CostomerEmail)); //Check if the email address entered by the user is correct.
+            cart.CostumerEmail = Console.ReadLine();
+        } while (!IsValid(cart.CostumerEmail)); //Check if the email address entered by the user is correct.
     }
 
 
@@ -567,4 +590,3 @@ internal class Program
     }
 }
 
-*/

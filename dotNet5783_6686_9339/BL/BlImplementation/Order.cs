@@ -380,7 +380,7 @@ internal class Order : IOrder
 
             return BoOrder;
         }
-        throw new BO.DalDataCorruption("id is smaller than 0");
+        throw new BO.BlDataCorruption("id is smaller than 0");
     }
 
 
@@ -423,7 +423,7 @@ internal class Order : IOrder
         }
         if (!check) //If there was no such ID
         {
-            throw new BO.DalDoesNotExistException("The Id Does Not Exist");
+            throw new BO.BlDoesNotExistException("The Id Does Not Exist");
         }
         return BoOrderTracking;
 
@@ -505,7 +505,7 @@ internal class Order : IOrder
             return BoOrder;
         }
 
-        throw new BO.DalDoesNotExistException("No ID Exist");
+        throw new BO.BlDoesNotExistException("No ID Exist");
 
     }
 
@@ -585,7 +585,7 @@ internal class Order : IOrder
             return BoOrder;
         }
 
-        throw new BO.DalDoesNotExistException("No ID exist");
+        throw new BO.BlDoesNotExistException("No ID exist");
     }
 
 }

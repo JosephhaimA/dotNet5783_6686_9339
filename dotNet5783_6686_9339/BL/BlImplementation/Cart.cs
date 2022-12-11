@@ -32,7 +32,7 @@ internal class Cart : ICart
             }
             else
             {
-                throw new BO.DalDoesNotExistException("error");
+                throw new BO.BlDoesNotExistException("error");
             }
         }
         else
@@ -54,7 +54,7 @@ internal class Cart : ICart
             }
             else
             {
-                throw new BO.DalDoesNotExistException("error");
+                throw new BO.BlDoesNotExistException("error");
             }
         }
         return item;
@@ -151,6 +151,7 @@ internal class Cart : ICart
         {
             int intProduct = CostumerInfo.orderItemsList[i].ProductId;
             DO.Product product = dal.Product.GetAll().ToList().Find(itemm => itemm.ID == intProduct);//מחזיר לי את המוצר אם אותו איי די
+            product.InStock -= CostumerInfo.orderItemsList[i].InOrder;
             dal.Product.Update(product);
         }
             return; 

@@ -5,17 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BO;
-public class DalDoesNotExistException : Exception
+
+[Serializable]
+public class BlDoesNotExistException : Exception
 {
-    public DalDoesNotExistException(string? message) : base(message) { }
-}
-public class DalAlreadyExistException : Exception
-{
-    public DalAlreadyExistException(string? message) : base(message) { }
+    public BlDoesNotExistException(string? message) : base(message) { }
 }
 
-public class DalDataCorruption : Exception
+[Serializable]
+public class BlAlreadyExistException : Exception
 {
-    public DalDataCorruption(string? message) : base(message) { }
+    public BlAlreadyExistException(string? message) : base(message) { }
+
+    public BlAlreadyExistException(string? message, Exception? innerException) : base(message, innerException)
+    {
+    }
+}
+
+[Serializable]
+public class BlDataCorruption : Exception
+{
+    public BlDataCorruption(string? message) : base(message) { }
 }
 
