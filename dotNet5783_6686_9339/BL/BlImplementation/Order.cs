@@ -14,7 +14,7 @@ internal class Order : IOrder
     private DalApi.IDal dal = new Dal.DalList();
 
     // The function returns a list of all orders
-    public IEnumerable<BO.OrderForList> OrderList()
+    public IEnumerable<BO.OrderForList?> OrderList()
     {
         List<BO.OrderForList> orderForList = new List<BO.OrderForList>();
         List<DO.Order> DoOrders = new List<DO.Order>();

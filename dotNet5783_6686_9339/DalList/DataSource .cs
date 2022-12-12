@@ -20,9 +20,9 @@ internal sealed class DataSource
     {
         s_Initialize();
     }
-    internal  List<Order> OrderList = new List<Order>();
-    internal  List<OrderItem> OrderIteamList = new List<OrderItem>();
-    internal  List<Product> ProductList = new List<Product>();
+    internal  List<Order?> OrderList = new List<Order?>();
+    internal  List<OrderItem?> OrderIteamList = new List<OrderItem?>();
+    internal  List<Product?> ProductList = new List<Product?>();
 
     private  void InitProducts()
     {

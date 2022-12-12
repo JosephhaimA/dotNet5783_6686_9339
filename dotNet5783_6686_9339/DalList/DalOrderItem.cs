@@ -21,7 +21,7 @@ public class DalOrderItem : IOrderItem
                 //DataSource.OrderIteamList[i].Price = p.Price;
                 //DataSource.OrderIteamList[i].Amount = p.Amount;
                 DataSource.Config.IndexOrderItems++;
-                return ds.OrderIteamList[i].OrderID;
+                return (int)ds.OrderIteamList[i]?.OrderID!;
             }
             else
                 throw new Exception("No such place to add a OrderItem you have to remove one");
@@ -34,11 +34,11 @@ public class DalOrderItem : IOrderItem
     {
         int index = OrderItemFind(id);
         if (index != -999)
-            return ds.OrderIteamList[index]; // return the Product 
+            return (OrderItem)ds.OrderIteamList[index]!; // return the Product 
         else
             throw new Exception("OrderItem doesn't exist");
     }
-    public IEnumerable<OrderItem> GetAll() // print all the products
+    public IEnumerable<OrderItem?> GetAll() // print all the products
     {
         return ds.OrderIteamList;
     }
@@ -65,7 +65,7 @@ public class DalOrderItem : IOrderItem
                 //DataSource.OrderIteamList[i] = DataSource.OrderIteamList[1 + i];// jump the Product at the arra[index] and copy the rest
                 //if (i + 1 == DataSource.OrderIteamList.Count)
                 //  break;
-                if (id == ds.OrderIteamList[i].ID)
+                if (id == (int)ds.OrderIteamList[i]?.ID!)
                 {
                     ds.OrderIteamList.Remove(ds.OrderIteamList[i]);
                 }
@@ -83,7 +83,7 @@ public class DalOrderItem : IOrderItem
 
         for (int i = 0; i < ds.OrderIteamList.Count; i++)
         {
-            if (id == ds.OrderIteamList[i].ID)
+            if (id == (int)ds.OrderIteamList[i]?.ID!)
                 return i;
         }
         return -999;
