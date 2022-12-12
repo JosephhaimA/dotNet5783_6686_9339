@@ -17,18 +17,18 @@ internal class Cart : ICart
 
     public BO.Cart AddItemToCART(BO.Cart item, int id)
     {
-        DO.Product product = dal.Product.GetAll().ToList().Find(itemm => itemm.ID == id);//מחזיר לי את המוצר אם אותו איי די
+        DO.Product? product = dal.Product.GetAll().ToList().Find(itemm => (int)itemm?.ID! == id);//מחזיר לי את המוצר אם אותו איי די
 
         int i = item.orderItemsList.FindIndex(itemm => itemm.ProductId == id);
 
         bool exists = item.orderItemsList.Exists(itemm => itemm.ProductId == id);
         if (exists)
         {
-            if (product.InStock != 0)
+            if ((int)product?.InStock! != 0)
             {
                 item.orderItemsList[i].InOrder++;
-                item.orderItemsList[i].SumPrice += product.Price;
-                item.TotalPrice += product.Price;
+                item.orderItemsList[i].SumPrice += (double)product?.Price!;
+                item.TotalPrice += (double)product?.Price!;
             }
             else
             {
@@ -37,20 +37,20 @@ internal class Cart : ICart
         }
         else
         {
-            bool exist = dal.Product.GetAll().ToList().Exists(itemm => itemm.ID == id);
-            if (exist && product.InStock != 0)
+            bool exist = dal.Product.GetAll().ToList().Exists(itemm => (int)itemm?.ID! == id);
+            if (exist && (int)product?.InStock! != 0)
             {
                 BO.OrderItem orderItem = new BO.OrderItem()
                 {
-                    Id = product.ID,
+                    Id = (int)product?.ID!,
                     ProductId = id,
-                    ProductName = product.Name,
-                    ProductPrice = product.Price,
+                    ProductName = (string)product?.Name!,
+                    ProductPrice = (double)product?.Price!,
                     InOrder = 1,
-                    SumPrice = product.Price,
+                    SumPrice = (double)product?.Price!,
                 };
                 item.orderItemsList.Add(orderItem);
-                item.TotalPrice += product.Price;
+                item.TotalPrice += (double)product?.Price!;
             }
             else
             {
@@ -61,7 +61,7 @@ internal class Cart : ICart
     }
     public BO.Cart UpdateAmountOfProduct(BO.Cart item, int id, int newAmount) 
     {
-        DO.Product product = dal.Product.GetAll().ToList().Find(itemm => itemm.ID == id);//מחזיר לי את המוצר אם אותו איי די
+        DO.Product? product = dal.Product.GetAll().ToList().Find(itemm => (int)itemm?.ID! == id);//מחזיר לי את המוצר אם אותו איי די
         int index = item.orderItemsList.FindIndex(itemm => itemm.ProductId == id);
 
         if (index == -1) // שאז זה אומר שלא היה מוצר כזה מלכתחילה 
@@ -78,14 +78,14 @@ internal class Cart : ICart
         if (newAmount == 0)
         {
             item.orderItemsList.RemoveAt(index);
-            item.TotalPrice -= product.Price * (-1 * diffrence);
+            item.TotalPrice -= (double)product?.Price! * (-1 * diffrence);
         }
 
         if (diffrence < 0)
         {
             item.orderItemsList[index].InOrder = newAmount;
-            item.orderItemsList[index].SumPrice = product.Price* newAmount;
-            item.TotalPrice -= product.Price*(-1*diffrence);
+            item.orderItemsList[index].SumPrice = (double)product?.Price! * newAmount;
+            item.TotalPrice -= (double)product?.Price! * (-1*diffrence);
         }
 
         if (diffrence > 0)
@@ -103,9 +103,9 @@ internal class Cart : ICart
         for (int i = 0; i < CostumerInfo.orderItemsList.Count; i++)
         {
             int intProduct = CostumerInfo.orderItemsList[i].ProductId;
-            DO.Product product = dal.Product.GetAll().ToList().Find(itemm => itemm.ID == intProduct);//מחזיר לי את המוצר אם אותו איי די
+            DO.Product? product = dal.Product.GetAll().ToList().Find(itemm => (int)itemm?.ID! == intProduct);//מחזיר לי את המוצר אם אותו איי די
             int sumOrder = CostumerInfo.orderItemsList[i].InOrder;
-            if (sumOrder >= product.InStock || sumOrder <= 0)
+            if (sumOrder >= (int)product?.InStock! || sumOrder <= 0)
             {
                 throw new BO.BlNotEnoughInStock("error");
             }
@@ -140,13 +140,13 @@ internal class Cart : ICart
         for (int i = 0; i < CostumerInfo.orderItemsList.Count; i++)
         {
             int intProduct = CostumerInfo.orderItemsList[i].ProductId;
-            DO.Product product = dal.Product.GetAll().ToList().Find(itemm => itemm.ID == intProduct);//מחזיר לי את המוצר אם אותו איי די
+            DO.Product? product = dal.Product.GetAll().ToList().Find(itemm => (int)itemm?.ID! == intProduct);//מחזיר לי את המוצר אם אותו איי די
             DO.OrderItem NewOrderItem = new DO.OrderItem()
             {
-                ProductID = product.ID,
+                ProductID = (int)product?.ID!,
                 OrderID = NumOreder,
-                Price = product.Price,
-                Amount = CostumerInfo.orderItemsList[i].InOrder,
+                Price = (double)product?.Price!,
+                Amount = CostumerInfo.orderItemsList[i]!.InOrder,
             };
 
             dal.OrderItem.Add(NewOrderItem);
@@ -154,10 +154,10 @@ internal class Cart : ICart
 
         for (int i = 0; i < CostumerInfo.orderItemsList.Count; i++)
         {
-            int intProduct = CostumerInfo.orderItemsList[i].ProductId;
-            DO.Product product = dal.Product.GetAll().ToList().Find(itemm => itemm.ID == intProduct);//מחזיר לי את המוצר אם אותו איי די
-            product.InStock -= CostumerInfo.orderItemsList[i].InOrder;
-            dal.Product.Update(product);
+            int intProduct = CostumerInfo.orderItemsList[i]!.ProductId;
+            DO.Product product = (DO.Product)dal.Product.GetAll().ToList().Find(itemm => (int)itemm?.ID! == intProduct)!;//מחזיר לי את המוצר אם אותו איי די
+            product.InStock -= (int)CostumerInfo?.orderItemsList[i]?.InOrder!;
+            dal.Product.Update((DO.Product)product!);
         }
             return; 
     }

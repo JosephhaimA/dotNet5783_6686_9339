@@ -7,7 +7,7 @@ using BO;
 namespace BlApi;
 public interface IOrder
 {
-    public IEnumerable<OrderForList> OrderList();
+    public IEnumerable<OrderForList?> OrderList();
     public Order GetOrder(int id);
     public Order ShipOrderUpate(int Orderid);
     public Order DeliveryrOrderUpate(int id);

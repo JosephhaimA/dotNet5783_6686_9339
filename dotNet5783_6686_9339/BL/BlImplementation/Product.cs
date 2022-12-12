@@ -18,17 +18,17 @@ internal class Product : IProduct
 {
     private DalApi.IDal dal = new Dal.DalList();
 
-    public IEnumerable<BO.ProductForList> ListProduct()
+    public IEnumerable<BO.ProductForList?> ListProduct()
     {
-        List<DO.Product> L_P = dal.Product.GetAll().ToList();
+        List<DO.Product?> L_P = dal.Product.GetAll().ToList();
         List<BO.ProductForList> productForLists = new List<BO.ProductForList>();
         for (int i = 0; i < L_P.Count; i++)
         {
             BO.ProductForList PFR = new BO.ProductForList()
             {
-                ProductId = L_P[i].ID,
-                ProductName = L_P[i].Name,
-                ProductPrice = L_P[i].Price,
+                ProductId = (int)L_P[i]?.ID!,
+                ProductName = (string)L_P[i]?.Name!,
+                ProductPrice = (double)L_P[i]?.Price!,
             };
             productForLists.Add(PFR);
 
@@ -41,7 +41,7 @@ internal class Product : IProduct
         if (id > 0)
         {
             DO.Product product = new DO.Product();
-            int cat = (int)product.Category;
+            int cat = (int)product.Category!;
             product = dal.Product.GetObj(id);
             BO.Product NewProduct = new BO.Product()
             {
@@ -49,7 +49,7 @@ internal class Product : IProduct
                 Name = product.Name,
                 Price = product.Price,
                 Category = (BO.Enum.ProductCategory)cat,
-                InStock = product.InStock,
+                InStock = (int)product.InStock!,
             };
             return NewProduct;
         }
@@ -64,7 +64,7 @@ internal class Product : IProduct
         if (id > 0)
         {
             DO.Product product = new DO.Product();
-            int cat = (int)product.Category;
+            int cat = (int)product.Category!;
             product = dal.Product.GetObj(id);
             bool exsixs;
             if (product.InStock != 0)
@@ -78,7 +78,7 @@ internal class Product : IProduct
                 ProductPrice = product.Price,
                 Category = (BO.Enum.ProductCategory)cat,
                 InStock = exsixs,
-                Amount = product.InStock,
+                Amount = (int)product.InStock!,
             };
             return productItem;
         }
@@ -115,7 +115,7 @@ internal class Product : IProduct
             ID = product.Id,
             Name = product.Name,    
             Price = product.Price,
-            Category = (DO.Enums.ProductCategory)product.Category,
+            Category = (DO.Enums.ProductCategory)product.Category!,
             InStock = product.InStock
         };
         try
@@ -131,11 +131,11 @@ internal class Product : IProduct
 
     public void ProductDelete(int id)
     {
-        List<DO.OrderItem> ListItem = new List<DO.OrderItem>();
+        List<DO.OrderItem?> ListItem = new List<DO.OrderItem?>();
         ListItem = dal.OrderItem.GetAll().ToList();
         for (int i = 0; i < ListItem.Count; i++)
         {
-            if (ListItem[i].ProductID==id)
+            if ((int)ListItem[i]?.ProductID==id)
             {
                 throw new BO.BlCantDeleteB_Used("error cant delete because the product is usd ");
             }
