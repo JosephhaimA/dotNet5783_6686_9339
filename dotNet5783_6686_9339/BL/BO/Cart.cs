@@ -8,10 +8,10 @@ namespace BO;
 
 public class Cart
 {
-    public string CostumerName { get; set; }
-    public string CostumerEmail { get; set; }
-    public string CostumerAdress { get; set; }
-    public List<OrderItem> orderItemsList { get; set; }
+    public string? CostumerName { get; set; }
+    public string? CostumerEmail { get; set; }
+    public string? CostumerAdress { get; set; }
+    public List<OrderItem>? orderItemsList { get; set; }
     public double TotalPrice { get; set; }
 
     public override string ToString() =>
