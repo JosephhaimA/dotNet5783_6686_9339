@@ -30,11 +30,11 @@ internal class Order : IOrder
             BO.OrderForList orderForList1 = new BO.OrderForList();
             orderForList1.OrderId = DoOrder.ID;
             orderForList1.BuyerName = DoOrder.CostumerName;
-            if (DoOrder.DeliveryrDate != null) //check that the date exists
+            if (DoOrder.DeliveryrDate != null) //check if the data is exist
             {
                 orderForList1.Status = OrderStatus.Delivered;
             }
-            else if (DoOrder.ShipDate != null)//check that the date exists
+            else if (DoOrder.ShipDate != null)// -||-
             {
                 orderForList1.Status = OrderStatus.Sent;
             }
@@ -51,13 +51,10 @@ internal class Order : IOrder
                 }
             }
 
-            orderForList.Add(orderForList1); //We will add to the list of orders in the logical layer
+            orderForList.Add(orderForList1); //We will add to the order list
         }
         return orderForList;
     }
-
-
-    // The function returns the logical entity - order, by Id
     public BO.Order GetOrder(int id)
     {
         DO.Order DoOrder = new DO.Order();
@@ -103,7 +100,7 @@ internal class Order : IOrder
                         }
                     }
 
-                    boOrderItems.Add(boOrderItem); //We will add to the list of order items in the logical layer     
+                    boOrderItems.Add(boOrderItem); //We will add to the list of order items in the logic layer     
                 }
 
             }

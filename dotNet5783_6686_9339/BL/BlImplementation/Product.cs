@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using BlApi;
 using static BO.Enum;
 using static DO.Enums;
-
+// we implement the functions thay we've created
 
 namespace BlImplementation;
 internal class Product : IProduct
@@ -35,7 +35,7 @@ internal class Product : IProduct
         }
         return productForLists;
     }
-
+    // for the admin access
     public BO.Product GetProductAdmin(int id)
     {
         if (id > 0)
