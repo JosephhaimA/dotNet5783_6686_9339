@@ -14,4 +14,5 @@ public interface ICrud<T> where T : struct
     void Delete(int id);
     void Update(T obj);
     IEnumerable<T> GetAll();
+
 }
