@@ -26,7 +26,7 @@ public class DalOrder : IOrder
                 //DataSource.OrderList[i].ShipDate = p.ShipDate;
                 //DataSource.OrderList[i].DeliveryrDate = p.DeliveryrDate;
                 DataSource.Config.IndexOrder++;
-                return ds.OrderList[i].ID;
+                return (int)ds.OrderList[i]?.ID!;
             }
             else
                 throw new Exception("No such place to add a Order you have to remove one");
@@ -39,11 +39,11 @@ public class DalOrder : IOrder
     {
         int index = OrderFind(id);
         if (index != -999)
-            return ds.OrderList[index]; // return the Product 
+            return (Order)ds.OrderList[index]!; // return the Product 
         else
             throw new Exception("Order doesn't exist");
     }
-    public IEnumerable<Order> GetAll() // print all the products
+    public IEnumerable<Order?> GetAll() // print all the products
     {
         return ds.OrderList;
     }
@@ -70,7 +70,7 @@ public class DalOrder : IOrder
                 // DataSource.OrderList[i] = DataSource.OrderList[1 + i];// jump the Product at the arra[index] and copy the rest
                 //if (i + 1 == DataSource.OrderList.Count)
                 //  break;
-                if (id == ds.OrderList[i].ID)
+                if (id == (int)ds.OrderList[i]?.ID!)
                 {
                     ds.OrderList.Remove(ds.OrderList[i]);
                 }
@@ -85,7 +85,7 @@ public class DalOrder : IOrder
     {
         for (int i = 0; i < ds.OrderList.Count ; i++)
         {
-            if (id == ds.OrderList[i].ID)
+            if (id == (int)ds.OrderList[i]?.ID!)
                 return i;
         }
         return -999;

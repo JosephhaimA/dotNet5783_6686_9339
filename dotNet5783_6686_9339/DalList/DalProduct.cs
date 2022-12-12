@@ -17,7 +17,7 @@ public class DalProduct : IProduct
         {
             ds.ProductList.Add(p);
             DataSource.Config.IndexProduct++;
-            return ds.ProductList[i].ID;
+            return (int)ds.ProductList[i]?.ID!;
         }
         else
             throw new Exception("No such place to add a Product you have to remove one");
@@ -34,19 +34,19 @@ public class DalProduct : IProduct
         //Console.WriteLine(DataSource.Config.IndexProduct);
 
         if (index != -999)
-            return ds.ProductList[index]; // return the Product 
+            return (Product)ds.ProductList[index]!; // return the Product 
         else
             throw new Exception("Product doesn't exist");
         
     }
-    public IEnumerable<Product> GetAll() // print all the products
+    public IEnumerable<Product?> GetAll() // print all the products
     {
         //foreach (Product element in DataSource.ProductList)
         //{
         //    if (element.ID != 0)
         //        Console.WriteLine(element);
         //}
-        return  new List<DO.Product>(ds.ProductList);
+        return ds.ProductList; // new List<DO.Product>(ds.ProductList);
     }
     public void Update(Product p) // updating the Product if exist, the price, the stock of the prudcut,....
     {
@@ -71,7 +71,7 @@ public class DalProduct : IProduct
                // Product pro;
                 for (int j = 0; j < ds.ProductList.Count; j++)
                 {
-                    if (id == ds.ProductList[j].ID)
+                    if (id == (int)ds.ProductList[j]?.ID!)
                     {
                         ds.ProductList.Remove(ds.ProductList[j]);
                     }
@@ -93,7 +93,7 @@ public class DalProduct : IProduct
     {
         for (int i = 0; i < ds.ProductList.Count; i++)
         {
-            if (id == ds.ProductList[i].ID)
+            if (id == (int)ds.ProductList[i]?.ID!)
                 return i;
         }
         return -999;
