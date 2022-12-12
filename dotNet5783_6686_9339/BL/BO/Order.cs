@@ -9,14 +9,14 @@ public class Order
 {
 
     public int Id { get; set; }
-    public string CostumerName { get; set; }
-    public string CostumerEmail { get; set; }
-    public string CostumerAdress { get; set; }
-    public OrderStatus Status { get; set; }
-    public DateTime OrderDate { get; set; }
-    public DateTime ShipDate { get; set; }
-    public DateTime DeliveryDate { get; set; }
-    public List<OrderItem> Details {get; set; }
+    public string? CostumerName { get; set; }
+    public string? CostumerEmail { get; set; }
+    public string? CostumerAdress { get; set; }
+    public OrderStatus? Status { get; set; }
+    public DateTime? OrderDate { get; set; }
+    public DateTime? ShipDate { get; set; }
+    public DateTime? DeliveryDate { get; set; }
+    public List<OrderItem>? Details {get; set; }
     public double TotalPrice { get; set; }
 
     public override string ToString() => $@"

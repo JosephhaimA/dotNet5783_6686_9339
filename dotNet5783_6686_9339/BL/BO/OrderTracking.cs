@@ -12,8 +12,8 @@ namespace BO;
 public class OrderTracking
 {
     public int  OrderId { get; set; }
-    public OrderStatus Status { get; set; }
-    public List<(DateTime?,string)> Tracking { get; set; }
+    public OrderStatus? Status { get; set; }
+    public List<(DateTime?,string)>? Tracking { get; set; }
 
     // public List
     public override string ToString() => $@"
