@@ -1,7 +1,6 @@
 ﻿using BlImplementation;
 using Dal;
 using DalApi;
-//using DalList;
 using System.Runtime.CompilerServices;
 using System.Net.Mail;
 using System.Net.Http.Headers;
@@ -17,7 +16,6 @@ internal class Program
     static BO.Cart cart = new BO.Cart() { orderItemsList = new List<BO.OrderItem>(), };
     static IBl bl = Bl.Instance;
 
-    //static BO.Cart cart = new BO.Cart();
 
     //When the user select CART
     static void optionCart()
@@ -163,15 +161,6 @@ internal class Program
                 int  inStoce, id , cate ;
                 double price;
                 string? name;
-              //  isRead = int.TryParse(Console.ReadLine(), out Id);
-              // // ID = Id;
-              //  string name = "aaa";
-              //  int cate, inStock;
-
-              //  Cate = int.Parse(System.Console.ReadLine());
-              ////  name = Console.ReadLine();
-              //  isRead = int.TryParse(Console.ReadLine(), out int price);
-              //  isRead = int.TryParse(Console.ReadLine(), out int cate);
                 BO.Enum.ProductCategory category;
                 id = int.Parse(System.Console.ReadLine());
                 cate = int.Parse(System.Console.ReadLine());
@@ -240,7 +229,7 @@ internal class Program
 
 
 
-        //Catalog of all products
+        //Catalog of the products
         IEnumerable<BO.ProductForList> products = (IEnumerable<BO.ProductForList>)bl.Product.ListProduct();
         foreach (var item in products)
         {
@@ -249,10 +238,10 @@ internal class Program
 
         // the purpose's program is to check the Dal layer
         Console.WriteLine("welcome, please enter your choise\n" +
-            "0 - exit \n" +
-            "1 - Cart \n" +
-            "2 - Order \n" +
-            "3 - product.\n" +
+            "0 for exit \n" +
+            "1 for Cart \n" +
+            "2 for Order \n" +
+            "3 for product.\n" +
             "please enter a choice\n");
 
         string choice = "";
@@ -265,7 +254,7 @@ internal class Program
                 switch (choice)
                 {
                     case "0":
-                        Console.WriteLine("goodbye");
+                        Console.WriteLine("Thank you, would like to see you next time!");
                         break;
                     case "1":
                         optionCart();
@@ -303,7 +292,7 @@ internal class Program
     }
 
 
-    // Function for checking the correctness of an email address
+    // Function for checking the correct of an email address
     public static bool IsValid(string email)
     {
         var trimmedEmail = email.Trim();
