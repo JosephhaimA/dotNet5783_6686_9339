@@ -38,9 +38,24 @@ public class DalOrderItem : IOrderItem
         else
             throw new Exception("OrderItem doesn't exist");
     }
-    public IEnumerable<OrderItem?> GetAll() // print all the products
+    public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? func) // print all the products
     {
-        return ds.OrderIteamList;
+        List<OrderItem?> list = new List<OrderItem?>();
+        if (func != null)
+        {
+            foreach (OrderItem element in ds.OrderIteamList)
+            {
+                if (func(element))
+                {
+                    list.Add(element);
+                }
+            }
+            return list;
+        }
+        else
+        {
+            return ds.OrderIteamList;
+        }
     }
     public void Update(OrderItem p)
     {

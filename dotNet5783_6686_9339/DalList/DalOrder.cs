@@ -1,6 +1,7 @@
 ﻿
 using DalApi;
 using DO;
+using System;
 using System.Data.Common;
 using System.Xml.Linq;
 
@@ -43,9 +44,24 @@ public class DalOrder : IOrder
         else
             throw new Exception("Order doesn't exist");
     }
-    public IEnumerable<Order?> GetAll() // print all the products
+    public IEnumerable<Order?> GetAll(Func<Order?, bool>? func) // print all the products
     {
-        return ds.OrderList;
+        List<Order?> list = new List<Order?>();
+        if (func != null)
+        {
+            foreach (Order element in ds.OrderList)
+            {
+                if (func(element))
+                {
+                    list.Add(element);
+                }
+            }
+            return list;
+        }
+        else
+        {
+            return ds.OrderList;
+        }
     }
     public void Update(Order p)
     {

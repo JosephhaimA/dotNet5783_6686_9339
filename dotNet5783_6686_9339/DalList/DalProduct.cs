@@ -39,14 +39,24 @@ public class DalProduct : IProduct
             throw new Exception("Product doesn't exist");
         
     }
-    public IEnumerable<Product?> GetAll() // print all the products
+    public IEnumerable<Product?> GetAll(Func<Product?, bool>? func) // print all the products
     {
-        //foreach (Product element in DataSource.ProductList)
-        //{
-        //    if (element.ID != 0)
-        //        Console.WriteLine(element);
-        //}
-        return ds.ProductList; // new List<DO.Product>(ds.ProductList);
+        List<Product?> list = new List<Product?>();
+        if (func != null)
+        {
+            foreach (Product element in ds.ProductList)
+            {
+                if (func(element))
+                {
+                    list.Add(element);
+                }
+            }
+            return list;
+        }
+        else
+        {
+            return ds.ProductList;
+        }
     }
     public void Update(Product p) // updating the Product if exist, the price, the stock of the prudcut,....
     {
