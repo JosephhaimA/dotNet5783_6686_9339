@@ -2,6 +2,7 @@
 using DalApi;
 using DO;
 using System;
+using System.Collections.Generic;
 using System.Data.Common;
 using System.Xml.Linq;
 
@@ -105,5 +106,19 @@ public class DalOrder : IOrder
                 return i;
         }
         return -999;
+    }
+
+    public Order GetSingle(Func<Order?, bool>? func)
+    {
+        Order order = new Order();
+        foreach (Order element in ds.OrderList)
+        {
+            if (func(element))
+            {
+                order = element;
+                break;
+            }
+        }
+        return order;
     }
 }

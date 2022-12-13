@@ -9,14 +9,14 @@ public class DalOrderItem : IOrderItem
     DataSource ds = DataSource.Instance;
     public int Add(OrderItem p) // function add a Product
     {
-       // int index = OrderItemFind(p.ProductID);
-       // if (index == -999)
+        // int index = OrderItemFind(p.ProductID);
+        // if (index == -999)
         {
             int i = DataSource.Config.IndexOrderItems;
             if (i < 200)
             {
                 ds.OrderIteamList.Add(p);
-               //DataSource.OrderIteamList[i].ID = DataSource.Config.LestOrderItems;
+                //DataSource.OrderIteamList[i].ID = DataSource.Config.LestOrderItems;
                 //DataSource.OrderIteamList[i].OrderID = DataSource.Config.LestOrder;
                 //DataSource.OrderIteamList[i].Price = p.Price;
                 //DataSource.OrderIteamList[i].Amount = p.Amount;
@@ -26,7 +26,7 @@ public class DalOrderItem : IOrderItem
             else
                 throw new Exception("No such place to add a OrderItem you have to remove one");
         }
-      //  else
+        //  else
         //    throw new Exception("OrderItem doesn't exist");
     }
 
@@ -102,5 +102,19 @@ public class DalOrderItem : IOrderItem
                 return i;
         }
         return -999;
+    }
+
+    public OrderItem GetSingle(Func<OrderItem?, bool>? func)
+    {
+        OrderItem ordOrderItemer = new OrderItem();
+        foreach (OrderItem element in ds.OrderIteamList)
+        {
+            if (func(element))
+            {
+                ordOrderItemer = element;
+                break;
+            }
+        }
+        return ordOrderItemer;
     }
 }

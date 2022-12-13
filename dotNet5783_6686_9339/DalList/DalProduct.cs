@@ -108,4 +108,18 @@ public class DalProduct : IProduct
         }
         return -999;
     }
+
+    public Product GetSingle(Func<Product?, bool>? func)
+    {
+        Product product = new Product();
+        foreach (Product element in ds.ProductList)
+        {
+            if (func(element))
+            {
+                product = element;
+                break;
+            }
+        }
+        return product;
+    }
 }
