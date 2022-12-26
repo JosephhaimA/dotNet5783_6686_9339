@@ -10,31 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BlApi;
-using BlImplementation;
-using PL.Prudoct;
 
-namespace PL
+namespace PL.Prudoct
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ProductWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ProductWindow : Window
     {
-        IBl bl = new BlImplementation.Bl();
-        public MainWindow()
+        public ProductWindow()
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-            new ProductListWindow().Show();
-            Close();
-        }
-
     }
 }
