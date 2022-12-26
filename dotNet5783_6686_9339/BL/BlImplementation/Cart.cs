@@ -17,7 +17,9 @@ internal class Cart : ICart
 
     public BO.Cart AddItemToCART(BO.Cart item, int id)
     {
-        DO.Product? product = dal.Product.GetAll().ToList().Find(itemm => (int)itemm?.ID! == id);//מחזיר לי את המוצר אם אותו איי די
+        //DO.Product? product = dal.Product.GetAll().ToList().Find(itemm => (int)itemm?.ID! == id);//מחזיר לי את המוצר אם אותו איי די
+        //DO.Product? product = dal.Product.GetObj(id);
+        DO.Product? product = dal.Product.GetSingle(itemm => (int)itemm?.ID! == id);
 
         int i = item.orderItemsList.FindIndex(itemm => itemm.ProductId == id);
 
