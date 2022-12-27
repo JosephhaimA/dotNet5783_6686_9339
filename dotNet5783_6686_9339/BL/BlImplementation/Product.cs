@@ -7,8 +7,9 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
-
 using BlApi;
+using BO;
+using DO;
 using static BO.Enum;
 using static DO.Enums;
 // we implement the functions thay we've created
@@ -18,23 +19,46 @@ internal class Product : IProduct
 {
     private DalApi.IDal dal = new Dal.DalList();
 
-    public IEnumerable<BO.ProductForList?> ListProduct()
+    public IEnumerable<BO.ProductForList?> ListProduct(Func<DO.Product?, bool>? func)
     {
         List<DO.Product?> L_P = dal.Product.GetAll().ToList();
         List<BO.ProductForList> productForLists = new List<BO.ProductForList>();
-        for (int i = 0; i < L_P.Count; i++)
+        if (func == null)
         {
-            BO.ProductForList PFR = new BO.ProductForList()
+            for (int i = 0; i < L_P.Count; i++)
             {
-                ProductId = (int)L_P[i]?.ID!,
-                ProductName = (string)L_P[i]?.Name!,
-                ProductPrice = (double)L_P[i]?.Price!,
-            };
-            productForLists.Add(PFR);
+                BO.ProductForList PFR = new BO.ProductForList()
+                {
+                    ProductId = (int)L_P[i]?.ID!,
+                    ProductName = (string)L_P[i]?.Name!,
+                    ProductPrice = (double)L_P[i]?.Price!,
+                    Category = (BO.Enum.ProductCategory?)L_P[i]?.Category!,
+                };
+                productForLists.Add(PFR);
+            }
+      
+        }
+        else
+        {
+            for (int i = 0; i < L_P.Count; i++)
+            {
+                if (func(L_P[i]))
+                {
+                    BO.ProductForList PFR = new BO.ProductForList()
+                    {
+                        ProductId = (int)L_P[i]?.ID!,
+                        ProductName = (string)L_P[i]?.Name!,
+                        ProductPrice = (double)L_P[i]?.Price!,
+                        Category = (BO.Enum.ProductCategory?)L_P[i]?.Category!,
+                    };
+                    productForLists.Add(PFR);
+                }
+            }
 
         }
         return productForLists;
     }
+    
     // for the admin access
     public BO.Product GetProductAdmin(int id)
     {

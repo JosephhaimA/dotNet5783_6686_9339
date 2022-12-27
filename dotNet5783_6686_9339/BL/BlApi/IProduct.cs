@@ -7,7 +7,9 @@ using BO;
 namespace BlApi;
 public interface IProduct
 {
-    public IEnumerable<ProductForList?> ListProduct();
+    public IEnumerable<ProductForList?> ListProduct(Func<DO.Product?, bool>? func = null);
+    //public IEnumerable<ProductForList?> ListProduct();
+
     public Product GetProductAdmin (int id);
     public ProductItem GetProductAdminCostumer(int id, Cart cart);
     public void ProductAdd(BO.Product product);

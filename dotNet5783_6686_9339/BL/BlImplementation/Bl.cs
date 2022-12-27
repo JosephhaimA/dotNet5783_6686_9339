@@ -11,8 +11,8 @@ sealed public class Bl : IBl
 {
     private static IBl instance;
     public static IBl Instance { get => instance; }
-    static Bl() { instance = new Bl(); }
-    private Bl() { }
+    //static Bl() { instance = new Bl(); }
+    //private Bl() { }
 
     public IProduct Product => new Product();
     public IOrder Order => new Order();
