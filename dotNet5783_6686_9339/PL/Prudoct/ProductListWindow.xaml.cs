@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BlImplementation;
-using PL.Prudoct;
 
 namespace PL.Prudoct
 {
@@ -28,7 +27,6 @@ namespace PL.Prudoct
             IBl bl = new BlImplementation.Bl();
             ProductListView.ItemsSource = bl?.Product.ListProduct();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enum.ProductCategory));
-          //  CategorySelector.Items.Add($"{BO.Enum.ProductCategory)})
         }
 
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
