@@ -15,7 +15,7 @@ using static DO.Enums;
 // we implement the functions thay we've created
 
 namespace BlImplementation;
-internal class Product : IProduct
+sealed public class Product : IProduct
 {
     private DalApi.IDal dal = new Dal.DalList();
 

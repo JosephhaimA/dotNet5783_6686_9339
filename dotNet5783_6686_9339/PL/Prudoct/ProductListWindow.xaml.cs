@@ -36,5 +36,11 @@ namespace PL.Prudoct
             IBl bl = new BlImplementation.Bl();
             ProductListView.ItemsSource = bl.Product.ListProduct(a => a?.Category.ToString() == CategorySelector.SelectedItem.ToString());
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            new AddProductWindow().Show();
+            Close();
+        }
     }
 }
