@@ -27,7 +27,6 @@ namespace PL.Prudoct
         {
             InitializeComponent();
             IBl bl = new BlImplementation.Bl();
-            //InsertCategory.ItemsSource = bl.Product.ListProduct();
             CategorySelct.ItemsSource = System.Enum.GetValues(typeof(BO.Enum.ProductCategory));
         }
 
@@ -35,21 +34,33 @@ namespace PL.Prudoct
         private void ItemAdd_Click(object sender, RoutedEventArgs e)
         {
             IBl bl = new BlImplementation.Bl();
-            BO.Product product= new BO.Product();
-            product.Id = int.Parse(InsertId.Text);
-            product.Name = InsertName.Text;
-            product.Price = int.Parse(InsertPrice.Text);
-            product.InStock = int.Parse(InsertInStock.Text);
-            //int a = int.Parse(CategorySelector.Items);
-            product.Category = (BO.Enum.ProductCategory?)CategorySelct.SelectedItem;
-           // product.Category = (BO.Enum.ProductCategory)a;
-            bl.Product.ProductAdd(product);
+            BO.Product product = new BO.Product();
+            try
+            {
+                product.Id = int.Parse(InsertId.Text);
+                product.Name = InsertName.Text;
+                product.Price = int.Parse(InsertPrice.Text);
+                product.InStock = int.Parse(InsertInStock.Text);
+                product.Category = (BO.Enum.ProductCategory?)CategorySelct.SelectedItem;
+            }
+            catch (Exception)
+            {
+
+                throw;//////////////גם פה אותו דבר רק לשגיאה של היא הכנסת ערכים לכל השדות
+            }
+            try
+            {
+                bl.Product.ProductAdd(product);
+            }
+            catch (Exception)
+            {
+
+                throw; ////////////פה לעשות שיקפוץ חלון שכתוב בו את השגיאה
+            }
+            new ProductListWindow().Show();
+            Close();
         }
 
-        private void CategorySelct_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            IBl bl = new BlImplementation.Bl();
-            InsertCategory.ItemsSource = bl.Product.ListProduct(a => a?.Category.ToString() == CategorySelct.SelectedItem.ToString());
-        }
+        private void CategorySelct_SelectionChanged(object sender, SelectionChangedEventArgs e){}
     }
 }
