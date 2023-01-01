@@ -21,9 +21,9 @@ namespace PL.Prudoct
     /// <summary>
     /// Interaction logic for AddProductWindow.xaml
     /// </summary>
-    public partial class AddProductWindow : Window
+    public partial class ProductWindow : Window
     {
-        public AddProductWindow(ProductForList? product = null)
+        public ProductWindow(ProductForList? product = null)
         {
             InitializeComponent();
             if (product != null)
@@ -35,6 +35,10 @@ namespace PL.Prudoct
                 InsertName.Text = product.ProductName;
                 InsertPrice.Text = product.ProductPrice.ToString();
                 CategorySelct.Text = product.Category.ToString();
+                IBl? bl = new BlImplementation.Bl();
+                BO.Product? pro = new BO.Product();
+                pro = bl.Product.GetProductAdmin(product.ProductId);
+                InsertInStock.Text = pro.InStock.ToString();
             }
             else
             {

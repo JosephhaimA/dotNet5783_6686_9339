@@ -65,8 +65,8 @@ sealed public class Product : IProduct
         if (id > 0)
         {
             DO.Product product = new DO.Product();
-            int cat = (int)product.Category!;
             product = dal.Product.GetObj(id);
+            int cat = (int)product.Category!;
             BO.Product NewProduct = new BO.Product()
             {
                 Id = id,

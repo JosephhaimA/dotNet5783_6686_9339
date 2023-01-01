@@ -26,18 +26,26 @@ namespace PL.Prudoct
             InitializeComponent();
             IBl bl = new BlImplementation.Bl();
             ProductListView.ItemsSource = bl?.Product.ListProduct();
-            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enum.ProductCategory));
+            //CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enum.ProductCategory));
+            for (int i = 0; i < 5; i++)
+            {
+                CategorySelector.Items.Add($"{(BO.Enum.ProductCategory)i}");
+            }
+            CategorySelector.Items.Add("Show all the categorys");
         }
 
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             IBl bl = new BlImplementation.Bl();
-            ProductListView.ItemsSource = bl.Product.ListProduct(a => a?.Category.ToString() == CategorySelector.SelectedItem.ToString());
+            if (CategorySelector.SelectedItem.ToString() != "Show all the categorys")
+                ProductListView.ItemsSource = bl.Product.ListProduct(a => a?.Category.ToString() == CategorySelector.SelectedItem.ToString());
+            else
+                ProductListView.ItemsSource = bl?.Product.ListProduct();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            new AddProductWindow().Show();
+            new ProductWindow().Show();
             Close();
         }
 
@@ -47,7 +55,7 @@ namespace PL.Prudoct
             product = (BO.ProductForList)ProductListView.SelectedItem;
             if (product != null)
             {
-                new AddProductWindow(product).Show();
+                new ProductWindow(product).Show();
                 //new UpdateProductWindow(product).Show();
                 Close();
             }
