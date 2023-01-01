@@ -40,5 +40,17 @@ namespace PL.Prudoct
             new AddProductWindow().Show();
             Close();
         }
+
+        private void doubleClick(object sender, MouseButtonEventArgs e)
+        {
+            BO.ProductForList product = new BO.ProductForList();
+            product = (BO.ProductForList)ProductListView.SelectedItem;
+            if (product != null)
+            {
+                new AddProductWindow(product).Show();
+                //new UpdateProductWindow(product).Show();
+                Close();
+            }
+        }
     }
 }

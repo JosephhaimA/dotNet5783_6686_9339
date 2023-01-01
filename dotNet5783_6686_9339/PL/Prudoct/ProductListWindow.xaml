@@ -28,7 +28,7 @@
             </Grid>
             <ComboBox x:Name="CategorySelector" Grid.ColumnSpan="4" Margin="0,-2,0,2" SelectionChanged="CategorySelector_SelectionChanged"/>
             <Label Content="Category:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
-            <ListView x:Name="ProductListView" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="4" Margin="0,46,0,181" Grid.RowSpan="2">
+            <ListView x:Name="ProductListView" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="4" Margin="0,46,0,181" Grid.RowSpan="2" MouseDoubleClick="doubleClick" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>

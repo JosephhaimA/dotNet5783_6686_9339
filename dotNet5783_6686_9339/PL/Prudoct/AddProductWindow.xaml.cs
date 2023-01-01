@@ -23,15 +23,24 @@ namespace PL.Prudoct
     /// </summary>
     public partial class AddProductWindow : Window
     {
-        public AddProductWindow()
+        public AddProductWindow(ProductForList? product = null)
         {
             InitializeComponent();
-            IBl bl = new BlImplementation.Bl();
             CategorySelct.ItemsSource = System.Enum.GetValues(typeof(BO.Enum.ProductCategory));
+
+            if (product != null)
+            {
+                Confirm.Content = "Confirm the update";
+                Confirm.Click -= ConfirmUpdate_Click;
+                InsertId.Text = product.ProductId.ToString();
+                InsertName.Text = product.ProductName;
+                InsertPrice.Text = product.ProductPrice.ToString();
+                CategorySelct.Text = product.Category.ToString();
+            }
         }
 
        
-        private void ItemAdd_Click(object sender, RoutedEventArgs e)
+        private void ConfirmAdd_Click(object sender, RoutedEventArgs e)
         {
             IBl bl = new BlImplementation.Bl();
             BO.Product product = new BO.Product();
@@ -45,8 +54,8 @@ namespace PL.Prudoct
             }
             catch (Exception)
             {
-
-                throw;//////////////גם פה אותו דבר רק לשגיאה של היא הכנסת ערכים לכל השדות
+                MessageBox.Show("the data was not compltly fool");
+                
             }
             try
             {
@@ -54,8 +63,38 @@ namespace PL.Prudoct
             }
             catch (Exception)
             {
+                MessageBox.Show("the data was rong");
+               
+            }
+            new ProductListWindow().Show();
+            Close();
+        }
 
-                throw; ////////////פה לעשות שיקפוץ חלון שכתוב בו את השגיאה
+        private void ConfirmUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            IBl bl = new BlImplementation.Bl();
+            DO.Product product = new DO.Product();
+            try
+            {
+                product.ID = int.Parse(InsertId.Text);
+                product.Name = InsertName.Text;
+                product.Price = int.Parse(InsertPrice.Text);
+                product.InStock = int.Parse(InsertInStock.Text);
+                product.Category = (DO.Enums.ProductCategory?)CategorySelct.SelectedItem;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("the data was not compltly fool");
+                new ProductListWindow().Show();
+                Close();
+            }
+            try
+            {
+                bl.Product.ProductUpdate(product);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("the data was rong");
             }
             new ProductListWindow().Show();
             Close();
