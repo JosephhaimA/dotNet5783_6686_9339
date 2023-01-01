@@ -31,7 +31,7 @@ internal sealed class DataSource
             Product p = new Product()
             {
                 ID = i,
-                Price = 500,
+                Price = 550+50*i,
                 Name = "shirt",
                 Category = Enums.ProductCategory.Jordan,
                 InStock = 20
@@ -53,7 +53,7 @@ internal sealed class DataSource
             Product pro = new Product()
             {
                 ID = i+2,
-                Price = 500,
+                Price = 600+10 * i,
                 Name = "sneakers",
                 Category = Enums.ProductCategory.Sacai,
                 InStock = 20
@@ -64,7 +64,7 @@ internal sealed class DataSource
             Product prod = new Product()
             {
                 ID = i+3,
-                Price = 500,
+                Price = 300 + 10 * i,
                 Name = "sneakers",
                 Category = Enums.ProductCategory.DunkSB,
                 InStock = 20
@@ -75,7 +75,7 @@ internal sealed class DataSource
             Product prode = new Product()
             {
                 ID = i+4,
-                Price = 500,
+                Price = 400+10*i,
                 Name = "hat",
                 Category = Enums.ProductCategory.Yeezy,
                 InStock = 20

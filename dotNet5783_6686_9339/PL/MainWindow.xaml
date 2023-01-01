@@ -9,5 +9,6 @@
     <Grid>
         <Button Content="Button" HorizontalAlignment="Center" VerticalAlignment="Center" Height="75" Width="198" Click="Button_Click"/>
 
+        <Image Source="/ImageDemo;component/Images/Koala.jpg" />
     </Grid>
 </Window>
