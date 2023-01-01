@@ -29,7 +29,6 @@ namespace PL.Prudoct
             if (product != null)
             {
                 CategorySelct.ItemsSource = System.Enum.GetValues(typeof(DO.Enums.ProductCategory));
-                Confirm.Content = "Confirm the update";
                 Confirm.Visibility = Visibility.Collapsed;
                 InsertId.Text = product.ProductId.ToString();
                 InsertName.Text = product.ProductName;
