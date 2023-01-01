@@ -53,6 +53,7 @@ namespace PL.Prudoct
         {
             IBl bl = new BlImplementation.Bl();
             BO.Product product = new BO.Product();
+            bool check = true;
             try
             {
                 product.Id = int.Parse(InsertId.Text);
@@ -64,19 +65,30 @@ namespace PL.Prudoct
             catch (Exception)
             {
                 MessageBox.Show("the data was not compltly fool");
-                
+                check = false;
+                new ProductListWindow().Show();
+                Close();
             }
             try
             {
-                bl.Product.ProductAdd(product);
+                if (check)
+                {
+                    bl.Product.ProductAdd(product);
+
+                }
             }
             catch (Exception)
             {
                 MessageBox.Show("the data was rong");
-               
+               check =false;
+                new ProductListWindow().Show();
+                Close();
             }
-            new ProductListWindow().Show();
-            Close();
+            if (check)
+            {
+                new ProductListWindow().Show();
+                Close();
+            }
         }
 
         private void ConfirmUpdate_Click(object sender, RoutedEventArgs e)
