@@ -26,17 +26,22 @@ namespace PL.Prudoct
         public AddProductWindow(ProductForList? product = null)
         {
             InitializeComponent();
-            CategorySelct.ItemsSource = System.Enum.GetValues(typeof(BO.Enum.ProductCategory));
-
             if (product != null)
             {
+                CategorySelct.ItemsSource = System.Enum.GetValues(typeof(DO.Enums.ProductCategory));
                 Confirm.Content = "Confirm the update";
-                Confirm.Click -= ConfirmUpdate_Click;
+                Confirm.Visibility = Visibility.Collapsed;
                 InsertId.Text = product.ProductId.ToString();
                 InsertName.Text = product.ProductName;
                 InsertPrice.Text = product.ProductPrice.ToString();
                 CategorySelct.Text = product.Category.ToString();
             }
+            else
+            {
+                CategorySelct.ItemsSource = System.Enum.GetValues(typeof(BO.Enum.ProductCategory));
+                ConfirmUpdate.Visibility = Visibility.Collapsed;
+            }
+
         }
 
        
