@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Center" VerticalAlignment="Center" Height="75" Width="198" Click="Button_Click"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="/logo.jpg"/>
+        </Grid.Background>
+        <Button Content="Welcome to the shop" HorizontalAlignment="Left" VerticalAlignment="Top" Height="59" Width="450" Click="Button_Click" FontWeight="Bold" FontSize="22" RenderTransformOrigin="2.056,3.056" Margin="234,246,0,0" BorderBrush="{x:Null}" Foreground="#FFCBCBD0">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FFE4E5EF" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

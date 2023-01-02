@@ -36,5 +36,9 @@ public partial class MainWindow : Window
         Close();
     }
 
+    private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+
+    }
 }
 
