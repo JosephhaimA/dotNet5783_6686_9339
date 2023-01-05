@@ -13,3 +13,10 @@ public class DalDataCorruption : Exception
 {
     public DalDataCorruption(string? message) : base(message) { }
 }
+
+[Serializable]
+public class DalConfigException : Exception
+{
+    public DalConfigException(string msg) : base(msg) { }
+    public DalConfigException(string msg, Exception ex) : base(msg, ex) { }
+}

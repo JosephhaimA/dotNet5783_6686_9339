@@ -1,5 +1,4 @@
-﻿using BlApi;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BlImplementation;
 
 namespace PL.Prudoct
 {
@@ -24,7 +22,8 @@ namespace PL.Prudoct
         public ProductListWindow()
         {
             InitializeComponent();
-            IBl bl = new BlImplementation.Bl();
+            //IBl bl = new BlImplementation.Bl();
+            BlApi.IBl? bl = BlApi.Factory.Get();
             ProductListView.ItemsSource = bl?.Product.ListProduct();
             //CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enum.ProductCategory));
             for (int i = 0; i < 5; i++)
@@ -36,7 +35,8 @@ namespace PL.Prudoct
 
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            IBl bl = new BlImplementation.Bl();
+            //IBl bl = new BlImplementation.Bl();
+            BlApi.IBl? bl = BlApi.Factory.Get();
             if (CategorySelector.SelectedItem.ToString() != "Show all the categorys")
                 ProductListView.ItemsSource = bl.Product.ListProduct(a => a?.Category.ToString() == CategorySelector.SelectedItem.ToString());
             else

@@ -1,4 +1,4 @@
-﻿using BlImplementation;
+﻿//using BlImplementation;
 using Dal;
 using DalApi;
 using System.Runtime.CompilerServices;
@@ -14,7 +14,8 @@ namespace BlTest;
 internal class Program
 {
     static BO.Cart cart = new BO.Cart() { orderItemsList = new List<BO.OrderItem>(), };
-    static IBl bl = Bl.Instance;
+    static IBl? bl = BlApi.Factory.Get();
+   // static IBl bl = Bl.Instance;
 
 
     //When the user select CART
@@ -225,7 +226,7 @@ internal class Program
         EnterEmail();
         Console.WriteLine();
 
-        IDal access = new DalList(); // Access to the data layer
+        //IDal access = new DalList(); // Access to the data layer
 
 
 

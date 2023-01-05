@@ -12,8 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-using BlApi;
-using BlImplementation;
+
 using BO;
 
 namespace PL.Prudoct
@@ -34,7 +33,8 @@ namespace PL.Prudoct
                 InsertName.Text = product.ProductName;
                 InsertPrice.Text = product.ProductPrice.ToString();
                 CategorySelct.Text = product.Category.ToString();
-                IBl? bl = new BlImplementation.Bl();
+                //IBl? bl = new BlImplementation.Bl();
+                BlApi.IBl? bl = BlApi.Factory.Get();
                 BO.Product? pro = new BO.Product();
                 pro = bl.Product.GetProductAdmin(product.ProductId);
                 InsertInStock.Text = pro.InStock.ToString();
@@ -50,7 +50,8 @@ namespace PL.Prudoct
        
         private void ConfirmAdd_Click(object sender, RoutedEventArgs e)
         {
-            IBl bl = new BlImplementation.Bl();
+            //IBl bl = new BlImplementation.Bl();
+            BlApi.IBl? bl = BlApi.Factory.Get();
             BO.Product product = new BO.Product();
             bool check = true;
             try
@@ -92,7 +93,8 @@ namespace PL.Prudoct
 
         private void ConfirmUpdate_Click(object sender, RoutedEventArgs e)
         {
-            IBl bl = new BlImplementation.Bl();
+            //IBl bl = new BlImplementation.Bl();
+            BlApi.IBl? bl = BlApi.Factory.Get();
             DO.Product product = new DO.Product();
             try
             {

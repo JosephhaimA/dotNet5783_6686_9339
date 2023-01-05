@@ -13,7 +13,8 @@ using static System.Net.Mime.MediaTypeNames;
 namespace BlImplementation;
 internal class Cart : ICart
 {
-    private DalApi.IDal dal = new Dal.DalList(); 
+    //private DalApi.IDal dal = new Dal.DalList(); 
+    DalApi.IDal? dal = DalApi.Factory.Get();
 
     public BO.Cart AddItemToCART(BO.Cart item, int id)
     {

@@ -11,7 +11,9 @@ namespace BlImplementation;
 
 internal class Order : IOrder
 {
-    private DalApi.IDal dal = new Dal.DalList();
+    //private DalApi.IDal dal = new Dal.DalList();
+    DalApi.IDal? dal = DalApi.Factory.Get();
+
 
     // The function returns a list of all orders
     public IEnumerable<BO.OrderForList?> OrderList()

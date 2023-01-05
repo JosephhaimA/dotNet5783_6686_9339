@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using BlApi;
 
 namespace BlImplementation;
-sealed public class Bl : IBl
+sealed internal class Bl : IBl
 {
-    private static IBl instance;
-    public static IBl Instance { get => instance; }
+   // private static IBl instance;
+    //public static IBl Instance { get => instance; }
     //static Bl() { instance = new Bl(); }
     //private Bl() { }
 

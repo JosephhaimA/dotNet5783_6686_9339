@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using BlApi;
 using BO;
 using DO;
+//using Dal;
 using static BO.Enum;
 using static DO.Enums;
 // we implement the functions thay we've created
@@ -17,7 +18,9 @@ using static DO.Enums;
 namespace BlImplementation;
 sealed public class Product : IProduct
 {
-    private DalApi.IDal dal = new Dal.DalList();
+    // private DalApi.IDal dal = new Dal.DalList();
+    DalApi.IDal? dal = DalApi.Factory.Get();
+
 
     public IEnumerable<BO.ProductForList?> ListProduct(Func<DO.Product?, bool>? func)
     {

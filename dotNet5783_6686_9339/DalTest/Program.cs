@@ -20,11 +20,12 @@ class Program
     //static DalOrder  dalOrder = new DalOrder();
     //static DalOrderItem   dalOrderItem = new DalOrderItem();
 
-    private static IDal TestM= DalList.Instance;
+    private static IDal TestM = DalApi.Factory.Get();
+    // private static IDal TestM = DalList.Instance;
 
 
     //public static object Config { get; private set; }
-   
+
 
     public static void Main(string[] args)
     {
