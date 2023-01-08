@@ -3,6 +3,8 @@ using System.Reflection;
 using DO;
 using static DalApi.DalConfig;
 
+// to allow ot use the methods as globalic
+
 public static class Factory
 {
     public static IDal? Get()

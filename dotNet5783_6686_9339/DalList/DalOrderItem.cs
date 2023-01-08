@@ -107,13 +107,9 @@ public class DalOrderItem : IOrderItem
     public OrderItem GetSingle(Func<OrderItem?, bool>? func)
     {
         OrderItem ordOrderItemer = new OrderItem();
-        foreach (OrderItem element in ds.OrderIteamList)
+        if(func != null)
         {
-            if (func(element))
-            {
-                ordOrderItemer = element;
-                break;
-            }
+            ordOrderItemer = (OrderItem)ds.OrderIteamList?.FirstOrDefault(element => func(element))!;
         }
         return ordOrderItemer;
     }

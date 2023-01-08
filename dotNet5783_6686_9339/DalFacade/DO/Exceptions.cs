@@ -15,7 +15,7 @@ public class DalDataCorruption : Exception
 }
 
 [Serializable]
-public class DalConfigException : Exception
+public class DalConfigException : Exception // exception for level 4 to suitable with the new class we created
 {
     public DalConfigException(string msg) : base(msg) { }
     public DalConfigException(string msg, Exception ex) : base(msg, ex) { }

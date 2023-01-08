@@ -111,13 +111,9 @@ public class DalOrder : IOrder
     public Order GetSingle(Func<Order?, bool>? func)
     {
         Order order = new Order();
-        foreach (Order element in ds.OrderList)
+        if (func != null)
         {
-            if (func(element))
-            {
-                order = element;
-                break;
-            }
+            order = (Order)ds.OrderList?.FirstOrDefault(element => func(element))!;
         }
         return order;
     }

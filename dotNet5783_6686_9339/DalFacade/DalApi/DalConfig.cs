@@ -3,6 +3,8 @@
 namespace DalApi;
 using System.Xml.Linq;
 using DO;
+ 
+// to deal with xml files and all of this 
 
 static class DalConfig
 {
