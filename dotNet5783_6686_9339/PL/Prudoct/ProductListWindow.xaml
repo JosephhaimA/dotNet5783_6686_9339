@@ -9,6 +9,12 @@
         Title="ProductListWindow" Height="640" Width="800">
     <Grid>
         <Grid Name="MainGrid">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FFCCC2C2" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="771*"/>
                 <ColumnDefinition Width="19*"/>
@@ -28,7 +34,13 @@
             </Grid>
             <ComboBox x:Name="CategorySelector" Grid.ColumnSpan="4" Margin="0,-2,0,2" SelectionChanged="CategorySelector_SelectionChanged"/>
             <Label Content="Category:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
-            <ListView x:Name="ProductListView" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="4" Margin="0,46,0,181" Grid.RowSpan="2" MouseDoubleClick="doubleClick" >
+            <ListView x:Name="ProductListView" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="4" Margin="0,46,0,181" Grid.RowSpan="2" MouseDoubleClick="doubleClick" Foreground="White" >
+                <ListView.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FFCAC1C1" Offset="1"/>
+                    </LinearGradientBrush>
+                </ListView.Background>
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>
@@ -38,6 +50,9 @@
             <Button Content="Add new Product" HorizontalAlignment="Left" Margin="40,427,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="120" Click="Button_Click_1"/>
 
         </Grid>
+        <Expander HorizontalAlignment="Left" Height="100" Header="Expander" Margin="831,243,0,0" VerticalAlignment="Top" Width="100">
+            <Grid Background="#FFE5E5E5"/>
+        </Expander>
 
 
     </Grid>
