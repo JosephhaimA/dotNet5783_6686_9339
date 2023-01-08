@@ -24,40 +24,34 @@ sealed public class Product : IProduct
 
     public IEnumerable<BO.ProductForList?> ListProduct(Func<DO.Product?, bool>? func)
     {
-        List<DO.Product?> L_P = dal.Product.GetAll().ToList();
+        List<DO.Product?> L_P = dal!.Product.GetAll()!.ToList();
         List<BO.ProductForList> productForLists = new List<BO.ProductForList>();
         if (func == null)
         {
-            for (int i = 0; i < L_P.Count; i++)
+            foreach (DO.Product? product in L_P)//עושה על הכל אז אין טעם ב לינק
             {
                 BO.ProductForList PFR = new BO.ProductForList()
                 {
-                    ProductId = (int)L_P[i]?.ID!,
-                    ProductName = (string)L_P[i]?.Name!,
-                    ProductPrice = (double)L_P[i]?.Price!,
-                    Category = (BO.Enum.ProductCategory?)L_P[i]?.Category!,
+                    ProductId = (int)product?.ID!,
+                    ProductName = (string)product?.Name!,
+                    ProductPrice = (double)product?.Price!,
+                    Category = (BO.Enum.ProductCategory?)product?.Category!,
                 };
                 productForLists.Add(PFR);
             }
-      
         }
         else
         {
-            for (int i = 0; i < L_P.Count; i++)
-            {
-                if (func(L_P[i]))
-                {
-                    BO.ProductForList PFR = new BO.ProductForList()
-                    {
-                        ProductId = (int)L_P[i]?.ID!,
-                        ProductName = (string)L_P[i]?.Name!,
-                        ProductPrice = (double)L_P[i]?.Price!,
-                        Category = (BO.Enum.ProductCategory?)L_P[i]?.Category!,
-                    };
-                    productForLists.Add(PFR);
-                }
-            }
-
+            productForLists.AddRange(from DO.Product? product in L_P where func(product)
+                                    
+                                     let PFR = new BO.ProductForList()
+                                     {
+                                         ProductId = (int)product?.ID!,
+                                         ProductName = (string)product?.Name!,
+                                         ProductPrice = (double)product?.Price!,
+                                         Category = (BO.Enum.ProductCategory?)product?.Category!,
+                                     }
+                                     select PFR);
         }
         return productForLists;
     }
@@ -68,7 +62,7 @@ sealed public class Product : IProduct
         if (id > 0)
         {
             DO.Product product = new DO.Product();
-            product = dal.Product.GetObj(id);
+            product = dal!.Product.GetObj(id);
             int cat = (int)product.Category!;
             BO.Product NewProduct = new BO.Product()
             {
@@ -92,7 +86,7 @@ sealed public class Product : IProduct
         {
             DO.Product product = new DO.Product();
             int cat = (int)product.Category!;
-            product = dal.Product.GetObj(id);
+            product = dal!.Product.GetObj(id);
             bool exsixs;
             if (product.InStock != 0)
                 exsixs = true;
@@ -147,7 +141,7 @@ sealed public class Product : IProduct
         };
         try
         {
-            dal.Product.Add(product1);
+            dal!.Product.Add(product1);
 
         }
         catch (Exception mas)
@@ -159,10 +153,10 @@ sealed public class Product : IProduct
     public void ProductDelete(int id)
     {
         List<DO.OrderItem?> ListItem = new List<DO.OrderItem?>();
-        ListItem = dal.OrderItem.GetAll().ToList();
-        for (int i = 0; i < ListItem.Count; i++)
+        ListItem = dal!.OrderItem.GetAll()!.ToList();
+        foreach (DO.OrderItem? product in ListItem)//אין צורך לעבור ללינק כי זה עובר על הכל כדאי לבןד אם קיים כזה איי דיי
         {
-            if ((int)ListItem[i]?.ProductID==id)
+            if ((int?)product?.ProductID==id)
             {
                 throw new BO.BlCantDeleteB_Used("error cant delete because the product is usd ");
             }
@@ -202,7 +196,7 @@ sealed public class Product : IProduct
 
         try
         {
-            dal.Product.Update(product);
+            dal?.Product.Update(product);
 
         }
         catch (Exception mas)
