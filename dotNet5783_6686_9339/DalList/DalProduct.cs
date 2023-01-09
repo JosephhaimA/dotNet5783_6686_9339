@@ -25,19 +25,14 @@ public class DalProduct : IProduct
 
     public Product GetObj(int id) // function to return one Product
     {
-        //Console.WriteLine(DataSource.ProductList[id].ID);
-        //Console.WriteLine("aaaaaaaaaaaaaaaaa");
-
-        int index = ProductFind(id);
-        //Console.WriteLine(index);
-        //Console.WriteLine(DataSource.ProductList[index].ID);
-        //Console.WriteLine(DataSource.Config.IndexProduct);
-
-        if (index != -999)
-            return (Product)ds.ProductList[index]!; // return the Product 
+        if (exist(id))
+        {
+            Product orderReturn = (Product)ds.ProductList.FirstOrDefault(order => order?.ID == id)!;
+            return orderReturn;
+        }
         else
-            throw new Exception("Product doesn't exist");
-        
+            throw new DO.DalDoesNotExistException("product doesn't exist");
+
     }
     public IEnumerable<Product?> GetAll(Func<Product?, bool>? func) // print all the products
     {
@@ -112,14 +107,14 @@ public class DalProduct : IProduct
     }
 
     // find function that help us with the main function like add, delete..... to check the exist
-    public int ProductFind(int id)
+    public bool exist(int id)
     {
-        for (int i = 0; i < ds.ProductList.Count; i++)
+        for (int i = 0; i < ds.OrderList.Count; i++)
         {
-            if (id == (int)ds.ProductList[i]?.ID!)
-                return i;
+            if (id == (int)ds.OrderList[i]?.ID!)
+                return true;
         }
-        return -999;
+        return false;
     }
 
     public Product GetSingle(Func<Product?, bool>? func)
