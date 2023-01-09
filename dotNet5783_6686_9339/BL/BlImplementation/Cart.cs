@@ -106,9 +106,9 @@ internal class Cart : ICart
         foreach (OrderItem? orderItemList in CostumerInfo.orderItemsList!)
         {
             int idProduct = orderItemList!.ProductId;
-            DO.Product? product = dal!.Product.GetAll()!.ToList().Find(itemm => (int)itemm?.ID! == idProduct);//מחזיר לי את המוצר אם אותו איי די
+            DO.Product? product = dal!.Product.GetAll()!.ToList().Find(itemm => (int)itemm?.ID! == idProduct);
             int InOrder = orderItemList!.InOrder;
-            if (InOrder >= (int)product?.InStock! || InOrder <= 0)//בדיקה שאם רוצה להזמין כמות שיותר ממה שנצא במלאי אז יזרוק שגיאה
+            if (InOrder >= (int)product?.InStock! || InOrder <= 0)
             {
                 throw new BO.BlNotEnoughInStock("error");
             }
@@ -140,29 +140,41 @@ internal class Cart : ICart
 
         int NumOreder = dal!.Order.Add(NewOrder);
 
-        foreach (OrderItem? orderItemList in CostumerInfo.orderItemsList)
-        {
-            int intProduct = orderItemList!.ProductId;
-            DO.Product? product = dal.Product.GetAll()!.ToList().Find(itemm => (int)itemm?.ID! == intProduct);//מחזיר לי את המוצר אם אותו איי די
-            DO.OrderItem NewOrderItem = new DO.OrderItem()
-            {
-                ProductID = (int)product?.ID!,
-                OrderID = NumOreder,
-                Price = (double)product?.Price!,
-                Amount = orderItemList!.InOrder,
-            };
+        CostumerInfo.orderItemsList
+          .Where(orderItemList => orderItemList != null)
+          .ToList()
+          .ForEach(orderItemList =>
+          {
+              int intProduct = orderItemList.ProductId;
+              DO.Product product = (DO.Product)dal.Product.GetAll().FirstOrDefault(itemm => itemm?.ID == intProduct);
 
-            dal.OrderItem.Add(NewOrderItem);
-        }
+              DO.OrderItem NewOrderItem = new DO.OrderItem()
+              {
+                  ProductID = product.ID,
+                  OrderID = NumOreder,
+                  Price = product.Price,
+                  Amount = orderItemList.InOrder,
+              };
 
-        foreach (OrderItem? orderItemList in CostumerInfo.orderItemsList)
-        {
-            int intProduct = orderItemList!.ProductId;
-            DO.Product product = (DO.Product)dal.Product.GetAll()!.ToList().Find(itemm => (int)itemm?.ID! == intProduct)!;//מחזיר לי את המוצר אם אותו איי די
-            product.InStock -= (int)orderItemList!.InOrder!;
-            dal.Product.Update((DO.Product)product!);
-        }
-            return; 
+              dal.OrderItem.Add(NewOrderItem);
+          });
+
+
+        var products = dal.Product.GetAll()!.ToList();
+
+        CostumerInfo.orderItemsList
+      .Where(orderItemList => orderItemList != null)
+      .ToList()
+      .ForEach(orderItemList =>
+      {
+          int intProduct = orderItemList.ProductId;
+          DO.Product product = (DO.Product)products.FirstOrDefault(itemm => itemm?.ID! == intProduct);
+          product.InStock -= orderItemList.InOrder;
+          dal.Product.Update(product);
+      });
+
+
+        return; 
     }
 
 }
