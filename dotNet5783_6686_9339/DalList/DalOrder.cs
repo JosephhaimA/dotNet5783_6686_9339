@@ -2,6 +2,7 @@
 using DalApi;
 using DO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Xml.Linq;
@@ -29,11 +30,20 @@ public class DalOrder : IOrder
 
     public Order GetObj(int id) // function to return one Product
     {
-        int index = OrderFind(id);
-        if (index != -999)
-            return (Order)ds.OrderList[index]!; // return the Product 
+        if (exist(id))
+        {
+            Order orderReturn = (Order)ds.OrderList.FirstOrDefault(order => order?.ID == id)!;
+            return orderReturn;
+        }
         else
-            throw new Exception("Order doesn't exist");
+            throw new DO.DalDoesNotExistException("Order doesn't exist");
+
+
+        //int index = OrderFind(id);
+        //if (index != -999)
+        //    return (Order)ds.OrderList[index]!; // return the Product 
+        //else
+        //    throw new Exception("Order doesn't exist");
     }
     public IEnumerable<Order?> GetAll(Func<Order?, bool>? func) // print all the products
     {
@@ -101,14 +111,15 @@ public class DalOrder : IOrder
             throw new DO.DalDoesNotExistException("Student");
     }
     // find function that help us with the main function like add, delete..... to check the exist
-    public int OrderFind(int id)
+    public bool exist(int id)
     {
+        Console.WriteLine(ds.OrderList.Count);
         for (int i = 0; i < ds.OrderList.Count ; i++)
         {
             if (id == (int)ds.OrderList[i]?.ID!)
-                return i;
+                return true;
         }
-        return -999;
+        return false;
     }
 
     public Order GetSingle(Func<Order?, bool>? func)

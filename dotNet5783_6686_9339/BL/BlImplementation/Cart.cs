@@ -103,15 +103,25 @@ internal class Cart : ICart
     }
     public void ConfirmationOfOrder(BO.Cart CostumerInfo)
     {
-        foreach (OrderItem? orderItemList in CostumerInfo.orderItemsList!)
+        //foreach (OrderItem? orderItemList in CostumerInfo.orderItemsList!)
+        //{
+        //    int idProduct = orderItemList!.ProductId;
+        //    DO.Product? product = dal!.Product.GetAll()!.ToList().Find(itemm => (int)itemm?.ID! == idProduct);
+        //    int InOrder = orderItemList!.InOrder;
+        //    if (InOrder >= (int)product?.InStock! || InOrder <= 0)
+        //    {
+        //        throw new BO.BlNotEnoughInStock("error");
+        //    }
+        //}
+
+        foreach (var _ in from OrderItem? orderItemList in CostumerInfo.orderItemsList!
+                let idProduct = orderItemList!.ProductId
+                let product = dal!.Product.GetAll()!.ToList().Find(itemm => (int)itemm?.ID! == idProduct)
+                let InOrder = orderItemList!.InOrder
+                where InOrder >= (int)product?.InStock! || InOrder <= 0
+                select new { })
         {
-            int idProduct = orderItemList!.ProductId;
-            DO.Product? product = dal!.Product.GetAll()!.ToList().Find(itemm => (int)itemm?.ID! == idProduct);
-            int InOrder = orderItemList!.InOrder;
-            if (InOrder >= (int)product?.InStock! || InOrder <= 0)
-            {
-                throw new BO.BlNotEnoughInStock("error");
-            }
+            throw new BO.BlNotEnoughInStock("error");
         }
 
         if (CostumerInfo.CostumerName == null)  
@@ -140,13 +150,13 @@ internal class Cart : ICart
 
         int NumOreder = dal!.Order.Add(NewOrder);
 
-        CostumerInfo.orderItemsList
+        CostumerInfo.orderItemsList!
           .Where(orderItemList => orderItemList != null)
           .ToList()
           .ForEach(orderItemList =>
           {
-              int intProduct = orderItemList.ProductId;
-              DO.Product product = (DO.Product)dal.Product.GetAll().FirstOrDefault(itemm => itemm?.ID == intProduct);
+              int intProduct = orderItemList!.ProductId;
+              DO.Product product = (DO.Product)dal.Product.GetAll()!.FirstOrDefault(itemm => itemm?.ID == intProduct)!;
 
               DO.OrderItem NewOrderItem = new DO.OrderItem()
               {
@@ -162,13 +172,10 @@ internal class Cart : ICart
 
         var products = dal.Product.GetAll()!.ToList();
 
-        CostumerInfo.orderItemsList
-      .Where(orderItemList => orderItemList != null)
-      .ToList()
-      .ForEach(orderItemList =>
+        CostumerInfo.orderItemsList!.Where(orderItemList => orderItemList != null).ToList().ForEach(orderItemList =>
       {
-          int intProduct = orderItemList.ProductId;
-          DO.Product product = (DO.Product)products.FirstOrDefault(itemm => itemm?.ID! == intProduct);
+          int intProduct = orderItemList!.ProductId;
+          DO.Product product = (DO.Product)products.FirstOrDefault(itemm => itemm?.ID! == intProduct)!;
           product.InStock -= orderItemList.InOrder;
           dal.Product.Update(product);
       });

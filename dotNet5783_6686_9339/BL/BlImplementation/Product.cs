@@ -28,17 +28,15 @@ sealed public class Product : IProduct
         List<BO.ProductForList> productForLists = new List<BO.ProductForList>();
         if (func == null)
         {
-            foreach (DO.Product? product in L_P)//עושה על הכל אז אין טעם ב לינק
-            {
-                BO.ProductForList PFR = new BO.ProductForList()
-                {
-                    ProductId = (int)product?.ID!,
-                    ProductName = (string)product?.Name!,
-                    ProductPrice = (double)product?.Price!,
-                    Category = (BO.Enum.ProductCategory?)product?.Category!,
-                };
-                productForLists.Add(PFR);
-            }
+            productForLists.AddRange(from DO.Product? product in L_P
+                                     let PFR = new BO.ProductForList()
+                                     {
+                                         ProductId = (int)product?.ID!,
+                                         ProductName = (string)product?.Name!,
+                                         ProductPrice = (double)product?.Price!,
+                                         Category = (BO.Enum.ProductCategory?)product?.Category!,
+                                     }
+                                     select PFR);
         }
         else
         {
@@ -154,13 +152,21 @@ sealed public class Product : IProduct
     {
         List<DO.OrderItem?> ListItem = new List<DO.OrderItem?>();
         ListItem = dal!.OrderItem.GetAll()!.ToList();
-        foreach (DO.OrderItem? product in ListItem)//אין צורך לעבור ללינק כי זה עובר על הכל כדאי לבןד אם קיים כזה איי דיי
+        //foreach (DO.OrderItem? product in ListItem)//אין צורך לעבור ללינק כי זה עובר על הכל כדאי לבןד אם קיים כזה איי דיי
+        //{
+        //    if ((int?)product?.ProductID==id)
+        //    {
+        //        throw new BO.BlCantDeleteB_Used("error cant delete because the product is usd ");
+        //    }
+        //}
+
+        foreach (var a in from DO.OrderItem? product in ListItem//אין צורך לעבור ללינק כי זה עובר על הכל כדאי לבןד אם קיים כזה איי דיי
+                where (int?)product?.ProductID == id
+                select new { })
         {
-            if ((int?)product?.ProductID==id)
-            {
-                throw new BO.BlCantDeleteB_Used("error cant delete because the product is usd ");
-            }
+            throw new BO.BlCantDeleteB_Used("error cant delete because the product is usd ");
         }
+
         try
         {
             dal.Product.Delete(id);

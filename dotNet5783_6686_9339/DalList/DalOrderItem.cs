@@ -32,11 +32,13 @@ public class DalOrderItem : IOrderItem
 
     public OrderItem GetObj(int id) // function to return one Product
     {
-        int index = OrderItemFind(id);
-        if (index != -999)
-            return (OrderItem)ds.OrderIteamList[index]!; // return the Product 
+        if (exist(id))
+        {
+            OrderItem orderReturn = (OrderItem)ds.OrderIteamList.FirstOrDefault(order => order?.ID == id)!;
+            return orderReturn;
+        }
         else
-            throw new Exception("OrderItem doesn't exist");
+            throw new DO.DalDoesNotExistException("Order Item doesn't exist");
     }
     public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? func) // print all the products
     {
@@ -103,16 +105,14 @@ public class DalOrderItem : IOrderItem
     }
 
     // find function that help us with the main function like add, delete..... to check the exist
-    public int OrderItemFind(int id)
+    public bool exist(int id)
     {
-        //Console.WriteLine(DataSource.OrderIteamList.Count);
-
-        for (int i = 0; i < ds.OrderIteamList.Count; i++)
+        for (int i = 0; i < ds.OrderList.Count; i++)
         {
-            if (id == (int)ds.OrderIteamList[i]?.ID!)
-                return i;
+            if (id == (int)ds.OrderList[i]?.ID!)
+                return true;
         }
-        return -999;
+        return false;
     }
 
     public OrderItem GetSingle(Func<OrderItem?, bool>? func)
