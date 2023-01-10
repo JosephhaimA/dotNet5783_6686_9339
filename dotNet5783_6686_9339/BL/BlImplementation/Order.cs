@@ -26,41 +26,42 @@ internal class Order : IOrder
         DoOrders = (List<DO.Order>)dal!.Order.GetAll()!;
         DoOrderItems = (List<DO.OrderItem>)dal.OrderItem.GetAll()!;
 
+        //foreach (DO.Order DoOrder in DoOrders!) //We will go through all the products from the data layer
+        //{
+        //    BO.OrderForList orderForList1 = new BO.OrderForList();
+        foreach (var (DoOrder, orderForList1) in from DO.Order DoOrder in DoOrders!//We will go through all the products from the data layer
+                let orderForList1 = new BO.OrderForList()
+                select (DoOrder, orderForList1))
+                {
+                    orderForList1.OrderId = DoOrder.ID;
+                    orderForList1.BuyerName = DoOrder.CostumerName;
+                    if (DoOrder.DeliveryrDate != null) //check if the data is exist
+                    {
+                        orderForList1.Status = OrderStatus.Delivered;
+                    }
+                    else if (DoOrder.ShipDate != null)// -||-
+                    {
+                        orderForList1.Status = OrderStatus.Sent;
+                    }
+                    else
+                    {
+                        orderForList1.Status = OrderStatus.Confirmed;
+                    }
+                    //foreach (var item in DoOrderItems) //We will go over all order items from the data layer
+                    //{
+                    //    if (item.OrderID == orderForList1.OrderId)
+                    //    {
+                    foreach (var item in from item in DoOrderItems//We will go over all order items from the data layer
+                                         where item.OrderID == orderForList1.OrderId
+                                         select item)
+                    {
+                        orderForList1.TotalPrice += item.Price * item.Amount;
+                        orderForList1.AmountOfItems = item.Amount;
+                    }
 
+                    orderForList.Add(orderForList1);//We will add to the order list
+                }
 
-        foreach (DO.Order DoOrder in DoOrders!) //We will go through all the products from the data layer
-        {
-            BO.OrderForList orderForList1 = new BO.OrderForList();
-            orderForList1.OrderId = DoOrder.ID;
-            orderForList1.BuyerName = DoOrder.CostumerName;
-            if (DoOrder.DeliveryrDate != null) //check if the data is exist
-            {
-                orderForList1.Status = OrderStatus.Delivered;
-            }
-            else if (DoOrder.ShipDate != null)// -||-
-            {
-                orderForList1.Status = OrderStatus.Sent;
-            }
-            else
-            {
-                orderForList1.Status = OrderStatus.Confirmed;
-            }
-
-
-            //foreach (var item in DoOrderItems) //We will go over all order items from the data layer
-            //{
-            //    if (item.OrderID == orderForList1.OrderId)
-            //    {
-            foreach (var item in from item in DoOrderItems//We will go over all order items from the data layer
-                    where item.OrderID == orderForList1.OrderId
-                    select item)
-            {
-                orderForList1.TotalPrice += item.Price * item.Amount;
-                orderForList1.AmountOfItems = item.Amount;
-            }
-
-            orderForList.Add(orderForList1); //We will add to the order list
-        }
         return orderForList;
     }
     public BO.Order GetOrder(int id)
