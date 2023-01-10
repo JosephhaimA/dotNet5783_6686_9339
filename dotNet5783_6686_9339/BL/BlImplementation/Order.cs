@@ -22,8 +22,8 @@ internal class Order : IOrder
         List<DO.Order> DoOrders = new List<DO.Order>();
         List<DO.OrderItem> DoOrderItems = new List<DO.OrderItem>();
 
-        DoOrders = (List<DO.Order>)dal.Order.GetAll();
-        DoOrderItems = (List<DO.OrderItem>)dal.OrderItem.GetAll();
+        DoOrders = (List<DO.Order>)dal!.Order.GetAll()!;
+        DoOrderItems = (List<DO.OrderItem>)dal.OrderItem.GetAll()!;
 
         return DoOrders.Select(doOrder =>
         {
@@ -77,17 +77,16 @@ internal class Order : IOrder
         BO.Order? BoOrder = new BO.Order();
         if (id > 0) //Check if the ID is valid
         {
-            int i = 0;
             double finalTotalPrice = 0;
-            DoOrder = dal.Order.GetObj(id);
-            DoOrderItem = (List<DO.OrderItem>)dal.OrderItem.GetAll();
-            DoProducts = (List<DO.Product>)dal.Product.GetAll();
+            DoOrder = dal!.Order.GetObj(id);
+            DoOrderItem = (List<DO.OrderItem>)dal.OrderItem.GetAll()!;
+            DoProducts = (List<DO.Product>)dal.Product.GetAll()!;
 
             BoOrder.Id = DoOrder.ID;
             BoOrder.CostumerName = DoOrder.CostumerName;
             BoOrder.CostumerEmail = DoOrder.CostumerEmail;
             BoOrder.CostumerAdress = DoOrder.CostumerAdress;
-            BoOrder.OrderDate = (DateTime)DoOrder.OrderDate;
+            BoOrder.OrderDate = (DateTime)DoOrder.OrderDate!;
             if (DoOrder.ShipDate != null) //Check if the date exists
                 BoOrder.ShipDate = (DateTime)DoOrder.ShipDate;
             if (DoOrder.DeliveryrDate != null) //Check if the date exists
@@ -117,7 +116,7 @@ internal class Order : IOrder
                 }
 
             }
-            BoOrder.Details = boOrderItems;
+            BoOrder.Details = boOrderItems!;
             BoOrder.TotalPrice = finalTotalPrice;
             if (DoOrder.DeliveryrDate <= DateTime.Now)
             {
@@ -143,7 +142,7 @@ internal class Order : IOrder
     {
         string Item;
         List<DO.Order> DoOrders = new List<DO.Order>();
-        DoOrders = (List<DO.Order>)dal.Order.GetAll();
+        DoOrders = (List<DO.Order>)dal!.Order.GetAll()!;
         BO.OrderTracking BoOrderTracking = new BO.OrderTracking();
         bool check = false; //Does such an ID exist?
         foreach (DO.Order doOrder in DoOrders) // We will go through each order from the data layer
@@ -171,7 +170,7 @@ internal class Order : IOrder
                 {
                      (DateTime.Now, Item)
                 };
-                BoOrderTracking.Tracking = tupleList;
+                BoOrderTracking.Tracking = tupleList!;
                 break;
             }
         }
@@ -188,12 +187,12 @@ internal class Order : IOrder
     {
         List<BO.OrderItem> boOrderItems = new List<BO.OrderItem>();
         List<DO.Product> DoProducts = new List<DO.Product>();
-        DoProducts = (List<DO.Product>)dal.Product.GetAll();
+        DoProducts = (List<DO.Product>)dal!.Product.GetAll()!;
         double finalTotalPrice = 0;
         List<DO.OrderItem> orderItems = new List<DO.OrderItem>();
-        orderItems = (List<DO.OrderItem>)dal.OrderItem.GetAll();
+        orderItems = (List<DO.OrderItem>)dal.OrderItem.GetAll()!;
         List<DO.Order>? DoOrders = new List<DO.Order>();
-        DoOrders = (List<DO.Order>)dal.Order.GetAll();
+        DoOrders = (List<DO.Order>)dal.Order.GetAll()!;
         BO.Order BoOrder = new BO.Order();
         DO.Order temp = new DO.Order();
         bool check = false;
@@ -253,7 +252,7 @@ internal class Order : IOrder
         if (check)
         {
             BoOrder.TotalPrice = finalTotalPrice;
-            BoOrder.Details = boOrderItems;
+            BoOrder.Details = boOrderItems!;
             dal.Order.Update(temp); 
             BoOrder.TotalPrice = finalTotalPrice;
             return BoOrder;
@@ -268,12 +267,12 @@ internal class Order : IOrder
 
         List<BO.OrderItem> boOrderItems = new List<BO.OrderItem>();
         List<DO.Product> DoProducts = new List<DO.Product>();
-        DoProducts = (List<DO.Product>)dal.Product.GetAll();
+        DoProducts = (List<DO.Product>)dal!.Product.GetAll()!;
         double finalTotalPrice = 0;
         List<DO.OrderItem> orderItems = new List<DO.OrderItem>();
-        orderItems = (List<DO.OrderItem>)dal.OrderItem.GetAll();
+        orderItems = (List<DO.OrderItem>)dal.OrderItem.GetAll()!;
         List<DO.Order>? DoOrders = new List<DO.Order>();
-        DoOrders = (List<DO.Order>)dal.Order.GetAll();
+        DoOrders = (List<DO.Order>)dal.Order.GetAll()!;
         BO.Order BoOrder = new BO.Order();
         DO.Order temp = new DO.Order();
         bool check = false;
@@ -333,7 +332,7 @@ internal class Order : IOrder
         if (check)
         {
             BoOrder.TotalPrice = finalTotalPrice;
-            BoOrder.Details = boOrderItems;
+            BoOrder.Details = boOrderItems!;
             dal.Order.Update(temp); //We will update the Order object in the data layer
             BoOrder.TotalPrice = finalTotalPrice;
             return BoOrder;

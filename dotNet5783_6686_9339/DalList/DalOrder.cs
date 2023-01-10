@@ -113,6 +113,7 @@ public class DalOrder : IOrder
     // find function that help us with the main function like add, delete..... to check the exist
     public bool exist(int id)
     {
+        Console.WriteLine(ds.OrderList.Count);
         for (int i = 0; i < ds.OrderList.Count ; i++)
         {
             if (id == (int)ds.OrderList[i]?.ID!)
