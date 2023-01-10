@@ -20,7 +20,7 @@ class Program
     //static DalOrder  dalOrder = new DalOrder();
     //static DalOrderItem   dalOrderItem = new DalOrderItem();
 
-    private static IDal TestM = DalApi.Factory.Get();
+    private static IDal TestM = DalApi.Factory.Get()!;
     // private static IDal TestM = DalList.Instance;
 
 
@@ -66,7 +66,7 @@ class Program
     {
         int op;
         System.Console.WriteLine("*Product* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delet");
-        op = int.Parse(System.Console.ReadLine());
+        op = int.Parse(System.Console.ReadLine()!);
         switch (op)
         {
             case 1: // add Product
@@ -97,11 +97,11 @@ class Program
         string name;
         Enums.ProductCategory category;
         System.Console.WriteLine("write: ID, Category, Price, Instock, name");
-        id = int.Parse(System.Console.ReadLine());
-        cate = int.Parse(System.Console.ReadLine());
-        price = int.Parse(System.Console.ReadLine());
-        inSt = int.Parse(System.Console.ReadLine());
-        name = Console.ReadLine();
+        id = int.Parse(System.Console.ReadLine()!);
+        cate = int.Parse(System.Console.ReadLine()!);
+        price = int.Parse(System.Console.ReadLine()!);
+        inSt = int.Parse(System.Console.ReadLine()!);
+        name = Console.ReadLine()!;
         category = (Enums.ProductCategory)cate;
 
         Product p = new Product
@@ -126,7 +126,7 @@ class Program
     {
         System.Console.WriteLine("Enter the Product ID you intersting to delete");
         int id;
-        id = int.Parse(System.Console.ReadLine());
+        id = int.Parse(System.Console.ReadLine()!);
         try
         {
             TestM.Product.Delete(id);
@@ -144,12 +144,12 @@ class Program
         int id, price, inSt, cate;
         string name;
         Enums.ProductCategory category;
-        id = int.Parse(System.Console.ReadLine());
-        cate = int.Parse(System.Console.ReadLine());
+        id = int.Parse(System.Console.ReadLine()!);
+        cate = int.Parse(System.Console.ReadLine()!);
         //cate = Console.ReadLine();
-        price = int.Parse(System.Console.ReadLine());
-        inSt = int.Parse(System.Console.ReadLine());
-        name = Console.ReadLine();
+        price = int.Parse(System.Console.ReadLine()!);
+        inSt = int.Parse(System.Console.ReadLine()!);
+        name = Console.ReadLine()!;
         category = (Enums.ProductCategory)cate;
         Product p = new Product
         {
@@ -175,9 +175,9 @@ class Program
     {
         try
         {
-            foreach (Product element in TestM.Product.GetAll())
+            foreach (var element in TestM.Product.GetAll()!)
             {
-                if (element.ID != 0)
+                if (element?.ID != 0)
                     Console.WriteLine(element);
             }
         }
@@ -192,7 +192,7 @@ class Program
     {
         System.Console.WriteLine("Enter Product id you want to introduce");
         int id;
-        id = int.Parse(System.Console.ReadLine());
+        id = int.Parse(System.Console.ReadLine()!);
         Product p;
         try
         {
@@ -211,7 +211,7 @@ class Program
     {
         int op;
         System.Console.WriteLine("*Order* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete ");
-        op = int.Parse(System.Console.ReadLine());
+        op = int.Parse(System.Console.ReadLine()!);
         switch (op)
         {
             case 1:
@@ -240,16 +240,16 @@ class Program
         System.Console.WriteLine("Enter the data of the order to add");
         System.Console.WriteLine("write: CostumerName, CostumerE, Adress, Date, ShipDate, EstimateDelivery");
 
-        int price, inSt, cate;
+        //int price, inSt, cate;
         string costumerNmae, ostumerEmail, costumerAdress;
         DateTime orderDate, shipDate, deliveryrDate;
 
-        costumerNmae = Console.ReadLine();
-        ostumerEmail = Console.ReadLine();
-        costumerAdress = Console.ReadLine();
-        orderDate = DateTime.Parse(System.Console.ReadLine());
-        shipDate = DateTime.Parse(System.Console.ReadLine());
-        deliveryrDate = DateTime.Parse(System.Console.ReadLine());
+        costumerNmae = Console.ReadLine()!;
+        ostumerEmail = Console.ReadLine()!;
+        costumerAdress = Console.ReadLine()!;
+        orderDate = DateTime.Parse(System.Console.ReadLine()!);
+        shipDate = DateTime.Parse(System.Console.ReadLine()!);
+        deliveryrDate = DateTime.Parse(System.Console.ReadLine()!);
 
         Order or = new Order
         {
@@ -277,17 +277,17 @@ class Program
         System.Console.WriteLine("Enter what to update");
         System.Console.WriteLine("write: ID, CostumerE, costumerAdress, DateOfOrder, ShipDate, EstimatedDeliveryDate");
 
-        int id, price, inSt, cate;
+        int id;//, price, inSt, cate;
         string costumerNmae, ostumerEmail, costumerAdress;
         DateTime orderDate, shipDate, deliveryrDate;
 
-        id = int.Parse(System.Console.ReadLine());
-        costumerNmae = Console.ReadLine();
-        ostumerEmail = Console.ReadLine();
-        costumerAdress = Console.ReadLine();
-        orderDate = DateTime.Parse(System.Console.ReadLine());
-        shipDate = DateTime.Parse(System.Console.ReadLine());
-        deliveryrDate = DateTime.Parse(System.Console.ReadLine());
+        id = int.Parse(System.Console.ReadLine()!);
+        costumerNmae = Console.ReadLine()!;
+        ostumerEmail = Console.ReadLine()!;
+        costumerAdress = Console.ReadLine()!;
+        orderDate = DateTime.Parse(System.Console.ReadLine()!);
+        shipDate = DateTime.Parse(System.Console.ReadLine()!);
+        deliveryrDate = DateTime.Parse(System.Console.ReadLine()!);
 
         Order or = new Order
         {
@@ -314,7 +314,7 @@ class Program
     {
         System.Console.WriteLine("Enter Product id");
         int id;
-        id = int.Parse(System.Console.ReadLine());
+        id = int.Parse(System.Console.ReadLine()!);
         try
         {
             TestM.Order.Delete(id);
@@ -329,9 +329,9 @@ class Program
     {
         try
         {
-            foreach (Order element in TestM.Order.GetAll())
+            foreach (var element in TestM.Order.GetAll()!)
             {
-                if (element.ID != 0)
+                if (element?.ID != 0)
                     Console.WriteLine(element);
             }
         }
@@ -346,7 +346,7 @@ class Program
     {
         System.Console.WriteLine("Enter Product id");
         int id;
-        id = int.Parse(System.Console.ReadLine());
+        id = int.Parse(System.Console.ReadLine()!);
         Order O;
         try
         {
@@ -364,7 +364,7 @@ class Program
     {
         int op;
         System.Console.WriteLine("*OrderItem* Enter the option: 1 - add, 2 - introduce, 3 - intorudce the list, 4 - update, 5 - delete");
-        op = int.Parse(System.Console.ReadLine());
+        op = int.Parse(System.Console.ReadLine()!);
         switch (op)
         {
             case 1:
@@ -392,7 +392,7 @@ class Program
     {
         System.Console.WriteLine("Enter Product id");
         int id;
-        id = int.Parse(System.Console.ReadLine());
+        id = int.Parse(System.Console.ReadLine()!);
         try
         {
             TestM.OrderItem.Delete(id);
@@ -410,11 +410,11 @@ class Program
 
         int productID, orderID, amount, id;
         double price;
-        id = int.Parse(System.Console.ReadLine());
-        productID = int.Parse(System.Console.ReadLine());
-        orderID = int.Parse(System.Console.ReadLine());
-        amount = int.Parse(System.Console.ReadLine());
-        price = double.Parse(System.Console.ReadLine());
+        id = int.Parse(System.Console.ReadLine()!);
+        productID = int.Parse(System.Console.ReadLine()!);
+        orderID = int.Parse(System.Console.ReadLine()!);
+        amount = int.Parse(System.Console.ReadLine()!);
+        price = double.Parse(System.Console.ReadLine()!);
 
         OrderItem orI = new OrderItem
         {
@@ -442,11 +442,11 @@ class Program
         System.Console.WriteLine("Enter what to update");
         System.Console.WriteLine("write: ID, productID , OrderID, amount, price");
 
-        id = int.Parse(System.Console.ReadLine());
-        productID = int.Parse(System.Console.ReadLine());
-        orderID = int.Parse(System.Console.ReadLine());
-        amount = int.Parse(System.Console.ReadLine());
-        price = double.Parse(System.Console.ReadLine());
+        id = int.Parse(System.Console.ReadLine()!);
+        productID = int.Parse(System.Console.ReadLine()!);
+        orderID = int.Parse(System.Console.ReadLine()!);
+        amount = int.Parse(System.Console.ReadLine()!);
+        price = double.Parse(System.Console.ReadLine()!);
 
         OrderItem orI = new OrderItem
         {
@@ -471,9 +471,9 @@ class Program
     {
         try
         {
-            foreach (OrderItem element in TestM.OrderItem.GetAll())
+            foreach (var element in TestM.OrderItem.GetAll()!)
             {
-                if (element.ID != 0)
+                if (element?.ID != 0)
                     Console.WriteLine(element);
             }
         }
@@ -487,7 +487,7 @@ class Program
     {
         System.Console.WriteLine("Enter Product id");
         int id;
-        id = int.Parse(System.Console.ReadLine());
+        id = int.Parse(System.Console.ReadLine()!);
         OrderItem OI;
         try
         {
