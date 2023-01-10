@@ -102,24 +102,19 @@ internal class Order : IOrder
                     let boOrderItem = new BO.OrderItem()
                     select (item, boOrderItem))
             {
-                boOrderItem.Id = item.OrderID;
-                boOrderItem.ProductId = item.ProductID;
-                boOrderItem.ProductPrice = item.Price;
-                boOrderItem.InOrder = item.Amount;
-                boOrderItem.SumPrice = item.Price * item.Amount;
-                finalTotalPrice += item.Price * item.Amount;
-
-                //foreach (var product in DoProducts) //We will go over the entire product from the data layer
-                //{
-                //    if (boOrderItem.ProductId == product.ID)
-                //    {
-                foreach (var product in from product in DoProducts//We will go over the entire product from the data layer
-                        where boOrderItem.ProductId == product.ID
-                        select product)
+                if (id == item.OrderID)
                 {
-                    boOrderItem.ProductName = product.Name;
-                    break;
-                }
+                    BO.OrderItem boOrderItem = new BO.OrderItem();
+                    boOrderItem.Id = item.OrderID;
+                    boOrderItem.ProductId = item.ProductID;
+                    boOrderItem.ProductPrice = item.Price;
+                    boOrderItem.InOrder = item.Amount;
+                    boOrderItem.SumPrice = item.Price * item.Amount;
+                    finalTotalPrice += item.Price * item.Amount;
+                    boOrderItem.ProductName = DoProducts
+                    .Where(product => boOrderItem.ProductId == product.ID)
+                    .Select(product => product.Name)
+                    .FirstOrDefault();
 
                 boOrderItems.Add(boOrderItem);//We will add to the list of order items in the logic layer     
             }
@@ -238,33 +233,24 @@ internal class Order : IOrder
                 BoOrder.DeliveryDate = temp.DeliveryrDate = doOrder.DeliveryrDate;
             BoOrder.Status = OrderStatus.Sent;
 
-            //foreach (var item in orderItems) //We will go through each order item from the data layer
-            //{
-            //    if (id == item.OrderID)
-            //    {
-            foreach (var (item, boOrderItem) in from item in orderItems//We will go through each order item from the data layer
-                    where id == item.OrderID
-                    let boOrderItem = new BO.OrderItem()
-                    select (item, boOrderItem))
-            {
-                boOrderItem.Id = item.OrderID;
-                boOrderItem.ProductId = item.ProductID;
-                boOrderItem.ProductPrice = item.Price;
-                boOrderItem.InOrder = item.Amount;
-                boOrderItem.SumPrice = item.Price * item.Amount;
-                finalTotalPrice += item.Price * item.Amount;
 
-                //foreach (var product in DoProducts)
-                //{
-                //    if (boOrderItem.ProductId == product.ID)
-                //    {
-                foreach (var product in from product in DoProducts
-                        where boOrderItem.ProductId == product.ID
-                        select product)
+                foreach (var item in orderItems) //We will go through each order item from the data layer
                 {
-                    boOrderItem.ProductName = product.Name;
-                    break;
-                }
+                    if (id == item.OrderID)
+                    {
+                        BO.OrderItem boOrderItem = new BO.OrderItem();
+                        boOrderItem.Id = item.OrderID;
+                        boOrderItem.ProductId = item.ProductID;
+                        boOrderItem.ProductPrice = item.Price;
+                        boOrderItem.InOrder = item.Amount;
+                        boOrderItem.SumPrice = item.Price * item.Amount;
+                        finalTotalPrice += item.Price * item.Amount;
+
+                        boOrderItem.ProductName = DoProducts
+                                       .Where(product => boOrderItem.ProductId == product.ID)
+                                       .Select(product => product.Name)
+                                       .FirstOrDefault();
+
 
                 boOrderItems.Add(boOrderItem);//We will add order item to the logical layer
             }
