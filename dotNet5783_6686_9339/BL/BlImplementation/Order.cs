@@ -104,14 +104,11 @@ internal class Order : IOrder
                     boOrderItem.InOrder = item.Amount;
                     boOrderItem.SumPrice = item.Price * item.Amount;
                     finalTotalPrice += item.Price * item.Amount;
-                    foreach (var product in DoProducts) //We will go over the entire product from the data layer
-                    {
-                        if (boOrderItem.ProductId == product.ID)
-                        {
-                            boOrderItem.ProductName = product.Name;
-                            break;
-                        }
-                    }
+                    boOrderItem.ProductName = DoProducts
+                    .Where(product => boOrderItem.ProductId == product.ID)
+                    .Select(product => product.Name)
+                    .FirstOrDefault();
+
 
                     boOrderItems.Add(boOrderItem); //We will add to the list of order items in the logic layer     
                 }
@@ -233,14 +230,12 @@ internal class Order : IOrder
                         boOrderItem.InOrder = item.Amount;
                         boOrderItem.SumPrice = item.Price * item.Amount;
                         finalTotalPrice += item.Price * item.Amount;
-                        foreach (var product in DoProducts)
-                        {
-                            if (boOrderItem.ProductId == product.ID)
-                            {
-                                boOrderItem.ProductName = product.Name;
-                                break;
-                            }
-                        }
+
+                        boOrderItem.ProductName = DoProducts
+                                       .Where(product => boOrderItem.ProductId == product.ID)
+                                       .Select(product => product.Name)
+                                       .FirstOrDefault();
+
 
 
 
