@@ -5,6 +5,7 @@ using BlApi;
 using static BO.Enum;
 using static DO.Enums;
 using System.Linq;
+using BO;
 
 namespace BlImplementation;
 
@@ -20,11 +21,10 @@ internal class Order : IOrder
     public IEnumerable<BO.OrderForList?> OrderList()
     {
         List<BO.OrderForList> orderForList = new List<BO.OrderForList>();
-        List<DO.Order> DoOrders = new List<DO.Order>();
-        List<DO.OrderItem> DoOrderItems = new List<DO.OrderItem>();
-
-        DoOrders = (List<DO.Order>)dal!.Order.GetAll()!;
-        DoOrderItems = (List<DO.OrderItem>)dal.OrderItem.GetAll()!;
+        List<DO.Order?> DoOrders = new List<DO.Order?>();
+        List<DO.OrderItem?> DoOrderItems = new List<DO.OrderItem?>();
+        DoOrders = (List<DO.Order?>)dal!.Order.GetAll()!;
+        DoOrderItems = (List<DO.OrderItem?>)dal.OrderItem.GetAll()!;
 
         //foreach (DO.Order DoOrder in DoOrders!) //We will go through all the products from the data layer
         //{
@@ -51,9 +51,9 @@ internal class Order : IOrder
                     //{
                     //    if (item.OrderID == orderForList1.OrderId)
                     //    {
-                    foreach (var item in from item in DoOrderItems//We will go over all order items from the data layer
-                                         where item.OrderID == orderForList1.OrderId
-                                         select item)
+                    foreach (DO.OrderItem item in from item in DoOrderItems//We will go over all order items from the data layer
+                             where item?.OrderID == orderForList1.OrderId
+                             select item)
                     {
                         orderForList1.TotalPrice += item.Price * item.Amount;
                         orderForList1.AmountOfItems = item.Amount;

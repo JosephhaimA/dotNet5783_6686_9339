@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using PL.admin_option;
 using PL.Prudoct;
 
 namespace PL;
@@ -28,14 +28,24 @@ public partial class MainWindow : Window
         InitializeComponent();
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e)
+    private void adminButton_Click(object sender, RoutedEventArgs e)
     {
 
-        new ProductListWindow().Show();
+        new ProductOrOrder_AdminWindow().Show();
         Close();
     }
 
     private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+
+    }
+
+    private void NewOrder_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void Tracking_Click(object sender, RoutedEventArgs e)
     {
 
     }

@@ -1,0 +1,14 @@
+﻿<Window x:Class="PL.admin_option.ProductOrOrder_AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL.admin_option"
+        mc:Ignorable="d"
+        Title="ProductOrOrder_AdminWindow" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="ProductButton" Content="Product list" HorizontalAlignment="Left" Margin="173,149,0,0" VerticalAlignment="Top" Height="98" Width="268" Click="ProductButton_Click"/>
+        <Button x:Name="OrderButton" Content="order " HorizontalAlignment="Left" Margin="522,272,0,0" VerticalAlignment="Top" Height="60" Width="175" Click="OrderButton_Click"/>
+
+    </Grid>
+</Window>
