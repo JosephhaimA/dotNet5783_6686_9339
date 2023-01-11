@@ -22,6 +22,10 @@ namespace PL.Order
         public OrderUpdateAdmineWindow(BO.OrderForList order)
         {
             InitializeComponent();
+            //BlApi.IBl? bl = BlApi.Factory.Get();
+            //BO.Order order1 = new BO.Order();
+            //order1 = 
+            //ListViewOfIsCart.Items.Add(bl.
         }
     }
 }

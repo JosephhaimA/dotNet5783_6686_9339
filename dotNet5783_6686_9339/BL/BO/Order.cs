@@ -7,7 +7,6 @@ using static BO.Enum;
 namespace BO;
 public class Order
 {
-
     public int Id { get; set; }
     public string? CostumerName { get; set; }
     public string? CostumerEmail { get; set; }
