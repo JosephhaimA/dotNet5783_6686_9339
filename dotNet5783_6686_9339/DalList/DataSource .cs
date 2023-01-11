@@ -154,7 +154,7 @@ internal sealed class DataSource
         internal static int IndexOrderItems = 0;
         internal static int IndexProduct = 0;
 
-        private static int RunningOrderId = 0;
+        private static int RunningOrderId = 1;
         private static int RunningOrderItemId = 0;
         
         public static int LestOrder { get => RunningOrderId++; }

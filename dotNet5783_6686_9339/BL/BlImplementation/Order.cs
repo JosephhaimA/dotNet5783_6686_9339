@@ -67,22 +67,23 @@ internal class Order : IOrder
     public BO.Order GetOrder(int id)
     {
         DO.Order DoOrder = new DO.Order();
-        List<DO.OrderItem> DoOrderItem = new List<DO.OrderItem>();
-        List<DO.Product> DoProducts = new List<DO.Product>();
+        List<DO.OrderItem?> DoOrderItem = new List<DO.OrderItem?>();
+        List<DO.Product?> DoProducts = new List<DO.Product?>();
         List<BO.OrderItem> boOrderItems = new List<BO.OrderItem>();
         BO.Order? BoOrder = new BO.Order();
         if (id > 0) //Check if the ID is valid
         {
             double finalTotalPrice = 0;
             DoOrder = dal!.Order.GetObj(id);
-            DoOrderItem = (List<DO.OrderItem>)dal.OrderItem.GetAll()!;
-            DoProducts = (List<DO.Product>)dal.Product.GetAll()!;
+            DoOrderItem = (List<DO.OrderItem?>)dal.OrderItem.GetAll()!;
+            DoProducts = (List<DO.Product?>)dal.Product.GetAll()!;
 
             BoOrder.Id = DoOrder.ID;
             BoOrder.CostumerName = DoOrder.CostumerName;
             BoOrder.CostumerEmail = DoOrder.CostumerEmail;
             BoOrder.CostumerAdress = DoOrder.CostumerAdress;
-            BoOrder.OrderDate = (DateTime)DoOrder.OrderDate!;
+            if (DoOrder.OrderDate != null) //Check if the date exists
+                BoOrder.OrderDate = (DateTime)DoOrder.OrderDate!;
             if (DoOrder.ShipDate != null) //Check if the date exists
                 BoOrder.ShipDate = (DateTime)DoOrder.ShipDate;
             if (DoOrder.DeliveryrDate != null) //Check if the date exists
@@ -109,10 +110,10 @@ internal class Order : IOrder
                 //    if (boOrderItem.ProductId == product.ID)
                 //    {
                 foreach (var product in from product in DoProducts//We will go over the entire product from the data layer
-                        where boOrderItem.ProductId == product.ID
+                        where boOrderItem.ProductId == product?.ID
                         select product)
                 {
-                    boOrderItem.ProductName = product.Name;
+                    boOrderItem.ProductName = product?.Name;
                     break;
                 }
 
