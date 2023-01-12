@@ -132,7 +132,7 @@ internal sealed class DataSource
             OrderItem orderIteamLisl = new OrderItem()
             {
                 ID = Config.LestOrderItems,
-                ProductID = i,
+                ProductID = i%10,
                 OrderID = i,
                 Price = 250+10*i,
                 Amount = i*2,
