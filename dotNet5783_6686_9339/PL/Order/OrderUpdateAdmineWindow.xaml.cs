@@ -26,6 +26,16 @@ namespace PL.Order
             BO.Order order1 = new BO.Order();
             order1 = bl.Order.GetOrder(order.OrderId);
             ListViewOfIsCart.ItemsSource = order1.Details;
+
+            ID.Text = order.OrderId.ToString();
+            NameUpdate.Text = order1.CostumerName;
+            EmailUpdate.Text = order1.CostumerEmail;
+            AdressUpdate.Text = order1.CostumerAdress;
+            StatusUpdate.Text = order1.Status.ToString();
+            DateOrder.Text = order1.OrderDate.ToString();
+            DateSipe.Text = order1.ShipDate.ToString();
+            DateDelivery.Text = order1.DeliveryDate.ToString();
+            TotalPriceUpdate.Text = order1.TotalPrice.ToString();
         }
     }
 }

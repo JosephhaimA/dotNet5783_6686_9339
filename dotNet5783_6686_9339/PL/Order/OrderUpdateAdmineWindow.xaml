@@ -23,6 +23,15 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <TextBox x:Name="ID" HorizontalAlignment="Left" Margin="92,65,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" FontSize="16"/>
+        <TextBox x:Name="NameUpdate" HorizontalAlignment="Left" Margin="103,104,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" FontSize="16"/>
+        <TextBox x:Name="EmailUpdate" HorizontalAlignment="Left" Margin="97,141,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="187" FontSize="16" BorderBrush="#FFACAEB3"/>
+        <TextBox x:Name="AdressUpdate" HorizontalAlignment="Left" Margin="117,183,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" FontSize="16"/>
+        <TextBox x:Name="StatusUpdate" HorizontalAlignment="Left" Margin="162,224,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" FontSize="16"/>
+        <TextBox x:Name="TotalPriceUpdate" HorizontalAlignment="Left" Margin="145,371,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" FontSize="16"/>
+        <TextBox x:Name="DateOrder" HorizontalAlignment="Left" Margin="151,262,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="DateSipe" HorizontalAlignment="Left" Margin="145,297,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="DateDelivery" HorizontalAlignment="Left" Margin="146,329,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>
