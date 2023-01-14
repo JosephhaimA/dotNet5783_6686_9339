@@ -38,5 +38,11 @@ namespace PL.admin_option
             Close();
             
         }
+
+        private void BackToMenu_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            Close();
+        }
     }
 }

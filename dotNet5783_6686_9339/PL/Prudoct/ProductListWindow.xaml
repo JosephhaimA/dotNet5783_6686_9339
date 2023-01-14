@@ -34,14 +34,11 @@
             </Grid>
             <ComboBox x:Name="CategorySelector" Grid.ColumnSpan="4" Margin="0,-2,0,2" SelectionChanged="CategorySelector_SelectionChanged"/>
             <Label Content="Category:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
-            <ListView x:Name="ProductListView" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="4" Margin="0,46,0,181" Grid.RowSpan="2" MouseDoubleClick="doubleClick" Foreground="White" >
-                <ListView.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black"/>
-                        <GradientStop Color="#FFCAC1C1" Offset="1"/>
-                    </LinearGradientBrush>
-                </ListView.Background>
-                <ListView.View>
+            <ListView x:Name="ProductListView" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="4" Margin="0,46,0,181" Grid.RowSpan="2" MouseDoubleClick="doubleClick" Foreground="#FF1D1C1C" SelectionChanged="ProductListView_SelectionChanged" BorderBrush="#FF384F77" >
+				<ListView.Background>
+					<ImageBrush ImageSource="/Prudoct/5bcac630-8e8f-4262-9938-83ef4947ad98.jpg"/>
+				</ListView.Background>
+				<ListView.View>
                     <GridView>
                         <GridViewColumn/>
                     </GridView>

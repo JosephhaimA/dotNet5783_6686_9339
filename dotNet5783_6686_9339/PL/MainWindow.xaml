@@ -6,19 +6,20 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/logo.jpg"/>
-        </Grid.Background>
-        <Button x:Name="admin" Content="staff access" HorizontalAlignment="Left" VerticalAlignment="Top" Height="59" Width="450" Click="adminButton_Click" FontWeight="Bold" FontSize="22" RenderTransformOrigin="2.056,3.056" Margin="157,82,0,0" BorderBrush="{x:Null}" Foreground="#FFCBCBD0">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black"/>
-                    <GradientStop Color="#FFE4E5EF" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <Button x:Name="NewOrder" Content="new order" HorizontalAlignment="Left" Margin="202,202,0,0" VerticalAlignment="Top" Width="344" Height="73" Click="NewOrder_Click"/>
-        <Button x:Name="Tracking" Content="order tracking" HorizontalAlignment="Left" Margin="200,314,0,0" VerticalAlignment="Top" Height="79" Width="346" Click="Tracking_Click"/>
-    </Grid>
+	<Grid>
+		<Grid.Background>
+			<ImageBrush ImageSource="/5bcac630-8e8f-4262-9938-83ef4947ad98.jpg"/>
+		</Grid.Background>
+		<Button x:Name="admin" Content="-Admin" HorizontalAlignment="Left" VerticalAlignment="Top" Height="59" Width="344" Click="adminButton_Click" FontWeight="Bold" FontSize="22" RenderTransformOrigin="2.056,3.056" Margin="0,79,0,0" BorderBrush="{x:Null}" Foreground="#FF0D0D42" Background="{x:Null}"/>
+		<Button x:Name="NewOrder" Content="-New Order" HorizontalAlignment="Left" Margin="0,143,0,0" VerticalAlignment="Top" Width="344" Height="73" Click="NewOrder_Click" Background="{x:Null}" Foreground="#FF172956" FontSize="22" FontWeight="Bold" BorderBrush="{x:Null}"/>
+		<Button x:Name="Tracking" Content="-Order Track" HorizontalAlignment="Left" Margin="0,217,0,0" VerticalAlignment="Top" Height="73" Width="344" Click="Tracking_Click" Background="{x:Null}" FontWeight="Bold" Foreground="#FF180F42" FontSize="22" BorderBrush="{x:Null}"/>
+		<TextBlock x:Name="wlc_msg" HorizontalAlignment="Center" Margin="0,386,0,0" TextWrapping="Wrap" Text="Welcome to the store" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" RenderTransformOrigin="0.602,0.591">
+			<TextBlock.Foreground>
+				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+					<GradientStop Color="Black"/>
+					<GradientStop Color="#FF38FAFC" Offset="1"/>
+				</LinearGradientBrush>
+			</TextBlock.Foreground>
+		</TextBlock>
+	</Grid>
 </Window>

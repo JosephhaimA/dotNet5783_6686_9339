@@ -7,8 +7,12 @@
         mc:Ignorable="d"
         Title="ProductOrOrder_AdminWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="ProductButton" Content="Product list" HorizontalAlignment="Left" Margin="173,149,0,0" VerticalAlignment="Top" Height="98" Width="268" Click="ProductButton_Click"/>
-        <Button x:Name="OrderButton" Content="order " HorizontalAlignment="Left" Margin="522,272,0,0" VerticalAlignment="Top" Height="60" Width="175" Click="OrderButton_Click"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="/admin option/5bcac630-8e8f-4262-9938-83ef4947ad98.jpg"/>
+        </Grid.Background>
+        <Button x:Name="ProductButton" Content="Product list" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" Height="98" Width="268" Click="ProductButton_Click" FontSize="22" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        <Button x:Name="OrderButton" Content="order " HorizontalAlignment="Left" Margin="56,217,0,0" VerticalAlignment="Top" Height="60" Width="176" Click="OrderButton_Click" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="22" FontWeight="Bold"/>
+        <Button x:Name="BackToMenu" Content="Back" HorizontalAlignment="Left" Margin="703,348,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" FontWeight="Bold" FontSize="22" Height="36" Click="BackToMenu_Click" RenderTransformOrigin="0.647,6.651"/>
 
     </Grid>
 </Window>
