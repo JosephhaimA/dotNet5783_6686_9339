@@ -99,14 +99,50 @@ namespace PL.Prudoct
             try
             {
                 product.ID = int.Parse(InsertId.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("the id was not fool");
+                new ProductListWindow().Show();
+                Close();
+            }
+            try
+            {
                 product.Name = InsertName.Text;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("the name was not fool");
+                new ProductListWindow().Show();
+                Close();
+            }
+            try
+            {
                 product.Price = int.Parse(InsertPrice.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("the price was not fool");
+                new ProductListWindow().Show();
+                Close();
+            }
+            try
+            {
                 product.InStock = int.Parse(InsertInStock.Text);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("the stock was not fool");
+                new ProductListWindow().Show();
+                Close();
+            }
+            try
+            {
                 product.Category = (DO.Enums.ProductCategory?)CategorySelct.SelectedItem;
             }
             catch (Exception)
             {
-                MessageBox.Show("the data was not compltly fool");
+                MessageBox.Show("the category was not fool");
                 new ProductListWindow().Show();
                 Close();
             }

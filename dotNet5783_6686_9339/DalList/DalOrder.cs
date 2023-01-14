@@ -16,7 +16,7 @@ public class DalOrder : IOrder
     {
         {
             int i = DataSource.Config.IndexOrder;
-            if (i < 200)
+            if (i > 0)
             {
                 p.ID = i;
                 ds.OrderList.Add(p);

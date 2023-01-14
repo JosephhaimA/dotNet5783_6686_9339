@@ -132,7 +132,7 @@ internal sealed class DataSource
             OrderItem orderIteamLisl = new OrderItem()
             {
                 ID = Config.LestOrderItems,
-                ProductID = i,
+                ProductID = i%10,
                 OrderID = i,
                 Price = 250+10*i,
                 Amount = i*2,
@@ -154,9 +154,10 @@ internal sealed class DataSource
         internal static int IndexOrderItems = 0;
         internal static int IndexProduct = 0;
 
-        private static int RunningOrderId = 1;
-        private static int RunningOrderItemId = 0;
-        
+        private static int RunningOrderId = 1;//10000;
+        private static int RunningOrderItemId = 0;//10000;
+
+
         public static int LestOrder { get => RunningOrderId++; }
         public static int LestOrderItems { get => RunningOrderItemId++; }
     }

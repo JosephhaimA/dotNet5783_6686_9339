@@ -79,7 +79,7 @@ public class DalProduct : IProduct
 
         int count = ds.ProductList.RemoveAll(st => p.ID == st?.ID);
         if (count == 0)
-            throw new DO.DalDoesNotExistException("Student");
+            throw new DO.DalDoesNotExistException("product not exsist");
         ds.ProductList.Insert(p.ID - 1, p);
 
     }
