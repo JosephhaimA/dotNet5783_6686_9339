@@ -30,7 +30,6 @@ public partial class MainWindow : Window
 
     private void adminButton_Click(object sender, RoutedEventArgs e)
     {
-
         new ProductOrOrder_AdminWindow().Show();
         Close();
     }
