@@ -114,12 +114,12 @@ internal sealed class DataSource
                 CostumerName = names[i],
                 CostumerEmail = names[i] + "@gameil.com",
                 CostumerAdress = adresss[i],
-                //OrderDate = randDate,
-                OrderDate = null,
-                ShipDate = null,
-               // ShipDate = date1,
-                DeliveryrDate = null,
-                //DeliveryrDate = date2,
+                OrderDate = randDate,
+                //OrderDate = null,
+                //ShipDate = null,
+                ShipDate = date1,
+               // DeliveryrDate = null,
+                DeliveryrDate = date2,
             };
             OrderList.Add(order);
             Config.IndexOrder++;

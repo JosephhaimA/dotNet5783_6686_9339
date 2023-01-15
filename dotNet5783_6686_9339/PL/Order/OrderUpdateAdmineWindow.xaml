@@ -11,10 +11,10 @@
         <Label Content="Name :" HorizontalAlignment="Left" Margin="31,93,0,0" VerticalAlignment="Top" Height="37" Width="86" FontSize="16"/>
         <Label Content="adress :" HorizontalAlignment="Left" Margin="35,172,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="status order :" HorizontalAlignment="Left" Margin="35,214,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label Content="date ..." HorizontalAlignment="Left" Margin="39,253,0,0" VerticalAlignment="Top"/>
-        <Label Content="date ..." HorizontalAlignment="Left" Margin="37,289,0,0" VerticalAlignment="Top"/>
+        <Label Content="Date order :" HorizontalAlignment="Left" Margin="39,253,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Date sipe :" HorizontalAlignment="Left" Margin="37,289,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="email :" HorizontalAlignment="Left" Margin="33,132,0,0" VerticalAlignment="Top" Height="35" Width="138" FontSize="16"/>
-        <Label Content="date..." HorizontalAlignment="Left" Margin="34,326,0,0" VerticalAlignment="Top"/>
+        <Label Content="Date delivery :" HorizontalAlignment="Left" Margin="34,326,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="total to pay :" HorizontalAlignment="Left" Margin="25,363,0,0" VerticalAlignment="Top" FontSize="16"/>
         <ListView x:Name="ListViewOfIsCart" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="369,116,174,114">
             <ListView.View>
