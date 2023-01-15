@@ -39,7 +39,7 @@ namespace PL.admin_option
             
         }
 
-        private void ButtonBack_Click(object sender, RoutedEventArgs e)
+        private void BackToMenu_Click(object sender, RoutedEventArgs e)
         {
             new MainWindow().Show();
             Close();

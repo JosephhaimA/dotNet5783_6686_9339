@@ -13,7 +13,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="5bcac630-8e8f-4262-9938-83ef4947ad98.jpg" />
+    <None Remove="admin option\5bcac630-8e8f-4262-9938-83ef4947ad98.jpg" />
     <None Remove="logo.jpg" />
+    <None Remove="PHOTO-2023-01-11-22-54-21.jpg" />
+    <None Remove="Prudoct\5bcac630-8e8f-4262-9938-83ef4947ad98.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,7 +25,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="5bcac630-8e8f-4262-9938-83ef4947ad98.jpg" />
+    <Resource Include="admin option\5bcac630-8e8f-4262-9938-83ef4947ad98.jpg" />
     <Resource Include="logo.jpg" />
+    <Resource Include="PHOTO-2023-01-11-22-54-21.jpg" />
+    <Resource Include="Prudoct\5bcac630-8e8f-4262-9938-83ef4947ad98.jpg" />
   </ItemGroup>
 
 </Project>

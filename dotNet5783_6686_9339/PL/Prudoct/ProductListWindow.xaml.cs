@@ -60,5 +60,10 @@ namespace PL.Prudoct
                 Close();
             }
         }
+
+        private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
