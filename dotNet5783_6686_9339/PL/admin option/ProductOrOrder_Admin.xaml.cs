@@ -38,5 +38,11 @@ namespace PL.admin_option
             Close();
             
         }
+
+        private void ButtonBack_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            Close();
+        }
     }
 }

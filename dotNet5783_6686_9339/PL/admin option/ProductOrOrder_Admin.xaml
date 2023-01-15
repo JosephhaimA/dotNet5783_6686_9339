@@ -9,6 +9,7 @@
     <Grid>
         <Button x:Name="ProductButton" Content="Product list" HorizontalAlignment="Left" Margin="173,149,0,0" VerticalAlignment="Top" Height="98" Width="268" Click="ProductButton_Click"/>
         <Button x:Name="OrderButton" Content="order " HorizontalAlignment="Left" Margin="522,272,0,0" VerticalAlignment="Top" Height="60" Width="175" Click="OrderButton_Click"/>
+        <Button x:Name="ButtonBack" Content="Back" HorizontalAlignment="Left" Margin="523,113,0,0" VerticalAlignment="Top" Width="192" Click="ButtonBack_Click"/>
 
     </Grid>
 </Window>
