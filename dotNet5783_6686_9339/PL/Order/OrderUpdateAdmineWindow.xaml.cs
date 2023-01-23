@@ -40,6 +40,50 @@ namespace PL.Order
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //BlApi.IBl? bl = BlApi.Factory.Get();
+            //BO.Order order = new BO.Order();
+            //bool check = true;
+            //try
+            //{
+            //    order.Id = int.Parse(ID.Text);
+            //    order.CostumerName = NameUpdate.Text;
+            //    order.CostumerEmail = EmailUpdate.Text;
+            //    order.CostumerAdress = AdressUpdate.Text;
+            //    //order.Status = (BO.Enum.OrderStatus)StatusUpdate.Text.ToString();
+            //    order.OrderDate = StatusUpdate.Text;
+            //    order.ShipDate
+            //    order.DeliveryDate
+            //    order.TotalPrice = int.Parse(TotalPriceUpdate.Text);
+            //    //(BO.Enum.ProductCategory?)CategorySelct.SelectedItem;
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("the data was not compltly fool");
+            //    check = false;
+            //    new ProductListWindow().Show();
+            //    Close();
+            //}
+            try
+            {
+                if (check)
+                {
+                    bl.Order.ShipOrderUpate(order);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("the data was rong");
+                check = false;
+                new ProductListWindow().Show();
+                Close();
+            }
+            if (check)
+            {
+                new ProductListWindow().Show();
+                Close();
+            }
+            bl.Order.ShipOrderUpate(order1)
+
             new OrderForListAdmineWindow().Show();
             Close();
         }

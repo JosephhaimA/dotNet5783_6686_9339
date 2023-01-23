@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BO;
 using PL.admin_option;
 using PL.Order;
 using PL.Prudoct;
@@ -57,10 +58,19 @@ public partial class MainWindow : Window
     {
         if (e.Key == Key.Enter)
         {
-            int? id;
-            id = int.TryParse(Tracing.Text, out Temp);
-            new OrderTrackWindow().Show();
-            Close();
+            int ID;
+            int Temp;
+            int.TryParse(Tracing.Text, out Temp);
+            ID = Temp;
+            try
+            {
+                new OrderTrackWindow(ID).Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

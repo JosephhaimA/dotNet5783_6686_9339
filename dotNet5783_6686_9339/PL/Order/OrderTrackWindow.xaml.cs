@@ -19,7 +19,7 @@ namespace PL.Order
     /// </summary>
     public partial class OrderTrackWindow : Window
     {
-        public OrderTrackWindow()
+        public OrderTrackWindow(int id)
         {
             InitializeComponent();
         }
