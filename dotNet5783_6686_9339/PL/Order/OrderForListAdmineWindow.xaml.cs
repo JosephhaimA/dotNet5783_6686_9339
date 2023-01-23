@@ -1,4 +1,5 @@
 ﻿using DO;
+using PL.admin_option;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,12 @@ namespace PL.Order
                 new OrderUpdateAdmineWindow(Order).Show();
                 Close();
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new ProductOrOrder_AdminWindow().Show();
+            Close();
         }
     }
 }
