@@ -7,13 +7,14 @@
         mc:Ignorable="d"
         Title="OrderForListAdmineWindow" Height="450" Width="800">
     <Grid>
-        <ListView x:Name="OrderListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,0,1" SelectionChanged="OrderListView_SelectionChanged" MouseDoubleClick="doubleClickForUpdate">
+        <ListView x:Name="OrderListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,202,1" SelectionChanged="OrderListView_SelectionChanged" MouseDoubleClick="doubleClickForUpdate">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button Content="Back" HorizontalAlignment="Left" Height="50" Margin="666,196,0,0" VerticalAlignment="Top" Width="79" FontSize="20" Background="{x:Null}" Click="Button_Click"/>
 
     </Grid>
 </Window>
