@@ -49,7 +49,7 @@ namespace PL.Cart
                 MessageBox.Show(ex.Message);
                 return;
             }
-            MessageBox.Show("Succeded");
+            MessageBox.Show("Thank you for buying from us 🥳");
             Close();
         }
         private void deleteButton_Click(object sender, RoutedEventArgs e)
