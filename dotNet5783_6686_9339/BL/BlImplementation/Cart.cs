@@ -21,6 +21,13 @@ internal class Cart : ICart
         //DO.Product? product = dal.Product.GetAll().ToList().Find(itemm => (int)itemm?.ID! == id);//מחזיר לי את המוצר אם אותו איי די
         //DO.Product? product = dal.Product.GetObj(id);
         DO.Product product = dal!.Product.GetObj(id);
+        if (product.InStock >= 1)
+        {
+            product.InStock--;
+            dal.Product.Update(product);
+        }
+        else
+            throw new BlDoesNotExistException("Out of stock");
         if (item.orderItemsList == null)
         {
             BO.OrderItem orderItem = new BO.OrderItem

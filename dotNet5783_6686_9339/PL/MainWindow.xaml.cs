@@ -48,6 +48,8 @@ public partial class MainWindow : Window
 
     private void Tracking_Click(object sender, RoutedEventArgs e)
     {
+        new OrderTrackWindow().Show();
+        Close();
 
     }
 
