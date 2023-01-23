@@ -37,5 +37,11 @@ namespace PL.Order
             DateDelivery.Text = order1.DeliveryDate.ToString();
             TotalPriceUpdate.Text = order1.TotalPrice.ToString();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new OrderForListAdmineWindow().Show();
+            Close();
+        }
     }
 }
