@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BlApi;
+using BO;
+using PL.Prudoct;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,20 +23,39 @@ namespace PL.Cart
     public partial class CartWindow : Window
     {
         BlApi.IBl? bl = BlApi.Factory.Get();
+        BO.Cart NewCart = new BO.Cart();
 
         public CartWindow(BO.Cart cart)
         {
             InitializeComponent();
-            cart.CostumerName = insertName.Text;
-            cart.CostumerAdress = InsertAdress.Text;
-            cart.CostumerEmail = InsertEmail.Text;
             TotalPayment.Text = cart.TotalPrice.ToString();
             CartOrderIteamListView.ItemsSource = cart.orderItemsList;
-
+            NewCart = cart;
         }
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
+            //BO.OrderItem orderItem = new BO.OrderItem();
+            //orderItem = (BO.OrderItem)sender;
+            //new ProductWindow(orderItem.ProductId).Show();
+            //Close();
+        }
 
+        private void ConfirmCart_Click(object sender, RoutedEventArgs e)
+        {
+            NewCart.CostumerName = insertName.Text;
+            NewCart.CostumerAdress = InsertAdress.Text;
+            NewCart.CostumerEmail = InsertEmail.Text;
+            try
+            {
+                bl!.Cart.ConfirmationOfOrder(NewCart);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            MessageBox.Show("Succeded");
+            Close();
         }
     }
 }

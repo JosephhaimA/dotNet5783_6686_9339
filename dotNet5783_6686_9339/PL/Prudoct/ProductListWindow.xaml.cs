@@ -62,7 +62,7 @@ namespace PL.Prudoct
 
             BO.ProductForList product = new BO.ProductForList();
             product.ProductId = 0;
-            new ProductWindow(false, addToProducts,product.ProductId).Show();
+            new ProductWindow(product.ProductId,false, addToProducts).Show();
         }
 
         private void doubleClick(object sender, MouseButtonEventArgs e)
@@ -72,7 +72,7 @@ namespace PL.Prudoct
             if (product != null)
             {
                 product = (BO.ProductForList)ProductListView.SelectedItem;
-                new ProductWindow( false, UpdateToProducts, product.ProductId).Show();
+                new ProductWindow(product.ProductId,false, UpdateToProducts).Show();
             }
         }
 

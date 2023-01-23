@@ -42,7 +42,7 @@ namespace PL.Prudoct
         /// <summary>
         /// initialize the update product window
         /// </summary>
-        public ProductWindow(bool check, Action<int> action,  int productID)
+        public ProductWindow(int productID , bool? check = null, Action<int> action = null!)
         {
             product = new();
             InitializeComponent();
