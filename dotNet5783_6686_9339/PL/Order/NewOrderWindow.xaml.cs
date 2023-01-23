@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BO;
+using PL.Cart;
 
 namespace PL.Order
 {
@@ -107,6 +108,12 @@ namespace PL.Order
         private void BackToMainWindow_Click(object sender, RoutedEventArgs e)
         {
             new MainWindow().Show();
+            Close();
+        }
+
+        private void ConfirmOrder_Click(object sender, RoutedEventArgs e)
+        {
+            new CartWindow(cart).Show();
             Close();
         }
     }
