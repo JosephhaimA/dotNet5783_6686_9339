@@ -40,52 +40,48 @@ namespace PL.Order
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //BlApi.IBl? bl = BlApi.Factory.Get();
-            //BO.Order order = new BO.Order();
-            //bool check = true;
-            //try
-            //{
-            //    order.Id = int.Parse(ID.Text);
-            //    order.CostumerName = NameUpdate.Text;
-            //    order.CostumerEmail = EmailUpdate.Text;
-            //    order.CostumerAdress = AdressUpdate.Text;
-            //    //order.Status = (BO.Enum.OrderStatus)StatusUpdate.Text.ToString();
-            //    order.OrderDate = StatusUpdate.Text;
-            //    order.ShipDate
-            //    order.DeliveryDate
-            //    order.TotalPrice = int.Parse(TotalPriceUpdate.Text);
-            //    //(BO.Enum.ProductCategory?)CategorySelct.SelectedItem;
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("the data was not compltly fool");
-            //    check = false;
-            //    new ProductListWindow().Show();
-            //    Close();
-            //}
+            BlApi.IBl? bl = BlApi.Factory.Get();
+            BO.Order order = new BO.Order();
+            bool check = true;
+            try
+            {
+                order.Id = int.Parse(ID.Text);
+                order.CostumerName = NameUpdate.Text;
+                order.CostumerEmail = EmailUpdate.Text;
+                order.CostumerAdress = AdressUpdate.Text;
+                //order.Status = (BO.Enum.OrderStatus).Parse(StatusUpdate.Text);
+                order.OrderDate = DateTime.Parse(DateOrder.Text);
+                order.ShipDate = DateTime.Parse(DateSipe.Text);
+                order.DeliveryDate = DateTime.Parse(DateDelivery.Text);
+                order.TotalPrice = int.Parse(TotalPriceUpdate.Text);
+                //(BO.Enum.ProductCategory?)CategorySelct.SelectedItem;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("the data was not compltly fool");
+                check = false;
+                new OrderForListAdmineWindow().Show();
+                Close();
+            }
             try
             {
                 if (check)
                 {
-                    bl.Order.ShipOrderUpate(order);
+                    bl.Order.DeliveryrOrderUpate(order.Id);
                 }
             }
             catch (Exception)
             {
                 MessageBox.Show("the data was rong");
                 check = false;
-                new ProductListWindow().Show();
+                new OrderForListAdmineWindow().Show();
                 Close();
             }
             if (check)
             {
-                new ProductListWindow().Show();
+                new OrderForListAdmineWindow().Show();
                 Close();
             }
-            bl.Order.ShipOrderUpate(order1)
-
-            new OrderForListAdmineWindow().Show();
-            Close();
         }
     }
 }

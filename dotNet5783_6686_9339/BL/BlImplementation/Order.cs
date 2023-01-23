@@ -145,8 +145,8 @@ internal class Order : IOrder
     public BO.OrderTracking orderTracking(int id)
     {
         string Item;
-        List<DO.Order> DoOrders = new List<DO.Order>();
-        DoOrders = (List<DO.Order>)dal!.Order.GetAll()!;
+        List<DO.Order?> DoOrders = new List<DO.Order?>();
+        DoOrders = (List<DO.Order?>)dal!.Order.GetAll()!;
         BO.OrderTracking BoOrderTracking = new BO.OrderTracking();
         bool check = false; //Does such an ID exist?
 
@@ -196,13 +196,13 @@ internal class Order : IOrder
     public BO.Order ShipOrderUpate(int id)
     {
         List<BO.OrderItem> boOrderItems = new List<BO.OrderItem>();
-        List<DO.Product> DoProducts = new List<DO.Product>();
-        DoProducts = (List<DO.Product>)dal!.Product.GetAll()!;
+        List<DO.Product?> DoProducts = new List<DO.Product?>();
+        DoProducts = (List<DO.Product?>)dal!.Product.GetAll()!;
         double finalTotalPrice = 0;
-        List<DO.OrderItem> orderItems = new List<DO.OrderItem>();
-        orderItems = (List<DO.OrderItem>)dal.OrderItem.GetAll()!;
-        List<DO.Order>? DoOrders = new List<DO.Order>();
-        DoOrders = (List<DO.Order>)dal.Order.GetAll()!;
+        List<DO.OrderItem?> orderItems = new List<DO.OrderItem?>();
+        orderItems = (List<DO.OrderItem?>)dal.OrderItem.GetAll()!;
+        List<DO.Order?> DoOrders = new List<DO.Order?>();
+        DoOrders = (List<DO.Order?>)dal.Order.GetAll()!;
         BO.Order BoOrder = new BO.Order();
         DO.Order temp = new DO.Order();
         bool check = false;
@@ -239,26 +239,26 @@ internal class Order : IOrder
             //    if (id == item.OrderID)
             //    {
             foreach (var (item, boOrderItem) in from item in orderItems//We will go through each order item from the data layer
-                    where id == item.OrderID
+                    where id == item?.OrderID
                     let boOrderItem = new BO.OrderItem()
                     select (item, boOrderItem))
             {
-                boOrderItem.Id = item.OrderID;
-                boOrderItem.ProductId = item.ProductID;
-                boOrderItem.ProductPrice = item.Price;
-                boOrderItem.InOrder = item.Amount;
-                boOrderItem.SumPrice = item.Price * item.Amount;
-                finalTotalPrice += item.Price * item.Amount;
+                boOrderItem.Id = (int)item?.OrderID!;
+                boOrderItem.ProductId = (int)item?.ProductID!;
+                boOrderItem.ProductPrice = (int)item?.Price!;
+                boOrderItem.InOrder = (int)item?.Amount!;
+                boOrderItem.SumPrice = (int)item?.Price! * (int)item?.Amount!;
+                finalTotalPrice += (int)item?.Price! * (int)item?.Amount!;
 
                 //foreach (var product in DoProducts)
                 //{
                 //    if (boOrderItem.ProductId == product.ID)
                 //    {
                 foreach (var product in from product in DoProducts
-                        where boOrderItem.ProductId == product.ID
+                        where boOrderItem.ProductId == product?.ID
                         select product)
                 {
-                    boOrderItem.ProductName = product.Name;
+                    boOrderItem.ProductName = product?.Name;
                     break;
                 }
 
@@ -283,13 +283,13 @@ internal class Order : IOrder
     {
 
         List<BO.OrderItem> boOrderItems = new List<BO.OrderItem>();
-        List<DO.Product> DoProducts = new List<DO.Product>();
-        DoProducts = (List<DO.Product>)dal!.Product.GetAll()!;
+        List<DO.Product?> DoProducts = new List<DO.Product?>();
+        DoProducts = (List<DO.Product?>)dal!.Product.GetAll()!;
         double finalTotalPrice = 0;
-        List<DO.OrderItem> orderItems = new List<DO.OrderItem>();
-        orderItems = (List<DO.OrderItem>)dal.OrderItem.GetAll()!;
-        List<DO.Order>? DoOrders = new List<DO.Order>();
-        DoOrders = (List<DO.Order>)dal.Order.GetAll()!;
+        List<DO.OrderItem?> orderItems = new List<DO.OrderItem?>();
+        orderItems = (List<DO.OrderItem?>)dal.OrderItem.GetAll()!;
+        List<DO.Order?> DoOrders = new List<DO.Order?>();
+        DoOrders = (List<DO.Order?>)dal.Order.GetAll()!;
         BO.Order BoOrder = new BO.Order();
         DO.Order temp = new DO.Order();
         bool check = false;
@@ -326,26 +326,26 @@ internal class Order : IOrder
             //    if (id == item.OrderID) //Is this the order item we are looking for?
             //    {
             foreach (var (item, boOrderItem) in from item in orderItems//We will go through each order item from the data layer
-                    where id == item.OrderID//Is this the order item we are looking for?
+                    where id == item?.OrderID//Is this the order item we are looking for?
                     let boOrderItem = new BO.OrderItem()
                     select (item, boOrderItem))
             {
-                boOrderItem.Id = item.OrderID;
-                boOrderItem.ProductId = item.ProductID;
-                boOrderItem.ProductPrice = item.Price;
-                boOrderItem.InOrder = item.Amount;
-                boOrderItem.SumPrice = item.Price * item.Amount;
-                finalTotalPrice += item.Price * item.Amount;
+                boOrderItem.Id = (int)item?.OrderID!;
+                boOrderItem.ProductId = (int)item?.ProductID!;
+                boOrderItem.ProductPrice = (int)item?.Price!;
+                boOrderItem.InOrder = (int)item?.Amount!;
+                boOrderItem.SumPrice = (int)item?.Price! * (int)item?.Amount!;
+                finalTotalPrice += (int)item?.Price! * (int)item?.Amount!;
 
                 //foreach (var product in DoProducts)  //We will go through each product from the data layer
                 //{
                 //    if (boOrderItem.ProductId == product.ID)//Is this the product we are looking for?
                 //    {
                 foreach (var product in from product in DoProducts//We will go through each product from the data layer
-                        where boOrderItem.ProductId == product.ID//Is this the product we are looking for?
+                        where boOrderItem.ProductId == product?.ID//Is this the product we are looking for?
                         select product)
                 {
-                    boOrderItem.ProductName = product.Name;
+                    boOrderItem.ProductName = product?.Name;
                     break;
                 }
 
