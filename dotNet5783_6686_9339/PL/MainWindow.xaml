@@ -21,6 +21,6 @@
                 </LinearGradientBrush>
             </TextBlock.Foreground>
         </TextBlock>
-        <TextBox x:Name="Tracing" HorizontalAlignment="Left" Margin="88,221,0,0" TextWrapping="Wrap" Text="insert id" VerticalAlignment="Top" Width="168" Height="49" FontSize="20" KeyDown="Tracing_KeyDown"/>
+        <TextBox x:Name="Tracing" HorizontalAlignment="Left" Margin="88,221,0,0" TextWrapping="Wrap" Text="        insert id" VerticalAlignment="Top" Width="168" Height="49" FontSize="20" KeyDown="Tracing_KeyDown"/>
     </Grid>
 </Window>

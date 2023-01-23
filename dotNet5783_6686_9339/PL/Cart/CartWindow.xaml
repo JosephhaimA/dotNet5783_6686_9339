@@ -4,16 +4,39 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Cart"
+        
+
         mc:Ignorable="d"
         Title="CartWindow" Height="450" Width="800">
     <Grid>
-        <ListView x:Name="CartOrderIteamListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="489,3,10,83">
+        <ListView x:Name="CartOrderIteamListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="364,3,10,83">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="update" Width="65">
+                    <GridViewColumn Header="+"  Width="65">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content=" update " Click="UpdateButton_Click" />
+                                <Button Content="    +     " Tag = "{Binding}"  Click="plusButton_Click" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="-"  Width="65">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="    -     " Tag = "{Binding}"  Click="minusButton_Click" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <!--<GridViewColumn Header="change quantity" Width="95">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox x:Name="Num" Text="insert quantity"  Tag = "{Binding}" KeyDown="UpdateButton_KeyDown" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>-->
+                    <GridViewColumn Header="delete"  Width="65">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content=" delete " Tag = "{Binding}"  Click="deleteButton_Click" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -29,7 +52,6 @@
         <TextBox x:Name="InsertAdress" HorizontalAlignment="Left" Margin="163,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="InsertEmail" HorizontalAlignment="Left" Margin="163,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBlock x:Name="TotalPayment" HorizontalAlignment="Left" Margin="656,358,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="38" Width="127" FontSize="20"/>
-        <Button Content="close" HorizontalAlignment="Left" Height="47" Margin="18,370,0,0" VerticalAlignment="Top" Width="93" FontSize="20" Background="{x:Null}"/>
         <Button x:Name="ConfirmCart" Content="Confirm" HorizontalAlignment="Left" Height="50" Margin="110,220,0,0" VerticalAlignment="Top" Width="136" FontSize="20" Background="{x:Null}" Click="ConfirmCart_Click"/>
 
     </Grid>

@@ -33,7 +33,7 @@ internal class Cart : ICart
             BO.OrderItem orderItem = new BO.OrderItem
             {
                 ProductId = id,
-                Id = dal.OrderItem.GetAll()!.Last()?.ID + 1 ?? 0,
+                Id = 21,
                 ProductPrice = product.Price,
                 SumPrice = product.Price,
                 InOrder = product.InStock = 1,
@@ -70,7 +70,7 @@ internal class Cart : ICart
             {
                 BO.OrderItem orderItem = new BO.OrderItem()
                 {
-                    Id = (int)product.ID!,
+                    Id = item.orderItemsList[0]!.Id,
                     ProductId = id,
                     ProductName = (string)product.Name!,
                     ProductPrice = (double)product.Price!,
@@ -91,7 +91,6 @@ internal class Cart : ICart
     {
         DO.Product? product = dal!.Product.GetAll()!.ToList().Find(itemm => (int)itemm?.ID! == id);//מחזיר לי את המוצר אם אותו איי די
         int index = item.orderItemsList!.FindIndex(itemm => itemm!.ProductId == id);
-
         if (index == -1) // שאז זה אומר שלא היה מוצר כזה מלכתחילה 
         {
             for (int i = 0; i < newAmount; i++)
@@ -107,6 +106,8 @@ internal class Cart : ICart
         {
             item.orderItemsList.RemoveAt(index);
             item.TotalPrice -= (double)product?.Price! * (-1 * diffrence);
+            return item;
+
         }
 
         if (diffrence < 0)
@@ -114,6 +115,8 @@ internal class Cart : ICart
             item.orderItemsList[index]!.InOrder = newAmount;
             item.orderItemsList[index]!.SumPrice = (double)product?.Price! * newAmount;
             item.TotalPrice -= (double)product?.Price! * (-1*diffrence);
+            return item;
+
         }
 
         if (diffrence > 0)

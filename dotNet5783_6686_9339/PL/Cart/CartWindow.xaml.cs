@@ -1,5 +1,6 @@
 ﻿using BlApi;
 using BO;
+using PL.Order;
 using PL.Prudoct;
 using System;
 using System.Collections.Generic;
@@ -32,13 +33,7 @@ namespace PL.Cart
             CartOrderIteamListView.ItemsSource = cart.orderItemsList;
             NewCart = cart;
         }
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
-        {
-            //BO.OrderItem orderItem = new BO.OrderItem();
-            //orderItem = (BO.OrderItem)sender;
-            //new ProductWindow(orderItem.ProductId).Show();
-            //Close();
-        }
+       
 
         private void ConfirmCart_Click(object sender, RoutedEventArgs e)
         {
@@ -57,5 +52,89 @@ namespace PL.Cart
             MessageBox.Show("Succeded");
             Close();
         }
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            BO.OrderItem? orderItem = new BO.OrderItem();
+
+
+            orderItem = (sender as Button)?.Tag as BO.OrderItem;
+           
+            try
+            {
+                bl!.Cart.UpdateAmountOfProduct(NewCart, orderItem!.ProductId, 0);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            MessageBox.Show("Succesfuly delete");
+            new CartWindow(NewCart).Show();
+            Close();
+        }
+        private void plusButton_Click(object sender, RoutedEventArgs e)
+        {
+            BO.OrderItem? orderItem = new BO.OrderItem();
+            orderItem = (sender as Button)?.Tag as BO.OrderItem;
+            int num = orderItem!.InOrder + 1;
+            try
+            {
+                bl!.Cart.UpdateAmountOfProduct(NewCart, orderItem!.ProductId, num);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            MessageBox.Show("Succesfuly delete");
+            new CartWindow(NewCart).Show();
+            Close();
+        }
+        private void minusButton_Click(object sender, RoutedEventArgs e)
+        {
+            BO.OrderItem? orderItem = new BO.OrderItem();
+            orderItem = (sender as Button)?.Tag as BO.OrderItem;
+            int num = orderItem!.InOrder - 1;
+
+            try
+            {
+                bl!.Cart.UpdateAmountOfProduct(NewCart, orderItem!.ProductId,num );
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+            MessageBox.Show("Succesfuly delete");
+            new CartWindow(NewCart).Show();
+            Close();
+        }
+        //private void UpdateButton_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    BO.OrderItem? orderItem = new BO.OrderItem();
+        //    orderItem = (sender as Button)?.Tag as BO.OrderItem;
+
+        //    if (e.Key == Key.Enter)
+        //    {
+        //        int num;
+        //        int temp;
+        //        int.TryParse(Num.Text, out temp);
+        //        num = temp;
+        //        try
+        //        {
+        //            bl!.Cart.UpdateAmountOfProduct(NewCart, orderItem!.ProductId, 3);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show(ex.Message, "ERROR");
+        //        }
+        //        MessageBox.Show("Succesfuly change");
+        //        new CartWindow(NewCart).Show();
+        //        Close();
+        //    }
+        //}
+
     }
 }
