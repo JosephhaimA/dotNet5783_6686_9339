@@ -34,7 +34,7 @@
             </Grid>
             <ComboBox x:Name="CategorySelector" Grid.ColumnSpan="4" Margin="0,-2,0,2" SelectionChanged="CategorySelector_SelectionChanged"/>
             <Label Content="Category:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
-            <ListView x:Name="ProductListView" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.ColumnSpan="4" Margin="0,46,0,181" Grid.RowSpan="2" MouseDoubleClick="doubleClick" Foreground="#FF1D1C1C" SelectionChanged="ProductListView_SelectionChanged" BorderBrush="#FF384F77" >
+            <ListView x:Name="ProductListView" d:ItemsSource="{d:SampleData ItemCount=5}" ItemsSource="{Binding products}" Grid.ColumnSpan="4" Margin="0,46,0,181" Grid.RowSpan="2" MouseDoubleClick="doubleClick" Foreground="#FF1D1C1C" SelectionChanged="ProductListView_SelectionChanged" BorderBrush="#FF384F77" >
 				<ListView.Background>
 					<ImageBrush ImageSource="/Prudoct/5bcac630-8e8f-4262-9938-83ef4947ad98.jpg"/>
 				</ListView.Background>
@@ -45,6 +45,7 @@
                 </ListView.View>
             </ListView>
             <Button Content="Add new Product" HorizontalAlignment="Left" Margin="40,427,0,0" Grid.Row="1" VerticalAlignment="Top" Height="45" Width="120" Click="Button_Click_1"/>
+            <Button x:Name="BackButon" Content="Back" HorizontalAlignment="Left" Margin="675,429,0,0" Grid.Row="1" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="22" FontWeight="Bold" RenderTransformOrigin="0.795,8.051" Click="BackButon_Click"/>
 
         </Grid>
         <Expander HorizontalAlignment="Left" Height="100" Header="Expander" Margin="831,243,0,0" VerticalAlignment="Top" Width="100">

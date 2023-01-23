@@ -116,7 +116,7 @@ internal class Program
     //When the user select PRODUCT
     static void optionProduct()
     {
-        DO.Product product = new DO.Product();
+        BO.Product product = new BO.Product();
         Console.WriteLine("\nProduct\n" +
     "a: To view products catalog \n" +
     "b: To view the details of a product by his ID \n" +
@@ -141,7 +141,7 @@ internal class Program
             case 'b':
                 Console.WriteLine("Enter the ID product you want to view\n");
                 isRead = int.TryParse(Console.ReadLine(), out int ID);
-                product.ID = ID;
+                product.Id = ID;
                 Console.WriteLine(bl.Product.GetProductAdmin(ID));
                 break;
 
@@ -193,12 +193,12 @@ internal class Program
 
                 Console.WriteLine("Enter the ID ,Name ,Price ,Category ,InStock  of product you seek to update\n");
                 isRead = int.TryParse(Console.ReadLine(), out ID);
-                product.ID = ID;
+                product.Id = ID;
                 product.Name = Console.ReadLine();
                 isRead = int.TryParse(Console.ReadLine(), out int _price);
                 product.Price = _price;
-                DO.Enums.ProductCategory c;
-                DO.Enums.ProductCategory.TryParse(Console.ReadLine(), out c);
+                BO.Enum.ProductCategory c;
+                BO.Enum.ProductCategory.TryParse(Console.ReadLine(), out c);
                 product.Category = c;
                 int inStock;
                 isRead = int.TryParse(Console.ReadLine(), out inStock);

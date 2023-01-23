@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PL.admin_option;
+using PL.Order;
 using PL.Prudoct;
 
 namespace PL;
@@ -41,7 +42,8 @@ public partial class MainWindow : Window
 
     private void NewOrder_Click(object sender, RoutedEventArgs e)
     {
-
+        new NewOrderWindow().Show();
+        Close();
     }
 
     private void Tracking_Click(object sender, RoutedEventArgs e)

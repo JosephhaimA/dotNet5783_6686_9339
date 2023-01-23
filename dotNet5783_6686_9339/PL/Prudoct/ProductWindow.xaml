@@ -5,28 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL.Prudoct"
         mc:Ignorable="d"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="ProductWindow" Height="450" Width="800">
     <Grid>
         <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black"/>
-                <GradientStop Color="White" Offset="1"/>
-            </LinearGradientBrush>
+            <ImageBrush ImageSource="/Prudoct/5bcac630-8e8f-4262-9938-83ef4947ad98.jpg"/>
         </Grid.Background>
         <Label x:Name="Id" Content="ID : " HorizontalAlignment="Left" Margin="86,60,0,0" VerticalAlignment="Top" FontSize="22"/>
         <Label x:Name="Price" Content="Price :" HorizontalAlignment="Left" Margin="56,151,0,0" VerticalAlignment="Top" FontSize="24"/>
         <Label Content="Category :" HorizontalAlignment="Left" Margin="14,198,0,0" VerticalAlignment="Top" FontSize="24"/>
         <Label x:Name="InStock" Content="In Stock :" HorizontalAlignment="Left" Margin="23,257,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <TextBox x:Name="InsertId" HorizontalAlignment="Left" Margin="163,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" FontSize="18" Height="26"/>
-        <TextBox x:Name="InsertName" HorizontalAlignment="Left" Margin="163,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" FontSize="16"/>
-        <TextBox x:Name="InsertInStock" HorizontalAlignment="Left" Margin="163,276,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" FontSize="16"/>
-        <TextBox x:Name="InsertPrice" HorizontalAlignment="Left" Margin="163,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" FontSize="16"/>
+        <TextBox x:Name="InsertId" Text="{Binding product.Id, Mode=TwoWay}" HorizontalAlignment="Left" Margin="163,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" FontSize="18" Height="26"/>
+        <TextBox x:Name="InsertName" Text="{Binding product.Name, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="163,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" FontSize="16"/>
+        <TextBox x:Name="InsertInStock" Text="{Binding product.InStock, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="163,276,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" FontSize="16"/>
+        <TextBox x:Name="InsertPrice" Text="{Binding product.Price, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="163,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" FontSize="16"/>
         <Button x:Name="Confirm" Content="confirm" HorizontalAlignment="Left" Margin="309,341,0,0" VerticalAlignment="Top" Height="56" Width="149" FontSize="24" Click="ConfirmAdd_Click"/>
         <Label x:Name="Name" Content="Name :" HorizontalAlignment="Left" Margin="43,104,0,0" VerticalAlignment="Top" FontSize="24"/>
-        <ListBox x:Name="InsertCategory" Margin="163,213,482,169">
-            <ComboBox x:Name="CategorySelct" Width="121" Height="23" SelectionChanged="CategorySelct_SelectionChanged"/>
-        </ListBox>
+        <TextBox x:Name="InsertCategory" Margin="163,213,529,169" Text="{Binding product.Category, Mode=TwoWay}" TextChanged="InsertCategory_TextChanged"/>
         <Button x:Name="ConfirmUpdate" Content="Confirm" HorizontalAlignment="Left" Margin="163,341,0,0" VerticalAlignment="Top" Height="48" Width="108" FontSize="22" Click ="ConfirmUpdate_Click"/>
+        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="691,315,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="22" FontWeight="Bold" Click="BackButton_Click"/>
+        <ComboBox x:Name="CategorySelct" Text="{Binding product.Category, Mode=TwoWay}" SelectionChanged="CategorySelct_SelectionChanged" Margin="291,216,464,169"/>
 
     </Grid>
 </Window>

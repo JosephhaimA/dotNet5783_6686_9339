@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using PL.admin_option;
 
 namespace PL.Prudoct
 {
@@ -19,12 +21,24 @@ namespace PL.Prudoct
     /// </summary>
     public partial class ProductListWindow : Window
     {
+        public ObservableCollection<BO.ProductForList?> products
+        {
+            get { return (ObservableCollection<BO.ProductForList?>)GetValue(productsProperty); }
+            set { SetValue(productsProperty, value); }
+        }
+        public static readonly DependencyProperty productsProperty = DependencyProperty.Register(
+        "products", typeof(ObservableCollection<BO.ProductForList?>), typeof(ProductListWindow), new PropertyMetadata(default(List<BO.ProductForList?>)));
+
         public ProductListWindow()
         {
+
             InitializeComponent();
+
             //IBl bl = new BlImplementation.Bl();
             BlApi.IBl? bl = BlApi.Factory.Get();
             ProductListView.ItemsSource = bl?.Product.ListProduct();
+            products = new ObservableCollection<BO.ProductForList?>(bl.Product.ListProduct());
+
             //CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enum.ProductCategory));
             for (int i = 0; i < 5; i++)
             {
@@ -45,8 +59,10 @@ namespace PL.Prudoct
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            new ProductWindow().Show();
-            Close();
+
+            BO.ProductForList product = new BO.ProductForList();
+            product.ProductId = 0;
+            new ProductWindow(false, addToProducts,product.ProductId).Show();
         }
 
         private void doubleClick(object sender, MouseButtonEventArgs e)
@@ -55,15 +71,34 @@ namespace PL.Prudoct
             product = (BO.ProductForList)ProductListView.SelectedItem;
             if (product != null)
             {
-                new ProductWindow(product).Show();
-                //new UpdateProductWindow(product).Show();
-                Close();
+                product = (BO.ProductForList)ProductListView.SelectedItem;
+                new ProductWindow( false, UpdateToProducts, product.ProductId).Show();
             }
         }
 
+        private void UpdateToProducts(int productID)
+        {
+            BlApi.IBl? bl = BlApi.Factory.Get();
+
+            var x = ProductListView.SelectedIndex;
+            products[x] = (bl?.Product.ListProduct(a => a?.ID == productID).First());
+        }
+        private void addToProducts(int productID)
+        {
+            BlApi.IBl? bl = BlApi.Factory.Get();
+
+            BO.ProductForList? p = (bl?.Product.ListProduct(a => a?.ID == productID)!).First();
+            products.Add(p);
+        }
         private void ProductListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void BackButon_Click(object sender, RoutedEventArgs e)
+        {
+            new ProductOrOrder_AdminWindow().Show();
+            Close();
         }
     }
 }

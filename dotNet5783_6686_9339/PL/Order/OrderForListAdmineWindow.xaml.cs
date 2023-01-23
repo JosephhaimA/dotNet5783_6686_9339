@@ -20,6 +20,7 @@ namespace PL.Order
     /// </summary>
     public partial class OrderForListAdmineWindow : Window
     {
+
         public OrderForListAdmineWindow()
         {
             InitializeComponent();

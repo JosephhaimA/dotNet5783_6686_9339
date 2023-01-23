@@ -20,18 +20,36 @@ internal class Cart : ICart
     {
         //DO.Product? product = dal.Product.GetAll().ToList().Find(itemm => (int)itemm?.ID! == id);//מחזיר לי את המוצר אם אותו איי די
         //DO.Product? product = dal.Product.GetObj(id);
-        DO.Product? product = dal!.Product.GetSingle(itemm => (int)itemm?.ID! == id);
-
-        int i = item.orderItemsList!.FindIndex(itemm => itemm!.ProductId == id);
+        DO.Product product = dal!.Product.GetObj(id);
+        if (item.orderItemsList == null)
+        {
+            BO.OrderItem orderItem = new BO.OrderItem
+            {
+                ProductId = id,
+                Id = dal.OrderItem.GetAll()!.Last()?.ID + 1 ?? 0,
+                ProductPrice = product.Price,
+                SumPrice = product.Price,
+                InOrder = product.InStock = 1,
+                ProductName = product.Name,
+            };
+            List<BO.OrderItem> boOrderItems = new List<BO.OrderItem>();
+            boOrderItems.Add(orderItem);
+            item.orderItemsList = boOrderItems!;
+            item.TotalPrice += product.Price;
+            return item;
+        }
+    
+            int i = item.orderItemsList!.FindIndex(itemm => (int)itemm!.ProductId == id);
+        
 
         bool exists = item.orderItemsList.Exists(itemm => itemm!.ProductId == id);
         if (exists)
         {
-            if ((int)product?.InStock! != 0)
+            if ((int)product.InStock! != 0)
             {
                 item.orderItemsList[i]!.InOrder++;
-                item.orderItemsList[i]!.SumPrice += (double)product?.Price!;
-                item.TotalPrice += (double)product?.Price!;
+                item.orderItemsList[i]!.SumPrice += (double)product.Price!;
+                item.TotalPrice += (double)product.Price!;
             }
             else
             {
@@ -41,19 +59,19 @@ internal class Cart : ICart
         else
         {
             bool exist = dal.Product.GetAll()!.ToList().Exists(itemm => (int)itemm?.ID! == id);
-            if (exist && (int)product?.InStock! != 0)
+            if (exist && (int)product.InStock! != 0)
             {
                 BO.OrderItem orderItem = new BO.OrderItem()
                 {
-                    Id = (int)product?.ID!,
+                    Id = (int)product.ID!,
                     ProductId = id,
-                    ProductName = (string)product?.Name!,
-                    ProductPrice = (double)product?.Price!,
+                    ProductName = (string)product.Name!,
+                    ProductPrice = (double)product.Price!,
                     InOrder = 1,
-                    SumPrice = (double)product?.Price!,
+                    SumPrice = (double)product.Price!,
                 };
                 item.orderItemsList.Add(orderItem);
-                item.TotalPrice += (double)product?.Price!;
+                item.TotalPrice += (double)product.Price!;
             }
             else
             {

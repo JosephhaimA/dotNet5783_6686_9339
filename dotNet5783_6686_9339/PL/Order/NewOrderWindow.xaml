@@ -6,7 +6,56 @@
         xmlns:local="clr-namespace:PL.Order"
         mc:Ignorable="d"
         Title="NewOrderWindow" Height="450" Width="800">
+
     <Grid>
-        
+        <!--<ListView x:Name="ProductIteamListView" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ListView_SelectionChanged" Margin="79,70,109,70" >
+
+
+            <ListView.View>
+
+                <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
+
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=id}" Header="ID" Width="100"/>
+
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="100">
+                        <GridViewColumnHeader>Name
+                            <GridViewColumnHeader.ContextMenu>
+                                <ContextMenu MenuItem.Click="LastNameCM_Click" Name="LastNameCM">
+                                    <MenuItem Header="Ascending" />
+                                    <MenuItem Header="Descending" />
+                                </ContextMenu>
+                            </GridViewColumnHeader.ContextMenu>
+                        </GridViewColumnHeader>
+                    </GridViewColumn>
+
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=category}" Header="Category" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=price}" Header="Price" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TrueOFalse}" Header="In Stock" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=+}" Header="Add" Width="100"/>
+
+                </GridView>
+
+            </ListView.View>
+        </ListView>-->
+        <Button x:Name="ConfirmOrder" Content="Confirm order" HorizontalAlignment="Left" Margin="614,10,0,0" VerticalAlignment="Top" Height="55" Width="154" FontSize="20"/>
+        <ComboBox x:Name="CategorySelct" HorizontalAlignment="Left" Margin="306,16,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CategorySelct_SelectionChanged"/>
+        <Button x:Name="BackToMainWindow" Content="Back" HorizontalAlignment="Left" Margin="27,349,0,0" VerticalAlignment="Top" Height="52" Width="92" FontSize="16" Click="BackToMainWindow_Click"/>
+        <ListView x:Name="ProductIteamListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="202,51,259,33">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Add" Width="65">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="    +     " Click="Button_Click" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
     </Grid>
 </Window>

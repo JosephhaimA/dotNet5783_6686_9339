@@ -40,8 +40,9 @@ sealed public class Product : IProduct
         }
         else
         {
-            productForLists.AddRange(from DO.Product? product in L_P where func(product)
-                                    
+            productForLists.AddRange(from DO.Product? product in L_P
+                                     where func(product)
+
                                      let PFR = new BO.ProductForList()
                                      {
                                          ProductId = (int)product?.ID!,
@@ -53,7 +54,7 @@ sealed public class Product : IProduct
         }
         return productForLists;
     }
-    
+
     // for the admin access
     public BO.Product GetProductAdmin(int id)
     {
@@ -132,7 +133,7 @@ sealed public class Product : IProduct
         DO.Product product1 = new DO.Product()
         {
             ID = product.Id,
-            Name = product.Name,    
+            Name = product.Name,
             Price = product.Price,
             Category = (DO.Enums.ProductCategory)product.Category!,
             InStock = product.InStock
@@ -144,7 +145,7 @@ sealed public class Product : IProduct
         }
         catch (Exception mas)
         {
-            throw new BO.BlAlreadyExistException("invalid product operation",mas);
+            throw new BO.BlAlreadyExistException("invalid product operation", mas);
         }
     }
 
@@ -161,8 +162,8 @@ sealed public class Product : IProduct
         //}
 
         foreach (var a in from DO.OrderItem? product in ListItem//אין צורך לעבור ללינק כי זה עובר על הכל כדאי לבןד אם קיים כזה איי דיי
-                where (int?)product?.ProductID == id
-                select new { })
+                          where (int?)product?.ProductID == id
+                          select new { })
         {
             throw new BO.BlCantDeleteB_Used("error cant delete because the product is usd ");
         }
@@ -174,13 +175,13 @@ sealed public class Product : IProduct
         catch (Exception masg)
         {
 
-            throw new BO.BlDoesNotExistException("ERROR: not exist " + masg) ;
+            throw new BO.BlDoesNotExistException("ERROR: not exist " + masg);
         }
     }
 
-    public void ProductUpdate(DO.Product product)
+    public void ProductUpdate(BO.Product product)
     {
-        if (product.ID <= 0)
+        if (product.Id <= 0)
         {
             throw new BO.BlIdNegative("ERROR: ID WAS -");
         }
@@ -199,10 +200,16 @@ sealed public class Product : IProduct
         {
             throw new BO.BlInStockIsNegative("ERROR in stock WAS -");
         }
+        DO.Product product1 = new DO.Product();
+        product1.Name = product.Name;
+        product1.Price = product.Price;
+        product1.InStock = product.InStock;
+        product1.ID = product.Id;
+        product1.Category = (Enums.ProductCategory)product.Category!;
 
         try
         {
-            dal?.Product.Update(product);
+            dal?.Product.Update(product1);
 
         }
         catch (Exception mas)
@@ -211,5 +218,44 @@ sealed public class Product : IProduct
         }
     }
 
+    public IEnumerable<ProductItem?> GetProductItem(Func<DO.Product?, bool>? func = null)
+    {
+        List<DO.Product?> products;
+        products = dal!.Product.GetAll()!.ToList();
+        if (func != null)
+        {
+            List<BO.ProductItem> productsItem = (List<BO.ProductItem>)products
+                  .Where(product => func(product))
+                  .Select(product => new BO.ProductItem
+                  {
+                      ProductId = (int)product?.ID!,
+                      Category = (BO.Enum.ProductCategory)product?.Category!,
+                      ProductName = product?.Name,
+                      ProductPrice = (int)product?.Price!,
+                      InStock = product?.InStock > 0 ? true : false,
+                      Amount = (int)product?.InStock!,
+
+                  }).ToList();
+
+
+
+            return productsItem;
+        }
+        else
+        {
+            List<BO.ProductItem> productsItem = (List<BO.ProductItem>)products
+                .Select(product => new BO.ProductItem
+                {
+                    ProductId = (int)product?.ID!,
+                    Category = (BO.Enum.ProductCategory)product?.Category!,
+                    ProductName = product?.Name,
+                    ProductPrice = (int)product?.Price!,
+                    InStock = product?.InStock > 0 ? true : false,
+                    Amount = (int)product?.InStock!,
+                }).ToList();
+
+            return productsItem;
+        }
+    }
 }
 

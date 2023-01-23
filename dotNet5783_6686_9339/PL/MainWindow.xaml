@@ -13,7 +13,7 @@
 		<Button x:Name="admin" Content="-Admin" HorizontalAlignment="Left" VerticalAlignment="Top" Height="59" Width="344" Click="adminButton_Click" FontWeight="Bold" FontSize="22" RenderTransformOrigin="2.056,3.056" Margin="0,79,0,0" BorderBrush="{x:Null}" Foreground="#FF0D0D42" Background="{x:Null}"/>
 		<Button x:Name="NewOrder" Content="-New Order" HorizontalAlignment="Left" Margin="0,143,0,0" VerticalAlignment="Top" Width="344" Height="73" Click="NewOrder_Click" Background="{x:Null}" Foreground="#FF172956" FontSize="22" FontWeight="Bold" BorderBrush="{x:Null}"/>
 		<Button x:Name="Tracking" Content="-Order Track" HorizontalAlignment="Left" Margin="0,217,0,0" VerticalAlignment="Top" Height="73" Width="344" Click="Tracking_Click" Background="{x:Null}" FontWeight="Bold" Foreground="#FF180F42" FontSize="22" BorderBrush="{x:Null}"/>
-		<TextBlock x:Name="wlc_msg" HorizontalAlignment="Center" Margin="0,386,0,0" TextWrapping="Wrap" Text="Welcome to the store" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" RenderTransformOrigin="0.602,0.591">
+		<TextBlock x:Name="wlc_msg" HorizontalAlignment="Center" Margin="0,367,0,0" TextWrapping="Wrap" Text="Welcome to the store" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" RenderTransformOrigin="0.602,0.591">
 			<TextBlock.Foreground>
 				<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 					<GradientStop Color="Black"/>
