@@ -46,13 +46,22 @@ public partial class MainWindow : Window
         Close();
     }
 
-    private void Tracking_Click(object sender, RoutedEventArgs e)
+    //private void Tracking_Click(object sender, RoutedEventArgs e)
+    //{
+    //    new OrderTrackWindow().Show();
+    //    Close();
+
+    //}
+
+    private void Tracing_KeyDown(object sender, KeyEventArgs e)
     {
-        new OrderTrackWindow().Show();
-        Close();
-
+        if (e.Key == Key.Enter)
+        {
+            int? id;
+            id = int.TryParse(Tracing.Text, out Temp);
+            new OrderTrackWindow().Show();
+            Close();
+        }
     }
-
-   
 }
 
