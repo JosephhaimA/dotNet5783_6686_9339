@@ -49,12 +49,10 @@ namespace PL.Order
                 order.CostumerName = NameUpdate.Text;
                 order.CostumerEmail = EmailUpdate.Text;
                 order.CostumerAdress = AdressUpdate.Text;
-                //order.Status = (BO.Enum.OrderStatus).Parse(StatusUpdate.Text);
                 order.OrderDate = DateTime.Parse(DateOrder.Text);
                 order.ShipDate = DateTime.Parse(DateSipe.Text);
                 order.DeliveryDate = DateTime.Parse(DateDelivery.Text);
                 order.TotalPrice = int.Parse(TotalPriceUpdate.Text);
-                //(BO.Enum.ProductCategory?)CategorySelct.SelectedItem;
             }
             catch (Exception)
             {

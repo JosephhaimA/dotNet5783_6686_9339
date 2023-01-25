@@ -26,36 +26,11 @@ namespace PL.Order
     {
         BO.Cart cart = new BO.Cart();
 
-
-        //protected void OnPropertyChanged(string propertyName)
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        //}
-
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-
-        //private ObservableCollection<BO.ProductItem?> _productItem;
-        //public ObservableCollection<BO.ProductItem?> productItem
-        //{
-        //    get { return _productItem; }
-        //    set
-        //    {
-        //        _productItem = value;
-        //        OnPropertyChanged(nameof(productItem));
-        //    }
-        //}
-
         public NewOrderWindow()
         {
             InitializeComponent();
 
             BlApi.IBl? bl = BlApi.Factory.Get();
-           // productItem = new ObservableCollection<BO.ProductItem>(bl?.Product.GetProductItem()!)!;
-
-            //ProductIteamListView.ItemsSource = bl?.Product.GetProductItem(a => a?.Category.ToString() == CategorySelct.SelectedItem.ToString());
-            //ProductIteamListView.ItemsSource = bl?.Product.GetProductItem();
-            //ProductIteamListView.
             ProductIteamListView.ItemsSource = bl?.Product.GetProductItem();
             DataContext = bl?.Product.GetProductItem();
             for (int i = 0; i < 5; i++)

@@ -34,12 +34,10 @@ namespace PL.Prudoct
 
             InitializeComponent();
 
-            //IBl bl = new BlImplementation.Bl();
             BlApi.IBl? bl = BlApi.Factory.Get();
             ProductListView.ItemsSource = bl?.Product.ListProduct();
             products = new ObservableCollection<BO.ProductForList?>(bl.Product.ListProduct());
 
-            //CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enum.ProductCategory));
             for (int i = 0; i < 5; i++)
             {
                 CategorySelector.Items.Add($"{(BO.Enum.ProductCategory)i}");
@@ -49,7 +47,6 @@ namespace PL.Prudoct
 
         private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //IBl bl = new BlImplementation.Bl();
             BlApi.IBl? bl = BlApi.Factory.Get();
             if (CategorySelector.SelectedItem.ToString() != "Show all the categorys")
                 ProductListView.ItemsSource = bl.Product.ListProduct(a => a?.Category.ToString() == CategorySelector.SelectedItem.ToString());
@@ -62,7 +59,7 @@ namespace PL.Prudoct
 
             BO.ProductForList product = new BO.ProductForList();
             product.ProductId = 0;
-            new ProductWindow(product.ProductId,false, addToProducts).Show();
+            new ProductWindow(product.ProductId,false, ProductADD).Show();
         }
 
         private void doubleClick(object sender, MouseButtonEventArgs e)
@@ -83,7 +80,7 @@ namespace PL.Prudoct
             var x = ProductListView.SelectedIndex;
             products[x] = (bl?.Product.ListProduct(a => a?.ID == productID).First());
         }
-        private void addToProducts(int productID)
+        private void ProductADD(int productID)
         {
             BlApi.IBl? bl = BlApi.Factory.Get();
 

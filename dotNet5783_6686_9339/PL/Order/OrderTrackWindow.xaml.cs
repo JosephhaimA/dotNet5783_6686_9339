@@ -35,7 +35,6 @@ namespace PL.Order
             order10 = bl?.Order.OrderList()!;
             order110 = order10.FirstOrDefault(item => id == item!.OrderId);
             BO.OrderTracking? orderTracking = bl?.Order.orderTracking((int)id!)!;
-            //OrderTackingText.Text = (bl?.Order.orderTracking((int)id!))?.ToString();
             OrderTackingText.Text = orderTracking.ToString();
            
             ID = id;
@@ -61,11 +60,9 @@ namespace PL.Order
             BO.OrderTracking? order1 = new BO.OrderTracking();
 
             order1 = bl?.Order.orderTracking((int)ID!);
-            //Action<int>? action = null;
             if (order != null)
             {
-                new Order.OrderUpdateAdmineWindow(order110).Show();
-               // new Order.UpdateOrder(order, order).Show();
+                new Order.OrderUpdateAdmineWindow(order110!).Show();
                 Close();
             }
         }

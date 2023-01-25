@@ -87,7 +87,7 @@ namespace PL.Cart
                 MessageBox.Show(ex.Message);
                 return;
             }
-            MessageBox.Show("Succesfuly delete");
+            MessageBox.Show("Succesfuly + ");
             new CartWindow(NewCart).Show();
             Close();
         }
@@ -107,34 +107,9 @@ namespace PL.Cart
                 MessageBox.Show(ex.Message);
                 return;
             }
-            MessageBox.Show("Succesfuly delete");
+            MessageBox.Show("Succesfuly - ");
             new CartWindow(NewCart).Show();
             Close();
         }
-        //private void UpdateButton_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    BO.OrderItem? orderItem = new BO.OrderItem();
-        //    orderItem = (sender as Button)?.Tag as BO.OrderItem;
-
-        //    if (e.Key == Key.Enter)
-        //    {
-        //        int num;
-        //        int temp;
-        //        int.TryParse(Num.Text, out temp);
-        //        num = temp;
-        //        try
-        //        {
-        //            bl!.Cart.UpdateAmountOfProduct(NewCart, orderItem!.ProductId, 3);
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(ex.Message, "ERROR");
-        //        }
-        //        MessageBox.Show("Succesfuly change");
-        //        new CartWindow(NewCart).Show();
-        //        Close();
-        //    }
-        //}
-
     }
 }

@@ -37,9 +37,9 @@
 
             </ListView.View>
         </ListView>-->
-        <Button x:Name="ConfirmOrder" Content="Confirm order" HorizontalAlignment="Left" Margin="614,10,0,0" VerticalAlignment="Top" Height="55" Width="154" FontSize="20" Click="ConfirmOrder_Click"/>
+        <Button x:Name="ConfirmOrder" Content="Confirm order" HorizontalAlignment="Left" Margin="614,10,0,0" VerticalAlignment="Top" Height="55" Width="154" FontSize="20" Click="ConfirmOrder_Click" Background="{x:Null}"/>
         <ComboBox x:Name="CategorySelct" HorizontalAlignment="Left" Margin="306,16,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CategorySelct_SelectionChanged"/>
-        <Button x:Name="BackToMainWindow" Content="Back" HorizontalAlignment="Left" Margin="27,349,0,0" VerticalAlignment="Top" Height="52" Width="92" FontSize="16" Click="BackToMainWindow_Click"/>
+        <Button x:Name="BackToMainWindow" Content="Back" HorizontalAlignment="Left" Margin="27,349,0,0" VerticalAlignment="Top" Height="52" Width="92" FontSize="16" Click="BackToMainWindow_Click" Background="{x:Null}"/>
         <ListView x:Name="ProductIteamListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="202,51,259,33">
             <ListView.View>
                 <GridView>

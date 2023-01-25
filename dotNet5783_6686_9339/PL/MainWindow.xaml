@@ -10,8 +10,8 @@
         <Grid.Background>
             <ImageBrush ImageSource="/5bcac630-8e8f-4262-9938-83ef4947ad98.jpg"/>
         </Grid.Background>
-        <Button x:Name="admin" Content="-Admin" HorizontalAlignment="Left" VerticalAlignment="Top" Height="59" Width="344" Click="adminButton_Click" FontWeight="Bold" FontSize="22" RenderTransformOrigin="2.056,3.056" Margin="0,79,0,0" BorderBrush="{x:Null}" Foreground="#FF0D0D42" Background="{x:Null}"/>
-        <Button x:Name="NewOrder" Content="-New Order" HorizontalAlignment="Left" Margin="0,143,0,0" VerticalAlignment="Top" Width="344" Height="73" Click="NewOrder_Click" Background="{x:Null}" Foreground="#FF172956" FontSize="22" FontWeight="Bold" BorderBrush="{x:Null}"/>
+        <Button x:Name="admin" Content="-Admin" HorizontalAlignment="Left" VerticalAlignment="Top" Height="59" Width="344" Click="adminButton_Click" FontWeight="Bold" FontSize="22" RenderTransformOrigin="2.056,3.056" Margin="-36,80,0,0" BorderBrush="{x:Null}" Foreground="#FF0D0D42" Background="{x:Null}"/>
+        <Button x:Name="NewOrder" Content="-New Order" HorizontalAlignment="Left" Margin="-36,144,0,0" VerticalAlignment="Top" Width="344" Height="73" Click="NewOrder_Click" Background="{x:Null}" Foreground="#FF172956" FontSize="22" FontWeight="Bold" BorderBrush="{x:Null}"/>
 
         <TextBlock x:Name="wlc_msg" HorizontalAlignment="Center" Margin="0,367,0,0" TextWrapping="Wrap" Text="Welcome to the store" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" RenderTransformOrigin="0.602,0.591">
             <TextBlock.Foreground>
@@ -21,6 +21,7 @@
                 </LinearGradientBrush>
             </TextBlock.Foreground>
         </TextBlock>
-        <TextBox x:Name="Tracing" HorizontalAlignment="Left" Margin="88,221,0,0" TextWrapping="Wrap" Text="        insert id" VerticalAlignment="Top" Width="168" Height="49" FontSize="20" KeyDown="Tracing_KeyDown"/>
+        <TextBox x:Name="Tracing" HorizontalAlignment="Left" Margin="52,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" Height="32" FontSize="20" KeyDown="Tracing_KeyDown" TextChanged="Tracing_TextChanged"/>
+        <Label Content="insert id ⬇️ for tracking" HorizontalAlignment="Left" Margin="33,220,0,0" VerticalAlignment="Top" Height="44" Width="244" FontSize="24" Foreground="#FF2D1860"/>
     </Grid>
 </Window>

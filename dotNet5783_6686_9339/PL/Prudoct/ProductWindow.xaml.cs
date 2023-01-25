@@ -27,7 +27,6 @@ namespace PL.Prudoct
     public partial class ProductWindow : Window
     {
         private Action<int> Action;
-        //BlApi.IBl? bl = BlApi.Factory.Get();
 
         /// <summary>
         /// entering the product update window
@@ -46,29 +45,9 @@ namespace PL.Prudoct
         {
             product = new();
             InitializeComponent();
-            this.Action = action;
-            //if (product != null)
-            //{
-            //    CategorySelct.ItemsSource = System.Enum.GetValues(typeof(DO.Enums.ProductCategory));
-            //    Confirm.Visibility = Visibility.Collapsed;
-            //    InsertId.Text = product.ProductId.ToString();
-            //    InsertName.Text = product.ProductName;
-            //    InsertPrice.Text = product.ProductPrice.ToString();
-            //    CategorySelct.Text = product.Category.ToString();
-
-            //    //IBl? bl = new BlImplementation.Bl();
-               BlApi.IBl? bl = BlApi.Factory.Get();
-            //    BO.Product? pro = new BO.Product();
-            //    pro = bl.Product.GetProductAdmin(product.ProductId);
-            //    InsertInStock.Text = pro.InStock.ToString();
-            //}
-            //else
-            //{
-            //    CategorySelct.ItemsSource = System.Enum.GetValues(typeof(BO.Enum.ProductCategory));
-            //    ConfirmUpdate.Visibility = Visibility.Collapsed;
-            //}
-            //CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Enums.ProductCategory));
-
+            this.Action = action;         
+             BlApi.IBl? bl = BlApi.Factory.Get();
+            
             if (productID != 0)
             {
                 product = bl?.Product.GetProductAdmin(productID);
@@ -79,15 +58,11 @@ namespace PL.Prudoct
             {
                 BackButton.Visibility = Visibility.Hidden;
                 Confirm.Visibility = Visibility.Hidden;
-               // GoBackToProductItem.Visibility = Visibility.Hidden;
-              //  TextBoxLable.Content = "Update product:";
             }
             if (productID == 0 && check == false)
             {
-                //GoBackToProductItem.Visibility = Visibility.Hidden;
                 ConfirmUpdate.Visibility = Visibility.Hidden;
                 BackButton.Visibility = Visibility.Hidden;
-               // TextBoxLable.Content = "Add product:";
             }
             if (check == true)
             {
@@ -100,7 +75,6 @@ namespace PL.Prudoct
                 InsertCategory.IsReadOnly = true;
                 CategorySelct.Visibility = Visibility.Hidden;
                 InsertInStock.IsReadOnly = true;
-              //  TextBoxLable.Content = "See product:";
             }
         }
 
@@ -135,103 +109,14 @@ namespace PL.Prudoct
                 Close();
             }
             Action?.Invoke(product!.Id);
-            ////IBl bl = new BlImplementation.Bl();
-            //BlApi.IBl? bl = BlApi.Factory.Get();
-            //BO.Product product = new BO.Product();
-            //bool check = true;
-            //try
-            //{
-            //    product.Id = int.Parse(InsertId.Text);
-            //    product.Name = InsertName.Text;
-            //    product.Price = int.Parse(InsertPrice.Text);
-            //    product.InStock = int.Parse(InsertInStock.Text);
-            //    product.Category = (BO.Enum.ProductCategory?)CategorySelct.SelectedItem;
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("the data was not compltly fool");
-            //    check = false;
-            //    new ProductListWindow().Show();
-            //    Close();
-            //}
-            //try
-            //{
-            //    if (check)
-            //    {
-            //        bl.Product.ProductAdd(product);
-
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("the data was rong");
-            //   check =false;
-            //    new ProductListWindow().Show();
-            //    Close();
-            //}
-            //if (check)
-            //{
-            //    new ProductListWindow().Show();
-            //    Close();
-            //}
+            
         }
 
         private void ConfirmUpdate_Click(object sender, RoutedEventArgs e)
         {
             bool check = false;
 
-            ////IBl bl = new BlImplementation.Bl();
             BlApi.IBl? bl = BlApi.Factory.Get();
-            //try
-            //{
-            //    product.ID = int.Parse(InsertId.Text);
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("the id was not fool");
-            //    new ProductListWindow().Show();
-            //    Close();
-            //}
-            //try
-            //{
-            //    product.Name = InsertName.Text;
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("the name was not fool");
-            //    new ProductListWindow().Show();
-            //    Close();
-            //}
-            //try
-            //{
-            //    product.Price = int.Parse(InsertPrice.Text);
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("the price was not fool");
-            //    new ProductListWindow().Show();
-            //    Close();
-            //}
-            //try
-            //{
-            //    product.InStock = int.Parse(InsertInStock.Text);
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("the stock was not fool");
-            //    new ProductListWindow().Show();
-            //    Close();
-            //}
-            //try
-            //{
-            //    product.Category = (DO.Enums.ProductCategory?)CategorySelct.SelectedItem;
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("the category was not fool");
-            //    new ProductListWindow().Show();
-            //    Close();
-            //}
 
             try
             {

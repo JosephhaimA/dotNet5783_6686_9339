@@ -73,5 +73,10 @@ public partial class MainWindow : Window
             }
         }
     }
+
+    private void Tracing_TextChanged(object sender, TextChangedEventArgs e)
+    {
+
+    }
 }
 
