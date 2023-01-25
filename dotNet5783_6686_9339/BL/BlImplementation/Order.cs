@@ -176,10 +176,10 @@ internal class Order : IOrder
                 Item = "the order is confermed in the system";
             }
 
-            var tupleList = new List<(DateTime? myTime, string Name)>
-                {
-                     (DateTime.Now, Item)
-                };
+            var tupleList = new List<(DateTime? myTime, string? Name)>
+            {
+                (DateTime.Now, Item)
+            };
             BoOrderTracking.Tracking = tupleList!;
             break;
         }
