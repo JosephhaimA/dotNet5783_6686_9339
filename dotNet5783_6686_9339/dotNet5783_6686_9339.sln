@@ -10,11 +10,15 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalList", "DalList\DalList.csproj", "{D8C436D1-7648-43A4-B0F4-7757BAEA1C04}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalTest", "DalTest\DalTest.csproj", "{0EF1C2C0-2573-41AF-854F-37A2B50F0EA9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F4BDE508-B9DE-4AD1-9270-0BB900710747} = {F4BDE508-B9DE-4AD1-9270-0BB900710747}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{BDF7100C-A1DF-458F-B012-F5DE9AC9C323}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B08F3661-F93D-4DC0-A5E0-00943AFBB1E1} = {B08F3661-F93D-4DC0-A5E0-00943AFBB1E1}
 		{D8C436D1-7648-43A4-B0F4-7757BAEA1C04} = {D8C436D1-7648-43A4-B0F4-7757BAEA1C04}
+		{F4BDE508-B9DE-4AD1-9270-0BB900710747} = {F4BDE508-B9DE-4AD1-9270-0BB900710747}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlTest", "BlTest\BlTest.csproj", "{DA9D6C06-F81A-4212-A229-E0B0D50BC3E9}"
@@ -28,6 +32,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{A61D1383-13E
 	ProjectSection(SolutionItems) = preProject
 		xml\dal-config.xml = xml\dal-config.xml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalXml", "DalXml\DalXml.csproj", "{F4BDE508-B9DE-4AD1-9270-0BB900710747}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +69,10 @@ Global
 		{7521A6FC-E3D6-4578-B3FC-7B3C2F33542C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7521A6FC-E3D6-4578-B3FC-7B3C2F33542C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7521A6FC-E3D6-4578-B3FC-7B3C2F33542C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4BDE508-B9DE-4AD1-9270-0BB900710747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4BDE508-B9DE-4AD1-9270-0BB900710747}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4BDE508-B9DE-4AD1-9270-0BB900710747}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4BDE508-B9DE-4AD1-9270-0BB900710747}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -20,7 +20,7 @@ public class OrderTracking
     {
         string str = "Id: " + OrderId + "\nStatus: " + Status + "\nTracking:\n ";
         int i = 1;
-        foreach (var tracking in Tracking)
+        foreach (var tracking in Tracking!)
         {
 
             str += i + ":\n" + tracking.Item1;
