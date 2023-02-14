@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DO;
+using System.Xml.Linq;
+using System.Xml.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +15,7 @@ namespace Dal;
 /// <summary>
 /// xml tools
 /// </summary>
-static class XmlTools
+public static class XmlTools
 {
     static string? s_dir = Directory.GetParent(System.IO.Directory.GetCurrentDirectory())?.FullName + @"\xml\";
     static XmlTools()
@@ -150,5 +153,3 @@ static class XmlTools
         #endregion
     }
 }
-
-

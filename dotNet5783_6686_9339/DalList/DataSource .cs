@@ -146,6 +146,10 @@ internal sealed class DataSource
         InitProducts();
         InitOrderItem();
         InitOrders();
+        //XmlTools.SaveListToXMLSerializer<Product>(ProductList, "Product");
+        //XmlTools.SaveListToXMLSerializer<Order>(OrderList, "Order");
+        //XmlTools.SaveListToXMLSerializer<OrderItem>(OrderIteamList, "OrderItem");
+
     }
 
     internal static class Config

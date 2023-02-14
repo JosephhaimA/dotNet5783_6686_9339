@@ -12,7 +12,7 @@ namespace Dal;
 /// <summary>
 /// xml tools
 /// </summary>
-static class XmlTools
+public static class XmlTools
 {
     static string? s_dir = Directory.GetParent(System.IO.Directory.GetCurrentDirectory())?.FullName + @"\xml\";
     static XmlTools()
