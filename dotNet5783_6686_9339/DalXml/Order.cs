@@ -2,134 +2,123 @@
 using DalApi;
 using DO;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data.Common;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 
-
 namespace Dal;
-
+/// <summary>
+/// class DalOrder: 
+/// Implementation of add, delete, update and return operations
+/// </summary>
 internal class DalOrder : IOrder
 {
-    DataSource ds = DataSource.Instance;
-    public int Add(Order p) // function add a Product
+    const string orderPath = "Order";
+    static XElement config = XmlTools.LoadConfig();
+
+    /// <summary>
+    /// The operation accepts an order and adds it in the array
+    /// </summary>
+    /// <returns> returns order id </returns>
+    public int Add(Order ord)
     {
-        {
-            int i = DataSource.Config.IndexOrder;
-            if (i > 0)
-            {
-                p.ID = i;
-                ds.OrderList.Add(p);
-                DataSource.Config.IndexOrder++;
-                return (int)ds.OrderList[i]?.ID!;
-            }
-            else
-                throw new Exception("No such place to add a Order you have to remove one");
-        }
+        List<DO.Order?> ListOrder = XmlTools.LoadListFromXMLSerializer<DO.Order>(orderPath);
+
+        if (ListOrder.FirstOrDefault(orderItem => orderItem?.ID == ord.ID) != null)
+            throw new Exception("id already exist");
+
+        ord.ID = int.Parse(config.Element("OrderID")!.Value) + 1;
+        XmlTools.SaveConfigXElement("OrderID", ord.ID);
+
+        ListOrder.Add(ord);
+
+        XmlTools.SaveListToXMLSerializer(ListOrder, orderPath);
+
+        return ord.ID;
     }
 
-    public Order GetObj(int id) // function to return one Product
+    /// <summary>
+    ///  The operation deletes an order from the array (finds him by id)
+    /// </summary>
+    public void Delete(int ordId)
     {
-        if (exist(id))
-        {
-            Order orderReturn = (Order)ds.OrderList.FirstOrDefault(order => order?.ID == id)!;
-            return orderReturn;
-        }
+        List<DO.Order?> ListOrder = XmlTools.LoadListFromXMLSerializer<DO.Order>(orderPath);
+
+        if (ListOrder.Any(order => order?.ID == ordId))
+            ListOrder.Remove(GetObj(ordId));
         else
-            throw new DO.DalDoesNotExistException("Order doesn't exist");
-
-
-        //int index = OrderFind(id);
-        //if (index != -999)
-        //    return (Order)ds.OrderList[index]!; // return the Product 
-        //else
-        //    throw new Exception("Order doesn't exist");
+            throw new DO.DalDoesNotExistException("order does not exist");
+        XmlTools.SaveListToXMLSerializer(ListOrder, orderPath);
     }
-    public IEnumerable<Order?> GetAll(Func<Order?, bool>? func) // print all the products
+
+    /// <summary>
+    /// The operation returns list of orders (maybe after sort)
+    /// </summary>
+    public IEnumerable<Order?> GetAll(Func<Order?, bool>? func = null)
     {
-        //List<Order?> list = new List<Order?>();
-        if (func != null)
-        {
-            //foreach (Order element in ds.OrderList)
-            //{
-            //    if (func(element))
-            //    {
-            //        list.Add(element);
-            //    }
-            //}
-            List<Order?> list = (List<Order?>)
-                                (from order in ds.OrderList
-                                 where func(order)
-                                 select order);
-            return list;
-        }
+        List<DO.Order?> ListOrder = XmlTools.LoadListFromXMLSerializer<DO.Order>(orderPath);
+
+        if (func == null)
+            return ListOrder.Select(lec => lec).OrderBy(lec => lec?.ID);
         else
-        {
-            return ds.OrderList;
-        }
-    }
-    public void Update(Order p)
-    {
-        //int i = OrderFind(p.ID);
-        //if (i != -999)
-        //{
-        //    Delete(p.ID);
-        //    ds.OrderList.Insert(p.ID - 1, p);
-        //}
-        //else
-        //    throw new Exception("Order does not exist");
-
-        int count = ds.OrderList.RemoveAll(st => p.ID == st?.ID);
-        if (count == 0)
-            throw new DO.DalDoesNotExistException("Student");
-        ds.OrderList.Insert(p.ID - 1, p);
-
-    }
-
-    public void Delete(int id)
-    {
-        //int index = OrderFind(id);
-        //if (index != -999) // if the id don't exist we cannot delete any Product
-        //{
-        //    for (int i = index; i < ds.OrderList.Count - 1; i++)
-        //    {
-        //        // DataSource.OrderList[i] = DataSource.OrderList[1 + i];// jump the Product at the arra[index] and copy the rest
-        //        //if (i + 1 == DataSource.OrderList.Count)
-        //        //  break;
-        //        if (id == (int)ds.OrderList[i]?.ID!)
-        //        {
-        //            ds.OrderList.Remove(ds.OrderList[i]);
-        //        }
-        //    }
-        //    ds.OrderList.SkipLast(1).ToArray();// delete the last Product beacause we copied at the last place
-        //}
-        //else
-        //    throw new Exception("Order does not exist");
-
-        int count = ds.OrderList.RemoveAll(st => id == st?.ID);
-        if (count == 0)
-            throw new DO.DalDoesNotExistException("Student");
-    }
-    // find function that help us with the main function like add, delete..... to check the exist
-    public bool exist(int id)
-    {
-        Console.WriteLine(ds.OrderList.Count);
-        for (int i = 0; i < ds.OrderList.Count; i++)
-        {
-            if (id == (int)ds.OrderList[i]?.ID!)
-                return true;
-        }
-        return false;
+            return ListOrder.Where(func).OrderBy(lec => lec?.ID);
     }
 
     public Order GetSingle(Func<Order?, bool>? func)
     {
-        Order order = new Order();
+        List<DO.Order?> ListOrder = XmlTools.LoadListFromXMLSerializer<DO.Order>(orderPath);
         if (func != null)
         {
-            order = (Order)ds.OrderList?.FirstOrDefault(element => func(element))!;
+            var ord = ListOrder.FirstOrDefault(x => func(x));
+            if (ord != null)
+                return (DO.Order)ord;
         }
-        return order;
+        throw new DO.DalDoesNotExistException("No object is of the delegate");
+    }
+
+    /// <summary>
+    ///  The operation finds the order (finds him by id) and returns his details
+    /// </summary>
+    public Order GetObj(int ordId)
+    {
+        List<DO.Order?> ListOrder = XmlTools.LoadListFromXMLSerializer<DO.Order>(orderPath);
+
+        var ord = ListOrder.FirstOrDefault(x => x?.ID == ordId);
+
+        if (ord == null)
+            throw new DO.DalDoesNotExistException("Order Id not found");
+        else
+            return (DO.Order)ord;
+    }
+
+    /// <summary>
+    /// returns array length
+    /// </summary>
+    public int ListLength()
+    {
+        List<DO.Order?> ListOrder = XmlTools.LoadListFromXMLSerializer<DO.Order>(orderPath);
+        return ListOrder.Count();
+    }
+
+    /// <summary>
+    /// The operation updates an order in the array (finds him by id)
+    /// </summary>
+    public void Update(Order order)
+    {
+        List<DO.Order?> ListOrder = XmlTools.LoadListFromXMLSerializer<DO.Order>(orderPath);
+        bool found = false;
+        var foundOrder = ListOrder.FirstOrDefault(ord => ord?.ID == order.ID);
+        if (foundOrder != null)
+        {
+            found = true;
+            int index = ListOrder.IndexOf(foundOrder);
+            ListOrder[index] = order;
+        }
+        if (found == false)
+            throw new DO.DalDoesNotExistException("Order Id not found");
+        XmlTools.SaveListToXMLSerializer(ListOrder, orderPath);
+
     }
 }

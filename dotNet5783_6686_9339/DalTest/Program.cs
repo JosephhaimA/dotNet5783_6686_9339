@@ -13,6 +13,7 @@ using DO;
 using System.Reflection.Metadata.Ecma335;
 using System.Xml.Linq;
 
+
 namespace Dal;
 class Program
 {
@@ -51,6 +52,16 @@ class Program
                     break;
                 case 3:
                     OrderIteamTest();
+                    break;
+                case 4:
+                    XmlTools.SaveListToXMLSerializer(TestM.Product.GetAll()!.ToList(), "Product");
+                    XmlTools.SaveListToXMLSerializer(TestM.Order.GetAll()!.ToList(), "Order");
+                    XmlTools.SaveListToXMLSerializer(TestM.OrderItem.GetAll()!.ToList(), "OrderItem");
+
+                    int lastOrderItemID = TestM.OrderItem.GetAll()!.Last()?.ID ?? 0;
+                    int lastOrderID = TestM.Order.GetAll()!.Last()?.ID ?? 0;
+                    XmlTools.SaveConfigXElement("OrderID", lastOrderID);
+                    XmlTools.SaveConfigXElement("OrderItemID", lastOrderItemID);
                     break;
             }
             do
