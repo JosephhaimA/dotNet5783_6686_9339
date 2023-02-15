@@ -13,5 +13,7 @@ public interface IOrder
     public Order DeliveryrOrderUpate(int id);
     public OrderTracking orderTracking(int id);
 
+    public int? PriorityOrder(Func<DO.Order?, bool>? filter = null);
+
 }
 

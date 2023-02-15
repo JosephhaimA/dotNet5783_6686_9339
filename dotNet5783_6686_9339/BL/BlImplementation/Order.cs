@@ -365,4 +365,33 @@ internal class Order : IOrder
         throw new BO.BlDoesNotExistException("No ID exist");
     }
 
+    /// <returns></returns>
+    public int? PriorityOrder(Func<DO.Order?, bool>? filter = null)
+    {
+        DO.Order order = new DO.Order();
+
+        if (filter != null)
+        {
+            order = dal!.Order.GetSingle(filter);
+        }
+        else
+        {
+            DO.Order? OrderOrderDate = dal?.Order.GetAll(x => x?.ShipDate == null)!.MinBy(x => x?.OrderDate);
+            DO.Order? OrderShipDate = dal?.Order.GetAll(x => x?.DeliveryrDate == null)!.MinBy(x => x?.ShipDate);
+
+            if (OrderOrderDate != null && OrderOrderDate?.OrderDate < OrderShipDate?.ShipDate)
+            {
+                return OrderOrderDate?.ID;
+            }
+            else if (OrderShipDate != null)
+            {
+                return OrderShipDate?.ID;
+            }
+
+            return null;
+        }
+
+        return order.ID;
+    }
+
 }
