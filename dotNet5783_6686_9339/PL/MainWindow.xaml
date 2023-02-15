@@ -23,5 +23,6 @@
         </TextBlock>
         <TextBox x:Name="Tracing" HorizontalAlignment="Left" Margin="52,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" Height="32" FontSize="20" KeyDown="Tracing_KeyDown" TextChanged="Tracing_TextChanged"/>
         <Label Content="insert id ⬇️ for tracking" HorizontalAlignment="Left" Margin="33,220,0,0" VerticalAlignment="Top" Height="44" Width="244" FontSize="24" Foreground="#FF2D1860"/>
+        <Button x:Name="simulator" Content="simulator" HorizontalAlignment="Left" Height="83" Margin="624,276,0,0" VerticalAlignment="Top" Width="148" FontSize="20" Background="{x:Null}" Click="simulator_Click"/>
     </Grid>
 </Window>

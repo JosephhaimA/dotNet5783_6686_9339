@@ -78,5 +78,11 @@ public partial class MainWindow : Window
     {
 
     }
+
+    private void simulator_Click(object sender, RoutedEventArgs e)
+    {
+        new MySimulatorWindow().Show();
+       // Close();
+    }
 }
 
