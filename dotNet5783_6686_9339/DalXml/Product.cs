@@ -18,8 +18,8 @@ internal class DalProduct : IProduct
     {
         return new DO.Product
         {
-            ID = s.ToIntNullable("ProductID") ?? throw new FormatException("ProductID"),
-            Name = (string?)s.Element("ProductName")!.Value,
+            ID = s.ToIntNullable("ID") ?? throw new FormatException("ID"),
+            Name = (string?)s.Element("Name")!.Value,
             Category = s.ToEnumNullable<DO.Enums.ProductCategory>("Category"),
             Price = (double)s.Element("Price")!,
             InStock = (int)s.Element("InStock")!
@@ -37,16 +37,16 @@ internal class DalProduct : IProduct
         if (product.ID == 0)
         {
             product.ID = rnd.Next(100000, 999999);
-            XmlTools.SaveConfigXElement("ProductID", product.ID);
+            XmlTools.SaveConfigXElement("ID", product.ID);
         }
         XElement? prod = (from st in product_root.Elements()
-                          where st.ToIntNullable("ProductID") == product.ID
+                          where st.ToIntNullable("ID") == product.ID
                           select st).FirstOrDefault();
         if (prod != null)
             throw new Exception("ID already exist");
         product_root.Add(new XElement("Product",
-                                   new XElement("ProductID", product.Name),
-                                   new XElement("ProductName", product.Name),
+                                   new XElement("ID", product.Name),
+                                   new XElement("Name", product.Name),
                                    new XElement("Category", product.Category),
                                    new XElement("Price", product.Price),
                                    new XElement("InStock", product.InStock)
@@ -63,7 +63,7 @@ internal class DalProduct : IProduct
         XElement product_root = XmlTools.LoadListFromXMLElement(productPath);
 
         XElement? prod = (from st in product_root.Elements()
-                          where (int?)st.Element("ProductID") == prodId
+                          where (int?)st.Element("ID") == prodId
                           select st).FirstOrDefault() ?? throw new Exception("Missing ID");
         prod.Remove();  //<==> Remove stud from studentsRootElem
 

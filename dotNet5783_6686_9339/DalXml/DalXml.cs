@@ -13,7 +13,12 @@ namespace Dal;
 /// </summary>
 sealed internal class DalXml : IDal
 {
-    private DalXml() { } // constructor stage 6
+    private DalXml() 
+    { 
+        Order = new DalOrder();
+        OrderItem = new DalOrderItem();
+        Product = new DalProduct();
+    } // constructor stage 6
     public static IDal Instance { get; } = new DalXml(); // stage 6
     public IOrder Order { get; } = new DalOrder();
     public IProduct Product { get; } = new DalProduct();
